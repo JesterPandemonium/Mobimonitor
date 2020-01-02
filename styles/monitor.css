@@ -1,0 +1,105 @@
+body {
+    background-color: #efefef;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+#monitor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.monitor-entry {
+    background-color: #a9a9a9;
+    color: #fff;
+    border-radius: 15px;
+    min-width: 300px;
+    height: 250px;
+    flex: 1;
+    margin: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.monitor-entry-head {
+    background-color: #ff3b3f;
+    display: flex;
+    padding: 6px 10px;
+    min-height: max-content;
+}
+
+.monitor-entry-logo {
+    background-image: url('https://www.vvo-mobil.de/img/stop.svg');
+    width: 32px;
+    display: block;
+    filter: invert(1);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.monitor-entry-name {
+    display: block;
+    font-weight: 600;
+    margin: 0px 8px;
+}
+
+.monitor-entry-city {
+    display: block;
+    font-size: 14px;
+    margin: 0px 8px;
+}
+
+.monitor-head-button {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.monitor-entry-body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.depart {
+    display: flex;
+    margin: 10px;
+    align-items: center;
+}
+
+.depart>* {
+    display: block;
+}
+
+.depart-logo {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.depart-line {
+    width: 50px;
+    min-width: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.depart-dir {
+    font-size: 14px;
+}
+
+.depart-time {
+    margin-left: auto;
+    width: 20px;
+    min-width: 20px;
+    text-align: center;
+}

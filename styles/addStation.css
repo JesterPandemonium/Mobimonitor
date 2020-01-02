@@ -1,0 +1,123 @@
+#station-popup {
+    border: 2px solid #a9a9a9;
+    background-color: #e4e4e4;
+    border-radius: 10px;
+    padding: 10px;
+    flex-direction: column;
+}
+
+input[type="text"] {
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #a9a9a9;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#station-liste {
+    border: 2px solid #a9a9a9;
+    background-color: #cacaca;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#station-liste button {
+    background-color: #a9a9a9;
+    margin: 3px;
+    padding-left: 10px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 16px;
+    position: relative;
+}
+
+#station-liste .halt-symbol {
+    background-image: url('https://www.vvo-mobil.de/img/stop.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    width: 30px;
+    color: #fff;
+    filter: invert(1);
+    height: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+#station-liste .station-list-label {
+    margin-left: 40px;
+    display: inline-block;
+}
+
+#station-liste .station-list-city {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#station-liste button.station-selected {
+    background-color: #ff3b3f;
+}
+
+#res-info {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#linienwahl-container button {
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+#linien-liste {
+    border: 2px solid #a9a9a9;
+    background-color: #cacaca;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linien-container {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 3px;
+    background-color: #a9a9a9;
+    border-radius: 10px;
+}
+
+.line-symbol {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.line-label {
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+.line-checkmark {
+    width: 20px;
+    height: 10px;
+    border-bottom: 5px solid #ff3b3f;
+    border-left: 5px solid #ff3b3f;
+    margin-left: auto;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

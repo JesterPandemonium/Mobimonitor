@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/general.css">
+    <link rel="stylesheet" href="/index.css">
+    <script src="/xhr.js"></script>
+    <script src="/index.js"></script>
+    <title>MobiMonitor</title>
+</head>
+<body>
+    <h1>MobiMonitor</h1>
+    <h3>Personalisierbarer Abfahrtsmonitor</h3>
+    <p>Lege Dir jetzt Deinen eigenen MobiMonitor an!</p>
+    <p>Es dauert nur wenige Klicks - versprochen!</p>
+    <button onclick="createNewMonitor()">Neuen MobiMonitor anlegen</button>
+    <div id="popup-container">
+        <div id="popup">
+            <p><b>Achtung!</b> Notiere Dir unbedingt Deinen pers&ouml;nlichen Link, um sp&auml;ter wieder auf Deinen MobiMonitor zugreifen zu k&ouml;nnen! Du kannst Dir den Link auch als Favoriten speichern.</p>
+            <div id="link-container">
+                <input type="text" id="link" contenteditable="false" readonly="true">
+                <button onclick="copyLink()">Kopieren</button>
+            </div>
+            <button onclick="redirect()">Alles klar, erledigt!</button>
+        </div>
+    </div>
+    <span id="v">1.0.1</span>
+</body>
+</html>

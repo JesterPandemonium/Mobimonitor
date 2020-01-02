@@ -1,0 +1,4 @@
+node_modules
+log
+pm2log
+data/**
