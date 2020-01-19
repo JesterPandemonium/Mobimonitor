@@ -4,9 +4,9 @@ let express = require('express');
 let app = express();
 
 app.use(express.json());
-app.use(express.static('favicon'));
-app.use(express.static('styles'));
-app.use(express.static('scripts'));
+app.use(express.static(__dirname + '/favicon'));
+app.use(express.static(__dirname + '/styles'));
+app.use(express.static(__dirname + '/scripts'));
 
 let handleError = function(res, err) {
     res.send({ err: true });
@@ -119,4 +119,4 @@ app.post('/delStop/:id', (req, res) => {
     });
 });
 
-app.listen(8082);
+module.exports = app;
