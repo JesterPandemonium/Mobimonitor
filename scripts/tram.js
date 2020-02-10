@@ -8,9 +8,6 @@ let tramData = {
     stop: false,
     stopping: false
 }
-setTimeout(() => {
-    tramData.stop = true;
-}, 5 * 1000);
 
 let moveTram = function() {
     if (tramData.mov.v > 2) {
@@ -54,16 +51,13 @@ let moveTram = function() {
 }
 
 let stopTram = function() {
-    console.log(tramData.mov.s)
     let sVals = [tramData.mov.s[1], tramData.mov.s[2], tramData.mov.s[3]];
     let s = sVals.sort((a, b) => {
         if (a > b) return 1;
         else return -1;
     })[2];
-    console.log(s)
     while (s > -100) s -= 100;
     s += 63.3;
-    console.log(s)
     let t = (-2) * s / tramData.mov.v;
     tramData.mov.a = (-1) * tramData.mov.v / (t - 1);
     let xS = 50;

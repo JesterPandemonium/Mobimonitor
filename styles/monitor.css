@@ -4,9 +4,7 @@ html {
 }
 
 body {
-    background-color: #efefef;
     font-family: Arial, Helvetica, sans-serif;
-    justify-content: center;
     padding: 10px;
     text-align: center;
 }
@@ -22,8 +20,6 @@ body {
 }
 
 .monitor-entry {
-    background-color: #a9a9a9;
-    color: #fff;
     border-radius: 15px;
     min-width: 300px;
     height: 250px;
@@ -36,7 +32,6 @@ body {
 }
 
 .monitor-entry-head {
-    background-color: #ff3b3f;
     display: flex;
     padding: 6px 10px;
     min-height: max-content;
@@ -46,7 +41,7 @@ body {
     background-image: url('https://www.vvo-mobil.de/img/stop.svg');
     width: 32px;
     display: block;
-    filter: invert(1);
+    filter: invert(1) brightness(25%);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -111,4 +106,25 @@ body {
     width: 20px;
     min-width: 20px;
     text-align: center;
+}
+
+.monitor-entry { 
+    background-color: #fde999; 
+    color: #404040;
+}
+
+.monitor-entry-head { background-color: #ffab61; }
+
+@media (prefers-color-scheme: dark) {
+    .monitor-entry {
+        background-color: #254e58;
+        color: #88bdbc;
+    }
+
+    .monitor-entry-head { background-color: #112d32; }
+
+    .monitor-entry-logo {
+        /* Awesome Tool :) https://codepen.io/sosuke/pen/Pjoqqp */
+        filter: invert(75%) sepia(11%) saturate(789%) hue-rotate(130deg) brightness(94%) contrast(89%);
+    }
 }

@@ -2,8 +2,9 @@
     display: none;
 }
 
+* { scrollbar-width: none; }
+
 h1 {
-    color: #a9a9a9;
     margin-bottom: 0;
     text-align: center;
     padding-top: 20px;
@@ -12,7 +13,6 @@ h1 {
 }
 
 h3 {
-    color: #a9a9a9;
     margin: 0;
     width: 80%;
     text-align: center;
@@ -22,16 +22,13 @@ h3 {
 }
 
 p {
-    background-color: #caebf2;
     padding: 5px 10px;
     border-radius: 5px;
-    width: fit-content;
+    width: max-content;
 }
 
 button {
     -webkit-appearance: none;
-    background-color: #ff3b3f;
-    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 20px;
@@ -41,18 +38,30 @@ button {
 }
 
 a {
-    background-color: #ff3b3f;
-    color: #fff;
     padding: 10px;
     border-radius: 10px;
     display: block;
-    width: fit-content;
+    width: max-content;
     margin: 10px auto;
     text-decoration: none;
 }
 
 button:focus {
     outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button.confirm {
+    background-color: #7dcea0;
+    color: #fff;
+}
+
+button.cancel {
+    background-color: #f1948a;
+    color: #fff;
 }
 
 input {
@@ -70,4 +79,24 @@ input:focus {
     top: 0;
     right: 0;
     padding: 5px;
+}
+
+button, a { color: #404040 }
+
+h1, h3 { color: #0700d3; }
+
+body { background-color: #e9f0ff }
+
+button, a { background-color: #ffab61 }
+
+p { background-color: #fde999 }
+
+@media (prefers-color-scheme: dark) {
+    button, a, p { color: #88bdbc }
+
+    body { background-color: #020b23 }
+
+    button, a { background-color: #254e58 }
+
+    p { background-color: #112d32 }
 }

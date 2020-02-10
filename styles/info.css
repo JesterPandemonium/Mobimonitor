@@ -1,5 +1,4 @@
 body {
-    background-color: #efefef;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -8,20 +7,22 @@ body {
     padding: 30px;
 }
 
-h3 {
-    color: #ff3b3f;
-}
-
 p {
     text-align: center;
 }
 
 a {
-    color: #ff3b3f;
+    color: #0700d3;
     text-decoration: underline;
     background: none;
     display: inline;
     border-radius: 0;
     padding: 0;
     margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    a {
+        color: #ddd;
+    }
 }

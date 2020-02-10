@@ -74,16 +74,15 @@
                 <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
                 <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
                 <div id="linien-liste">
-                    <div v-for="line in lineList" class="linien-container" @click="line.state = line.state == false">
+                    <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
                         <span class="line-symbol" :style="getMotPic(line.mot)"></span>
                         <span class="line-label">{{ line.line }}</span>
-                        <span class="line-checkmark" v-show="line.state"></span>
                     </div>
                 </div>
             </div>
             <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
-            <button v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Alles klar, das passt so!</button>
-            <button onclick="stationPopup(null)">Hab's mir anders &uuml;berlegt - Abbrechen!</button>
+            <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
+            <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
         </div>
         <a target="_blank">Infoseite</a>
     </div>

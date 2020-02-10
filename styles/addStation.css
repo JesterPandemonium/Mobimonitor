@@ -1,9 +1,11 @@
 #station-popup {
-    border: 2px solid #a9a9a9;
-    background-color: #e4e4e4;
     border-radius: 10px;
     padding: 10px;
     flex-direction: column;
+}
+
+#station-popup p {
+    width: 100%;
 }
 
 input[type="text"] {
@@ -11,15 +13,12 @@ input[type="text"] {
     font-size: 16px;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #a9a9a9;
     margin: 0;
     width: 100%;
     box-sizing: border-box;
 }
 
-#station-liste {
-    border: 2px solid #a9a9a9;
-    background-color: #cacaca;
+#station-liste, #linien-liste {
     border-radius: 10px;
     margin: 10px 0;
     padding: 10px;
@@ -28,7 +27,6 @@ input[type="text"] {
 }
 
 #station-liste button {
-    background-color: #a9a9a9;
     margin: 3px;
     padding-left: 10px;
     border-radius: 10px;
@@ -43,8 +41,7 @@ input[type="text"] {
     background-position: center;
     position: absolute;
     width: 30px;
-    color: #fff;
-    filter: invert(1);
+    filter: invert(1) brightness(25%);
     height: 100%;
     top: 0;
     bottom: 0;
@@ -76,23 +73,16 @@ input[type="text"] {
     padding: 5px 10px;
 }
 
-#linien-liste {
-    border: 2px solid #a9a9a9;
-    background-color: #cacaca;
-    border-radius: 10px;
-    margin: 10px 0;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
 .linien-container {
     display: flex;
     align-items: center;
     padding: 8px 12px;
     margin: 3px;
-    background-color: #a9a9a9;
     border-radius: 10px;
+}
+
+.linien-container:hover {
+    cursor: pointer;
 }
 
 .line-symbol {
@@ -105,19 +95,66 @@ input[type="text"] {
 }
 
 .line-label {
-    color: #fff;
     font-weight: 600;
     font-size: 20px;
     margin: 0 10px;
 }
 
-.line-checkmark {
-    width: 20px;
-    height: 10px;
-    border-bottom: 5px solid #ff3b3f;
-    border-left: 5px solid #ff3b3f;
-    margin-left: auto;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+input[type="text"] { border: 1px solid #a9a9a9; }
+
+#station-popup {
+    border: 2px solid #a9a9a9;
+    background-color: #e4e4e4;
+    color: #404040;
+}
+
+#station-liste, #linien-liste {
+    border: 2px solid #a9a9a9;
+    background-color: #cacaca;
+}
+
+#station-liste button, .linien-container {    
+    background-color: #b4dfe5;
+}
+
+#station-liste button.station-selected, .linien-container.line-selected {
+    background-color: #ffab61;
+}
+
+@media (prefers-color-scheme: dark) {
+    input[type="text"] { border: 1px solid #88bdbc; }
+    
+    #station-popup {
+        border: 2px solid #88bdbc;
+        background-color: #254e58;
+    }
+
+    #station-popup button {
+        color: #254e58;
+        background-color: #88bdbc;
+    }
+
+    #station-liste, #linien-liste {
+        border: 2px solid #88bdbc;
+        background-color: #112d32;
+        color: #88bdbc;
+    }
+
+    #station-liste button, .linien-container {
+        color: #fff;
+        background-color: #254e58;
+    }
+
+    #station-liste button.station-selected, .linien-container.line-selected {
+        background-color: #88bdbc;
+        color: #254e58;
+    }
+
+    #station-liste .halt-symbol {
+        filter: invert(1);
+    }
+
+    #station-liste button.station-selected .halt-symbol {
+        filter: invert(21%) sepia(4%) saturate(6142%) hue-rotate(145deg) brightness(104%) contrast(81%);
+    }
 }

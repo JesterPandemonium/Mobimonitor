@@ -1,5 +1,4 @@
 body {
-    background-color: #efefef;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -26,7 +25,6 @@ body {
 }
 
 #popup {
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -52,4 +50,16 @@ body {
     margin: 0;
     border-radius: 0 0 10px 10px;
     font-size: 16px;
+}
+
+#popup { background-color: #e9f0ff }
+
+@media (prefers-color-scheme: dark) {
+    #popup { background-color: #020b23 }
+
+    input {
+        background-color: #668e8d;
+        color: #fff;
+        border: 1px solid #668e8d;
+    }
 }
