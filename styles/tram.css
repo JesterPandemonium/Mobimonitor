@@ -1,0 +1,38 @@
+#trams {
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    padding-top: 50vh;
+    overflow: visible;
+    transform-origin: 50% 64.9%;
+    z-index: 1;
+}
+
+#tram-wrapper {
+    position: relative;
+    min-width: 110vw;
+    min-height: 130vh;
+    height: 51.6vw;
+    width: 277.1vh;
+    transform: translateY(-65%);
+    border-bottom: 1vh solid black;
+}
+
+#tram1, #tram2, #tram3, #tram4 {
+    position: absolute;
+    height: 100%;
+    left: -150%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#tram1 {
+    width: 123.5%;
+}
+
+#tram2, #tram3, #tram4 {
+    width: 100%;
+}

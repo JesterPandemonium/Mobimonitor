@@ -1,9 +1,18 @@
+html {
+    overflow: hidden;
+    position: fixed;
+}
+
 body {
     background-color: #efefef;
     font-family: Arial, Helvetica, sans-serif;
     justify-content: center;
     padding: 10px;
     text-align: center;
+}
+
+#app {
+    transform-origin: top;
 }
 
 #monitor {

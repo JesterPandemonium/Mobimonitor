@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.static(__dirname + '/favicon'));
 app.use(express.static(__dirname + '/styles'));
 app.use(express.static(__dirname + '/scripts'));
+app.use(express.static(__dirname + '/img'));
 
 let handleError = function(res, err) {
     res.send({ err: true });

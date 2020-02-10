@@ -1,6 +1,7 @@
 let app;
 
 let main = function() {
+    moveTram();
     let id = window.location.pathname;
     document.querySelector('a').href = '/info' + id;
     app = new Vue({
@@ -98,6 +99,7 @@ let refresh = function(loop) {
             });
         }
         document.getElementById('app').style.display = 'block';
+        tramData.stop = true;
     });
 }
 
