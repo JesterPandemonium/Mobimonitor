@@ -4,10 +4,6 @@
     flex-direction: column;
 }
 
-#station-popup p {
-    width: 100%;
-}
-
 input[type="text"] {
     display: block;
     font-size: 16px;

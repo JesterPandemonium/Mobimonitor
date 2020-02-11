@@ -24,7 +24,6 @@ h3 {
 p {
     padding: 5px 10px;
     border-radius: 5px;
-    width: max-content;
 }
 
 button {
@@ -93,6 +92,8 @@ p { background-color: #fde999 }
 
 @media (prefers-color-scheme: dark) {
     button, a, p { color: #88bdbc }
+
+    h1, h3 { color: #9693ff }
 
     body { background-color: #020b23 }
 
