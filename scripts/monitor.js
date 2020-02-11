@@ -61,7 +61,7 @@ let refresh = function(loop) {
         app.departs = {};
         for (let station in resData) {
             let departs = [];
-            let alreadyUsed = [];
+            let alreadyUsed = {};
             for (let i = 0; i < resData[station].Departures.length; i++) {
                 let depart = resData[station].Departures[i];
                 let line = depart.LineName;
@@ -72,7 +72,8 @@ let refresh = function(loop) {
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
                 let willKeinFernverkehr = app.refreshData.stops[station].lines['IC/ICE'] === false;
                 if (lineNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
-                if (alreadyUsed.indexOf(line + depart.Direction) == -1) {
+                if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
+                if (alreadyUsed[depart.LineName + depart.Direction] < 2) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
                     if ('RealTime' in depart) leaveTime = parseInt(depart.RealTime.match(/[0-9]+/)[0]);
                     let timeToGo = (leaveTime - Date.now()) / 60000;
@@ -88,7 +89,7 @@ let refresh = function(loop) {
                             mot: depart.Mot,
                             time: Math.floor(timeToGo)
                         });
-                        alreadyUsed.push(depart.LineName + depart.Direction);
+                        alreadyUsed[depart.LineName + depart.Direction]++;
                     }
                 }
             }
@@ -130,12 +131,7 @@ let addDepartures = function(station, data) {
                 data.Name = result.Name;
                 data.Place = result.Place;
                 if (!('Departures' in data)) data.Departures = [];
-                let usedCodes = [];
-                for (let i = 0; i < data.Departures.length; i++) usedCodes.push(data.Departures[i].Id + data.Departures[i].ScheduledTime);
-                for (let i = 0; i < result.Departures.length; i++) {
-                    if (usedCodes.indexOf(result.Departures[i].Id + result.Departures[i].ScheduledTime) != -1) continue;
-                    data.Departures.push(result.Departures[i]);
-                }
+                for (let i = 0; i < result.Departures.length; i++) data.Departures.push(result.Departures[i]);
                 addDepartures(station, data).then(newData => { resolve(newData) });
             }
         }).catch(errData => {
