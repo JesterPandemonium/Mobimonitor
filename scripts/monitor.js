@@ -74,11 +74,11 @@ let refresh = function(loop) {
             let alreadyUsed = {};
             for (let i = 0; i < resData[station].Departures.length; i++) {
                 let depart = resData[station].Departures[i];
+                console.log(depart);
                 let line = depart.LineName;
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
-                else if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
-                else if (line.length > 10) line = '';
+                if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
                 let lineNotWanted = app.refreshData.stops[station].lines[line] === false;
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
                 let willKeinFernverkehr = app.refreshData.stops[station].lines['IC/ICE'] === false;
@@ -93,6 +93,7 @@ let refresh = function(loop) {
                     if (line == 'Kirnitzschtalbahn') line = 'KiB';
                     if (line == 'Lößnitzgrundbahn') line = 'LöB';
                     if (line == 'Weißeritztalbahn') line = 'WeB';
+                    if (line.length > 10) line = '';
                     if (timeToGo >= 0 && timeToGo <= 60) {
                         departs.push({
                             line: line,
