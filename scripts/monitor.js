@@ -77,7 +77,8 @@ let refresh = function(loop) {
                 let line = depart.LineName;
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
-                if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
+                else if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
+                else if (line.length > 10) line = '';
                 let lineNotWanted = app.refreshData.stops[station].lines[line] === false;
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
                 let willKeinFernverkehr = app.refreshData.stops[station].lines['IC/ICE'] === false;
