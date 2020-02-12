@@ -100,4 +100,8 @@ p { background-color: #fde999 }
     button, a { background-color: #254e58 }
 
     p { background-color: #112d32 }
+
+    button.confirm { background-color: #418e58 }
+
+    button.cancel { background-color: #8e4141 }
 }

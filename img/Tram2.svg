@@ -19,6 +19,12 @@
    sodipodi:docname="Tram2.svg">
   <defs
      id="defs2" />
+  <style>
+     @font-face {
+        font-family: 'Glass Gauge';
+        src: url("https://db.onlinewebfonts.com/t/d0fa13ed31b741003681cea430fdf0f5.ttf");
+     }
+  </style>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"

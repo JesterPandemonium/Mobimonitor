@@ -125,7 +125,7 @@ input[type="text"] { border: 1px solid #a9a9a9; }
         background-color: #254e58;
     }
 
-    #station-popup button {
+    #station-popup button:not(.cancel):not(.confirm) {
         color: #254e58;
         background-color: #88bdbc;
     }
