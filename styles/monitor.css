@@ -1,17 +1,64 @@
 html {
-    overflow: hidden;
     position: fixed;
+    overflow-x: hidden;
+    height: 100%;
     width: 100%;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    padding: 10px;
+    margin: 0;
     text-align: center;
+    height: 100%;
+    width: 100%;
 }
 
 #app {
     transform-origin: top;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#panel-switch {
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    z-index: 1;
+}
+
+#tab-frame {
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    height: 50px;
+    z-index: 2;
+    transition: left 0.8s ease-in-out;
+}
+
+.tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #fff;
+}
+
+.panel {
+    position: absolute;
+    display: none;
+    top: 0;
+    bottom: 0;
+    margin-bottom: 50px;
+    padding: 20px;
+    overflow: visible;
+    transition: 0.8s ease-in-out;
 }
 
 #monitor {
@@ -109,6 +156,10 @@ body {
     text-align: center;
 }
 
+#tab-frame { background-color: #fff4; }
+
+.tab { background-color: #99aeff; }
+
 .monitor-entry { 
     background-color: #fde999; 
     color: #404040;
@@ -117,6 +168,10 @@ body {
 .monitor-entry-head { background-color: #ffab61; }
 
 @media (prefers-color-scheme: dark) {
+    #tab-frame { background-color: #fff2; }
+
+    .tab { background-color: #005c66; }
+    
     .monitor-entry {
         background-color: #254e58;
         color: #88bdbc;

@@ -5,6 +5,7 @@ let tramData = {
     scale: { s: 0, v: 0, a: 0 },
     monMov: { s: -100, v: 0, a: 0 },
     monScale: { s: 0.7, v: 0, a: 0, j: 0 },
+    tabMov: { s: -50, v: 0, a: 0, j: 0 },
     stop: false,
     stopping: false
 }
@@ -94,6 +95,13 @@ let openDoors = function() {
     tramData.monScale.a = monScaleA;
     tramData.monScale.v = monScaleA;
     tramData.monScale.s = 0.7 + monScaleA;
+    let tabMovS = 50;
+    let tabMovJ = 3 * tabMovS / ((t / 4) * ((t / 4) + 1) * ((t / 2) + 1));
+    let tabMovA = tabMovJ * t / 4;
+    tramData.tabMov.j = -tabMovJ;
+    tramData.tabMov.a = tabMovA;
+    tramData.tabMov.v = tabMovA;
+    tramData.tabMov.s = tabMovA - 50;
     moveDoors(1.5 * t, 1.5 * t);
 }
 
@@ -109,15 +117,19 @@ let moveDoors = function (t, tGes) {
     let rightDoor = tramFrame.contentWindow.document.getElementById('g950');
     let scaleWindow = document.getElementById('trams');
     let monitor = document.getElementById('app');
-    if (t >= tGes / 3) {
+    let panelSwitch = document.getElementById('panel-switch');
+    let tabframe = document.getElementById('tab-frame');
+    if (t > tGes / 3) {
         leftDoor.style.transform = 'translateX(-' + tramData.door.s + '%)';
         rightDoor.style.transform = 'translateX(' + tramData.door.s + '%)';
         tramData.door.v += tramData.door.a;
         tramData.door.s += tramData.door.v;
     } else {
-        let html = document.documentElement;
-        html.style.overflow = 'scroll';
-        html.style.position = 'static';
+        panelSwitch.style.bottom = tramData.tabMov.s + 'px';
+        tabframe.style.bottom = tramData.tabMov.s + 'px';
+        tramData.tabMov.a += tramData.tabMov.j;
+        tramData.tabMov.v += tramData.tabMov.a;
+        tramData.tabMov.s += tramData.tabMov.v;
     }
     if (t <= 2 * tGes / 3) {
         scaleWindow.style.transform = 'scale(' + tramData.scale.s + ')';
@@ -132,5 +144,12 @@ let moveDoors = function (t, tGes) {
     if (t != 0) setTimeout(() => {
         moveDoors(t, tGes);
     }, 20);
-    else scaleWindow.style.display = 'none'; // Yay, fertig :)
+    else {
+        scaleWindow.style.display = 'none';
+        let panels = document.getElementsByClassName('panel');
+        for (let i = 0; i < panels.length; i++) {
+            panels[i].style.overflow = 'scroll';
+            panels[i].style.display = 'block';
+        }
+    } // Yay, fertig :)
 }

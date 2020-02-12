@@ -7,7 +7,7 @@
     padding-top: 50vh;
     overflow: visible;
     transform-origin: 50% 64.9%;
-    z-index: 1;
+    z-index: 3;
 }
 
 #tram-wrapper {

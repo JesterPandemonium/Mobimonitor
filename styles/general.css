@@ -14,7 +14,6 @@ h1 {
 
 h3 {
     margin: 0;
-    width: 80%;
     text-align: center;
     padding-bottom: 10px;
     border-radius: 0 0 30px 30px;
@@ -36,13 +35,23 @@ button {
     margin: 10px;
 }
 
-a {
+/* a {
     padding: 10px;
     border-radius: 10px;
     display: block;
     width: max-content;
     margin: 10px auto;
     text-decoration: none;
+} */
+
+a {
+    color: #0700d3;
+    text-decoration: underline;
+    background: none;
+    display: inline;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
 }
 
 button:focus {
@@ -80,24 +89,28 @@ input:focus {
     padding: 5px;
 }
 
-button, a { color: #404040 }
+button { color: #404040 }
 
-h1, h3 { color: #0700d3; }
+a { color: #0700d3 }
+
+h1, h3 { color: #0700d3 }
 
 body { background-color: #e9f0ff }
 
-button, a { background-color: #ffab61 }
+button { background-color: #ffab61 }
 
 p { background-color: #fde999 }
 
 @media (prefers-color-scheme: dark) {
-    button, a, p { color: #88bdbc }
+    button, p { color: #88bdbc }
 
     h1, h3 { color: #9693ff }
 
+    a { color: #fff }
+
     body { background-color: #020b23 }
 
-    button, a { background-color: #254e58 }
+    button { background-color: #254e58 }
 
     p { background-color: #112d32 }
 

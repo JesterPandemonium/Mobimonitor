@@ -32,62 +32,95 @@
             <iframe id="tram4" src="/Tram2.svg" frameborder="0"></iframe>
         </div>
     </div>
-    <div id="app" style="display:none">
-        <h1>Dein MobiMonitor</h1>
-        <div id="monitor">
-            <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
-            <div v-for="(stop, id) in departs" class="monitor-entry">
-                <div class="monitor-entry-head">
-                    <span class="monitor-entry-logo"></span>
-                    <div>
-                        <span class="monitor-entry-name">{{ stop.name }}</span>
-                        <span class="monitor-entry-city">{{ stop.city }}</span>
-                    </div>
-                    <span @click="editStation(id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
-                    <span @click="removeStation(id)" class="fa fa-trash-o monitor-head-button"></span>
-                </div>
-                <div class="monitor-entry-body">
-                    <div class="depart" v-for="depart in departs[id].departs">
-                        <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
-                        <span class="depart-line">{{ depart.line }}</span>
-                        <span class="depart-dir">{{ depart.dir }}</span>
-                        <span class="depart-time">{{ depart.time }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button onclick="stationPopup(null)">Station hinzuf&uuml;gen</button>
-        <div id="station-popup" style="display:none">
-            <div id="station-such-container">
-                <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
-                <div id="station-liste">
-                    <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
-                        <span class="halt-symbol"></span>
-                        <div class="station-list-label">
-                            <div class="station-list-name">{{ station.name }}</div>
-                            <div class="station-list-city">{{ station.stadt }}</div>
+    <div id="panel-switch">
+        <span onclick="moveTabFrame(1)" class="tab fa fa-home"></span>
+        <span onclick="moveTabFrame(2)" class="tab fa fa-question-circle"></span>
+    </div>
+    <span id="tab-frame"></span>
+    <div id="app" style="display: none">
+        <div class="panel" id="mainpanel" :style="panelOffset(1)">
+            <h1>Dein MobiMonitor</h1>
+            <div id="monitor">
+                <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
+                <div v-for="(stop, id) in departs" class="monitor-entry">
+                    <div class="monitor-entry-head">
+                        <span class="monitor-entry-logo"></span>
+                        <div>
+                            <span class="monitor-entry-name">{{ stop.name }}</span>
+                            <span class="monitor-entry-city">{{ stop.city }}</span>
                         </div>
-                    </button>
-                    <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
-                    <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
-                </div>
-            </div>
-            <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">
-                <p>Bitte w&auml;hle die Linien aus, die Dich interessieren:</p>
-                <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
-                <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
-                <div id="linien-liste">
-                    <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
-                        <span class="line-symbol" :style="getMotPic(line.mot)"></span>
-                        <span class="line-label">{{ line.line }}</span>
+                        <span @click="editStation(id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
+                        <span @click="removeStation(id)" class="fa fa-trash-o monitor-head-button"></span>
+                    </div>
+                    <div class="monitor-entry-body">
+                        <div class="depart" v-for="depart in departs[id].departs">
+                            <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
+                            <span class="depart-line">{{ depart.line }}</span>
+                            <span class="depart-dir">{{ depart.dir }}</span>
+                            <span class="depart-time">{{ depart.time }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
-            <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
-            <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
+            <button onclick="stationPopup(null)">Station hinzuf&uuml;gen</button>
+            <div id="station-popup" style="display:none">
+                <div id="station-such-container">
+                    <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
+                    <div id="station-liste">
+                        <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
+                            <span class="halt-symbol"></span>
+                            <div class="station-list-label">
+                                <div class="station-list-name">{{ station.name }}</div>
+                                <div class="station-list-city">{{ station.stadt }}</div>
+                            </div>
+                        </button>
+                        <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
+                        <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
+                    </div>
+                </div>
+                <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">
+                    <p>Bitte w&auml;hle die Linien aus, die Dich interessieren:</p>
+                    <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
+                    <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
+                    <div id="linien-liste">
+                        <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
+                            <span class="line-symbol" :style="getMotPic(line.mot)"></span>
+                            <span class="line-label">{{ line.line }}</span>
+                        </div>
+                    </div>
+                </div>
+                <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
+                <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
+                <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
+            </div>
         </div>
-        <a target="_blank">Infoseite</a>
+        <div class="panel" id="infopanel" :style="panelOffset(2)">
+            <h1>Info</h1>
+            <h3>Zu erst einmal... Danke!</h3>
+            <p>... dass Du dieses Tool nutzt. Dann war der Programmieraufwand wenigstens nicht umsonst.</p>
+            <h3>Was ist das hier?</h3>
+            <p>MobiMonitor ist eine kleines Tool, mit welchem sich im VVO-Gebiet f&uuml;r eine Vorauswahl von Haltestellen alle Abfahrten &uuml;bersichtlich anzeigen lassen.</p>
+            <p>Du steigst immer an derselben Haltestelle ein, aber kannst Dir den Fahrplan trotzdem nicht merken? Kein Problem, MobiMonitor &uuml;bernimmt das f&uuml;r Dich. Versp&auml;tungen sind auch gleich mit einberechnet ;)</p>
+            <p>Speicher einfach Deine Wunschstationen in Deinem personalisierten MobiMonitor ab und hab immer alles auf einen Blick parat.</p>
+            <h3>Ist das zuverl&auml;ssig?</h3>
+            <p>Die Daten kommen direkt der VVO-Web-API und werden aller 15 Sekunden aktualisiert. Demnach ist die Sache ziemlich wasserfest.</p>
+            <p>Unter Umst&auml;nden beachtet das Tool jedoch noch nicht, ob Fahrten ausfallen. Das wird sich allerdings noch &auml;ndern.</p>
+            <p>Bitte beachte zus&auml;tzlich, dass pro Station nur die Abfahrten der von dir gew&auml;hlten Linien betrachtet werden, sofern sie innerhalb der n&auml;chsten 60 Minuten stattfinden.</p>
+            <h3>Ganz wichtig!</h3>
+            <p>Bitte beachte, dass jeder, der den Link zu deinem MobiMonitor hat, dort auch alles lesen und &auml;ndern kann.</p>
+            <p>Dementsprechend solltest Du Deinen pers&ouml;nlichen Link geheimhalten, MobiMonitor nur auf privaten Ger&auml;ten nutzen oder zumindest Deinen Browserverlauf nachher l&ouml;schen.</p>
+            <p>Ferner solltest Du beachten, dass Dein MobiMonitor gel&ouml;scht wird, wenn Du ihn l&auml;nger als 2 Wochen nicht genutzt hast.</p>
+            <h3>Gibt's das auch als App?</h3>
+            <p>Du kannst Deinen MobiMonitor auf Deinen Home-Bildschirm laden - dann funktioniert sie genau so wie eine App!</p>
+            <p>Du wei&szlig;t nicht, wie das geht? Das erf&auml;hrst du <a href="https://support.apple.com/de-de/guide/iphone/iph42ab2f3a7/ios#iph4f9a47bbc" target="_blank">hier (iOS)</a> bzw. <a href="http://mzl.la/1ApHClH" target="_blank">hier (Android)</a>.</p>
+            <h3>Datenschutz!?!</h3>
+            <p>Cookies? Wer braucht das schon. Wir speichern nur die von Dir get&auml;tigten Einstellungen - und sonst nichts! Keine personenbezogenen Daten!</p>
+            <p>Wenn du genau wissen willst, was wir &uuml;ber Dich wissen, kannst Du Dir <a id="datalink">hier</a> eine JSON-Datei davon runterladen.</p>
+            <p>&Ouml;ffne die Datei mit einem Texteditor deines Vertrauens, f&uuml;ge den Inhalt der Datei einfach in <a href="https://jsonformatter.curiousconcept.com/" target="_blank">diesem Tool</a> ein und schon wird alles lesbar!</p>
+            <h3>Dieser #*%!$ funktioniert nicht!</h3>
+            <p>Ziehe bitte in Betracht, dass das Tool von einer Person auf die Beine gestellt wurde. Bugs sind damit vorprogrammiert - wortw&ouml;rtlich.</p>
+            <p>Aber wenn Dir ein Fehler auff&auml;llt, dann lass es doch einfach den Entwickler wissen, damit er sich darum k&uuml;mmern kann ;)</p>
+        </div>
     </div>
     <span id="v">1.0.2</span>
 </body>

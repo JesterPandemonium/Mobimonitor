@@ -8,6 +8,7 @@ let stationPopup = function (station) {
     if (overlay.style.display != 'none') overlay.style.display = 'none';
     else {
         overlay.style.display = 'flex';
+        input.focus();
         if (station !== null) selectStation(station).then(() => {
             input.value = app.departs[station].city + ' ' + app.departs[station].name;
             window.location.href = '#station-popup';

@@ -3,10 +3,14 @@ let app;
 let main = function() {
     moveTram();
     let id = window.location.pathname;
-    document.querySelector('a').href = '/info' + id;
+    document.getElementById('datalink').href = '/data' + id;
+    let tabCount = document.getElementById('app').childElementCount;
+    let tabFrame = document.getElementById('tab-frame');
+    tabFrame.style.width = (100 / tabCount) + '%';
     app = new Vue({
         el: '#app',
         data: {
+            selectedPanel: 1,
             refreshData: {},
             departs: {},
             stationList: [],
@@ -14,6 +18,12 @@ let main = function() {
             lineList: []
         },
         methods: {
+            panelOffset: function(id) { 
+                return {
+                    left: (id - this.selectedPanel) + '00%',
+                    right: (this.selectedPanel - id) + '00%'
+                }
+            },
             setStation: function(station) { selectStation(station.id) },
             editStation: function(id) { stationPopup(id) },
             removeStation: function(id) { delStation(id) },
@@ -100,6 +110,7 @@ let refresh = function(loop) {
             });
         }
         document.getElementById('app').style.display = 'block';
+        document.getElementById('mainpanel').style.display = 'block';
         tramData.stop = true;
     });
 }
@@ -143,6 +154,14 @@ let addDepartures = function(station, data) {
         });
         else resolve(data);
     });
+}
+
+let moveTabFrame = function(id) {
+    app.selectedPanel = id;
+    let tabCount = document.getElementById('app').childElementCount;
+    let frame = document.getElementById('tab-frame');
+    frame.style.left = ((id - 1) * (100 / tabCount)) + '%';
+    frame.style.width = (100 / tabCount) + '%';
 }
 
 window.onload = main;
