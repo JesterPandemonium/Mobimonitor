@@ -43,18 +43,18 @@
             <h1>Dein MobiMonitor</h1>
             <div id="monitor">
                 <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
-                <div v-for="(stop, id) in departs" class="monitor-entry">
+                <div v-for="stop in stopOrder" class="monitor-entry">
                     <div class="monitor-entry-head">
                         <span class="monitor-entry-logo"></span>
                         <div>
                             <span class="monitor-entry-name">{{ stop.name }}</span>
                             <span class="monitor-entry-city">{{ stop.city }}</span>
                         </div>
-                        <span @click="editStation(id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
-                        <span @click="removeStation(id)" class="fa fa-trash-o monitor-head-button"></span>
+                        <span @click="editStation(stop.id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
+                        <span @click="removeStation(stop.id)" class="fa fa-trash-o monitor-head-button"></span>
                     </div>
                     <div class="monitor-entry-body">
-                        <div class="depart" v-for="depart in departs[id].departs">
+                        <div class="depart" v-for="depart in stop.departs">
                             <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                             <span class="depart-line">{{ depart.line }}</span>
                             <span class="depart-dir">{{ depart.dir }}</span>
@@ -130,6 +130,7 @@
             <p><b>Feature:</b> Der neue Stadtbahnwagen für Dresden fungiert als Ladesymbol.</p>
             <p><b>Feature:</b> Ab sofort werden pro Linie und Richtung die n&auml;chsten zwei Fahrten (statt nur einer) innerhalb der n&auml;chsten Stunde angezeigt.</p>
             <p><b>Feature:</b> Es wird jetzt angezeigt, wenn eine Fahrt ausf&auml;llt.</p>
+            <p><b>Feature:</b> Neu abgespeicherte Haltestellen werden jetzt immer als letztes hinzugef&uuml;gt.</p>
             <p><b>Feature:</b> Abfahrtsmonitor und Infoseite sind nun auf einer Seite. Zwischen den beiden Ansichten l&auml;sst sich &uuml;ber das neue Men&uuml; am unteren Bildschirmrand wechseln.</p>
             <p><b>Feature:</b> Dieser Changelog hier ist ebenso neu :o</p>
             <p><b>Bugfix:</b> Mangels Zwischenzertifikaten hat die Seite zwischenzeitlich nicht mit Firefox funktioniert. Das ist nun behoben.</p>

@@ -49,6 +49,30 @@ let main = function() {
                     if (this.lineList[i].state) selected = true;
                 }
                 return (this.selectedStation !== null && (selected || this.lineList.length == 0));
+            },
+            stopOrder: function() {
+                if (this.refreshData.stops == undefined) return [];
+                let order = [];
+                for (let i = 0; i < Object.keys(this.refreshData.stops).length; i++) {
+                    let id = Object.keys(this.refreshData.stops)[i];
+                    order.push([id, this.refreshData.stops[id]]);
+                }
+                order = order.sort((a, b) => {
+                    if (a[1].added == undefined) return -1;
+                    if (b[1].added == undefined) return 1;
+                    if (a[1].added < b[1].added) return -1;
+                    else return 1;
+                });
+                let stops = [];
+                for (let i = 0; i < order.length; i++) {
+                    let id = order[i][0];
+                    if (id in this.departs) {
+                        let stop = { id: id };
+                        for (let key in this.departs[id]) stop[key] = this.departs[id][key];
+                        stops.push(stop);
+                    }
+                }
+                return stops;
             }
         },
     });

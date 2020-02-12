@@ -76,10 +76,6 @@ app.get('/data/:id', (req, res) => {
     });
 });
 
-app.get('/info/:id', (req, res) => {
-    res.sendFile(__dirname + '/pages/info.html');
-});
-
 app.post('/editStop/:id', (req, res) => {
     let id = req.params.id;
     let path = __dirname + '/data/' + id + '.json';
@@ -94,7 +90,7 @@ app.post('/editStop/:id', (req, res) => {
         if (err) handleError(res, err);
         else {
             let daten = JSON.parse(data);
-            if (!(req.body.id in daten.stops)) daten.stops[req.body.id] = {};
+            if (!(req.body.id in daten.stops)) daten.stops[req.body.id] = { added: Date.now() };
             daten.stops[req.body.id].lines = req.body.lines;
             fs.writeFile(path, JSON.stringify(daten), (err) => {
                 if (err) handleError(err);
