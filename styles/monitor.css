@@ -149,6 +149,13 @@ body {
     font-size: 14px;
 }
 
+.depart-cancel {
+    font-size: 14px;
+    color: #f00;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
 .depart-time {
     margin-left: auto;
     width: 20px;

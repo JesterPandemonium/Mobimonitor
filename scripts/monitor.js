@@ -74,7 +74,6 @@ let refresh = function(loop) {
             let alreadyUsed = {};
             for (let i = 0; i < resData[station].Departures.length; i++) {
                 let depart = resData[station].Departures[i];
-                console.log(depart);
                 let line = depart.LineName;
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
@@ -99,7 +98,8 @@ let refresh = function(loop) {
                             line: line,
                             dir: depart.Direction,
                             mot: depart.Mot,
-                            time: Math.floor(timeToGo)
+                            time: Math.floor(timeToGo),
+                            state: depart.State
                         });
                         alreadyUsed[depart.LineName + depart.Direction]++;
                     }

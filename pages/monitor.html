@@ -58,6 +58,7 @@
                             <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                             <span class="depart-line">{{ depart.line }}</span>
                             <span class="depart-dir">{{ depart.dir }}</span>
+                            <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
                             <span class="depart-time">{{ depart.time }}</span>
                         </div>
                     </div>
@@ -128,6 +129,7 @@
             <p><b>Feature:</b> Der MobiMonitor hat jetzt ein neues Farbschema sowie einen Dunkelmodus.</p>
             <p><b>Feature:</b> Der neue Stadtbahnwagen für Dresden fungiert als Ladesymbol.</p>
             <p><b>Feature:</b> Ab sofort werden pro Linie und Richtung die n&auml;chsten zwei Fahrten (statt nur einer) innerhalb der n&auml;chsten Stunde angezeigt.</p>
+            <p><b>Feature:</b> Es wird jetzt angezeigt, wenn eine Fahrt ausf&auml;llt.</p>
             <p><b>Feature:</b> Abfahrtsmonitor und Infoseite sind nun auf einer Seite. Zwischen den beiden Ansichten l&auml;sst sich &uuml;ber das neue Men&uuml; am unteren Bildschirmrand wechseln.</p>
             <p><b>Feature:</b> Dieser Changelog hier ist ebenso neu :o</p>
             <p><b>Bugfix:</b> Mangels Zwischenzertifikaten hat die Seite zwischenzeitlich nicht mit Firefox funktioniert. Das ist nun behoben.</p>
