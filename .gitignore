@@ -3,3 +3,4 @@ log
 pm2log
 data/**
 !data/abcdef.json
+!.gitkeep
