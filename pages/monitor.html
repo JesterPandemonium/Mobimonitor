@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -40,7 +40,7 @@
     <span id="tab-frame"></span>
     <div id="app" style="display: none">
         <div class="panel" id="mainpanel" :style="panelOffset(1)">
-            <h1>Dein MobiMonitor</h1>
+            <h1 class="logo-title">Dein MobiMonitor</h1>
             <div id="monitor">
                 <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
                 <div v-for="stop in stopOrder" class="monitor-entry">
