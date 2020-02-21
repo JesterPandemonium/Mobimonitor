@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- For Production -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- For Development -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="/general.css">
+    <link rel="stylesheet" href="/departure.css">
+    <link rel="stylesheet" href="/addStation.css">
+    <link rel="stylesheet" href="/monitor.css">
+    <script src="/departure.js"></script>
+    <script src="/refresh.js"></script>
+    <script src="/addStation.js"></script>
+    <script src="/xhr.js"></script>
+    <title>Abfahrten</title>
+</head>
+<body>
+    <div id="depApp">
+        <h1>Abfahrtsmonitor</h1>
+        <div id="station-popup">
+            <div id="station-such-container">
+                <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
+                <div id="station-liste">
+                    <button v-for="station in stationList" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
+                        <span class="halt-symbol"></span>
+                        <div class="station-list-label">
+                            <div class="station-list-name">{{ station.name }}</div>
+                            <div class="station-list-city">{{ station.stadt }}</div>
+                        </div>
+                        <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
+                    </button>
+                    <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
+                    <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
+                </div>
+            </div>
+        </div>
+        <div v-for="stop in departs" class="monitor-entry">
+            <div class="monitor-entry-head">
+                <span class="monitor-entry-logo"></span>
+                <div>
+                    <span class="monitor-entry-name">{{ stop.name }}</span>
+                    <span class="monitor-entry-city">{{ stop.city }}</span>
+                </div>
+            </div>
+            <div class="monitor-entry-body">
+                <div class="depart" v-for="depart in stop.departs">
+                    <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
+                    <span class="depart-line">{{ depart.line }}</span>
+                    <span class="depart-dir">{{ depart.dir }}</span>
+                    <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
+                    <span class="depart-time">{{ depart.time }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

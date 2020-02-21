@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/tram.css">
     <script src="/xhr.js"></script>
     <script src="/addStation.js"></script>
+    <script src="/refresh.js"></script>
     <script src="/monitor.js"></script>
     <script src="/tram.js"></script>
     <title>MobiMonitor</title>
@@ -34,12 +35,13 @@
     </div>
     <div id="panel-switch">
         <span onclick="moveTabFrame(1)" class="tab fa fa-home"></span>
-        <span onclick="moveTabFrame(2)" class="tab fa fa-question-circle"></span>
-        <span onclick="moveTabFrame(3)" class="tab fa fa-rotate-left"></span>
+        <span onclick="moveTabFrame(2)" class="tab fa fa-bus"></span>
+        <span onclick="moveTabFrame(3)" class="tab fa fa-question-circle"></span>
+        <span onclick="moveTabFrame(4)" class="tab fa fa-rotate-left"></span>
     </div>
     <span id="tab-frame"></span>
     <div id="app" style="display: none">
-        <div class="panel" id="mainpanel" :style="panelOffset(1)">
+        <div class="panel" id="mainpanel" :style="panelOffset(1)" style="display:block">
             <h1>Dein MobiMonitor</h1>
             <div id="monitor">
                 <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
@@ -96,10 +98,13 @@
                 <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
             </div>
         </div>
-        <div class="panel" id="infopanel" :style="panelOffset(2)">
+        <div class="panel" id="departpanel" :style="panelOffset(2)">
+            <iframe src="/departure" frameborder="0"></iframe>
+        </div>
+        <div class="panel" id="infopanel" :style="panelOffset(3)">
             <iframe src="/info" frameborder="0"></iframe>
         </div>
-        <div class="panel" id="changelogpanel" :style="panelOffset(3)">
+        <div class="panel" id="changelogpanel" :style="panelOffset(4)">
             <iframe src="/changelog" frameborder="0"></iframe>
         </div>
     </div>
