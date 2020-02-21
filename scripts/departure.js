@@ -31,6 +31,7 @@ let main = function() {
         },
         computed: {}
     });
+    refresh(true);
 }
 
 let displayMonitor = function(id) {
