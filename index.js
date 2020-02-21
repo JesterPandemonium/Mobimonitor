@@ -56,7 +56,7 @@ app.get('/clean', (req, res) => {
             fs.readFile(__dirname + '/data/' + files[i], (err, data) => {
                 if (err) throw err;
                 let json = JSON.parse(data);
-                if (Date.now() - json.lastRequested > 14 * 24 * 60 * 60 * 1000 || Object.keys(json.stops).length == 0) {
+                if (Date.now() - json.lastRequested > 4 * 7 * 24 * 60 * 60 * 1000 || Object.keys(json.stops).length == 0) {
                     fs.unlink(__dirname + '/data/' + files[i], (err) => {
                         if (err) throw err;
                     });
