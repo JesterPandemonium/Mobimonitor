@@ -74,8 +74,8 @@ app.get('/data/:id', (req, res) => {
     fs.readFile(__dirname + '/data/' + req.params.id + '.json', (err, data) => {
         if (err) handleError(res, err);
         else {
-            res.send(data);
             let json = JSON.parse(data);
+            res.json(json);
             json.lastRequested = Date.now();
             fs.writeFile(__dirname + '/data/' + req.params.id + '.json', JSON.stringify(json), (err) => {
                 if (err) handleError({send: x => {}}, err);
