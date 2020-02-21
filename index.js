@@ -20,6 +20,14 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/index.html');
 });
 
+app.get('/info', (req, res) => {
+    res.sendFile(__dirname + '/pages/info.html');
+});
+
+app.get('/changelog', (req, res) => {
+    res.sendFile(__dirname + '/pages/changelog.html');
+});
+
 app.get('/createNewRecord', (req, res) => {
     let alreadyInUse = false;
     let id = '';

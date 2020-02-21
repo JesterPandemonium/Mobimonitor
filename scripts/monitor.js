@@ -3,7 +3,6 @@ let app;
 let main = function() {
     moveTram();
     let id = window.location.pathname;
-    document.getElementById('datalink').href = '/data' + id;
     let tabCount = document.getElementById('app').childElementCount;
     let tabFrame = document.getElementById('tab-frame');
     tabFrame.style.width = (100 / tabCount) + '%';
