@@ -70,7 +70,7 @@
             <div id="station-popup" style="display:none">
                 <div id="station-such-container">
                     <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
-                    <div id="station-liste">
+                    <div class="station-liste">
                         <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
                             <span class="halt-symbol"></span>
                             <div class="station-list-label">

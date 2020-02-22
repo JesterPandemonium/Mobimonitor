@@ -15,7 +15,7 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-#station-liste, #linien-liste {
+.station-liste, #linien-liste {
     border-radius: 10px;
     margin: 10px 0;
     padding: 10px;
@@ -23,7 +23,7 @@ input[type="text"] {
     flex-direction: column;
 }
 
-#station-liste button {
+.station-liste button {
     margin: 3px;
     padding-left: 10px;
     border-radius: 10px;
@@ -32,7 +32,7 @@ input[type="text"] {
     position: relative;
 }
 
-#station-liste .halt-symbol {
+.station-liste .halt-symbol {
     background-image: url('https://www.vvo-mobil.de/img/stop.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -44,12 +44,12 @@ input[type="text"] {
     bottom: 0;
 }
 
-#station-liste .station-list-label {
+.station-liste .station-list-label {
     margin-left: 40px;
     display: inline-block;
 }
 
-#station-liste .station-list-city {
+.station-liste .station-list-city {
     font-weight: 500;
     font-size: 14px;
 }
@@ -101,16 +101,16 @@ input[type="text"] { border: 1px solid #a9a9a9; }
     color: #404040;
 }
 
-#station-liste, #linien-liste {
+.station-liste, #linien-liste {
     border: 2px solid #a9a9a9;
     background-color: #cacaca;
 }
 
-#station-liste button, .linien-container {    
+.station-liste button, .linien-container {    
     background-color: #b4dfe5;
 }
 
-#station-liste button.station-selected, .linien-container.line-selected {
+.station-liste button.station-selected, .linien-container.line-selected {
     background-color: #ffab61;
 }
 
@@ -131,27 +131,27 @@ input[type="text"] { border: 1px solid #a9a9a9; }
         background-color: #88bdbc;
     }
 
-    #station-liste, #linien-liste {
+    .station-liste, #linien-liste {
         border: 2px solid #88bdbc;
         background-color: #112d32;
         color: #88bdbc;
     }
 
-    #station-liste button, .linien-container {
+    .station-liste button, .linien-container {
         color: #fff;
         background-color: #254e58;
     }
 
-    #station-liste button.station-selected, .linien-container.line-selected {
+    .station-liste button.station-selected, .linien-container.line-selected {
         background-color: #88bdbc;
         color: #254e58;
     }
 
-    #station-liste .halt-symbol {
+    .station-liste .halt-symbol {
         filter: invert(1);
     }
 
-    #station-liste button.station-selected .halt-symbol {
+    .station-liste button.station-selected .halt-symbol {
         filter: invert(21%) sepia(4%) saturate(6142%) hue-rotate(145deg) brightness(104%) contrast(81%);
     }
 }

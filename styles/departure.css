@@ -1,3 +1,13 @@
+.station-liste .halt-symbol.history-symbol {
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 35px;
+    filter: none;
+}
+
 .stopspinner {
     right: 0;
     top: 50%;

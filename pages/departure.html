@@ -22,8 +22,18 @@
         <h1>Abfahrtsmonitor</h1>
         <div id="station-popup">
             <div id="station-such-container">
-                <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
-                <div id="station-liste" v-show="stationList.length > 0">
+                <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()">
+                <div class="station-liste" v-show="historyShown">
+                    <button v-for="station in history" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
+                        <span class="halt-symbol history-symbol fa fa-history"></span>
+                        <div class="station-list-label">
+                            <div class="station-list-name">{{ station.name }}</div>
+                            <div class="station-list-city">{{ station.stadt }}</div>
+                        </div>
+                        <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
+                    </button>
+                </div>
+                <div class="station-liste" v-show="stationList.length > 0">
                     <button v-for="station in stationList" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
                         <span class="halt-symbol"></span>
                         <div class="station-list-label">
@@ -52,7 +62,7 @@
                     <span class="monitor-entry-name">{{ stop.name }}</span>
                     <span class="monitor-entry-city">{{ stop.city }}</span>
                 </div>
-                <span class="fa fa-close monitor-head-button" style="margin-left:auto" @click="departs = {}; refreshData = {}; selectedStation = null;"></span>
+                <span class="fa fa-close monitor-head-button" style="margin-left:auto" onclick="clearMonitor()"></span>
             </div>
             <div class="monitor-entry-body">
                 <div class="depart" v-for="depart in stop.departs" v-show="wantsMot(depart.mot)">
