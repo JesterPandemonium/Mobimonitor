@@ -37,6 +37,14 @@
                 </div>
             </div>
         </div>
+        <div id="mots">
+            <div v-for="(use, mot) in mots" class="mot-box">
+                <div class="mot-img" :style="getMotPic(mot)"></div>
+                <div class="mot-switch" :class="{ enabled: use }" @click="mots[mot] = !use">
+                    <div class="mot-switch-slider"></div>
+                </div>
+            </div>
+        </div>
         <div v-for="stop in departs" class="monitor-entry">
             <div class="monitor-entry-head">
                 <span class="monitor-entry-logo"></span>
@@ -46,7 +54,7 @@
                 </div>
             </div>
             <div class="monitor-entry-body">
-                <div class="depart" v-for="depart in stop.departs">
+                <div class="depart" v-for="depart in stop.departs" v-show="wantsMot(depart.mot)">
                     <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                     <span class="depart-line">{{ depart.line }}</span>
                     <span class="depart-dir">{{ depart.dir }}</span>

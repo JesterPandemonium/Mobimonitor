@@ -10,7 +10,14 @@ let main = function() {
                 stops: {}
             },
             departs: {},
-            fetching: false
+            mots: {
+                Tram: true,
+                SuburbanRailway: true,
+                Cableway: true,
+                CityBus: true,
+                Train: true,
+                Ferry: true
+            }
         },
         methods: {
             displayMonitor: function(station) { displayMonitor(station.id); },
@@ -27,6 +34,20 @@ let main = function() {
                     PlusBus: 'plusBus.svg'
                 }
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+            },
+            wantsMot: function(mot) {
+                let map = {
+                    Tram: this.mots.Tram,
+                    CityBus: this.mots.CityBus,
+                    IntercityBus: this.mots.CityBus,
+                    SuburbanRailway: this.mots.SuburbanRailway,
+                    Train: this.mots.Train,
+                    Cableway: this.mots.Cableway,
+                    Ferry: this.mots.Ferry,
+                    HailedSharedTaxi: true,
+                    PlusBus: this.mots.CityBus
+                }
+                return map[mot];
             }
         },
         computed: {}

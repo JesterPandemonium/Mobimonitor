@@ -20,6 +20,50 @@
     to { transform: rotate(360deg) translateY(-50%); }
 }
 
+#mots {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.mot-box {
+    display: flex;
+    width: 33.33%;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.mot-img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.mot-switch {
+    height: 20px;
+    width: 40px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.mot-switch-slider {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    margin-left: 0;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 2px;
+}
+
+.mot-switch.enabled .mot-switch-slider {
+    margin-left: 20px;
+}
+
 #depApp {
     position: absolute;
     top: 0;
@@ -32,4 +76,28 @@
 
 #depApp .monitor-entry {
     flex: 0 1 content;
+}
+
+#mots {
+    border: 2px solid #a9a9a9;
+    background-color: #e4e4e4;
+}
+
+.mot-switch { background-color: #ccc; }
+
+.mot-switch.enabled { background-color: #7cdf79; }
+
+.mot-switch-slider { background-color: #fff; }
+
+@media (prefers-color-scheme: dark) {
+    #mots {
+        border: 2px solid #88bdbc;
+        background-color: #254e58;
+    }
+
+    .mot-switch { background-color: #9f9f9f; }
+
+    .mot-switch.enabled { background-color: #9693ff; }
+
+    .mot-switch-slider { background-color: #ddd; }
 }
