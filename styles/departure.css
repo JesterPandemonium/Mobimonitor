@@ -7,6 +7,8 @@
     filter: none;
 }
 
+.station-liste .station-selected .halt-symbol.history-symbol { filter: none; }
+
 .stopspinner {
     right: 0;
     top: 50%;
@@ -87,8 +89,6 @@
     flex: 0 1 content;
 }
 
-.station-liste .halt-symbol.history-symbol { color: #404040; }
-
 #mots {
     border: 2px solid #a9a9a9;
     background-color: #e4e4e4;
@@ -101,8 +101,6 @@
 .mot-switch-slider { background-color: #fff; }
 
 @media (prefers-color-scheme: dark) {
-    .station-liste .halt-symbol.history-symbol { color: #fff; }
-
     #mots {
         border: 2px solid #88bdbc;
         background-color: #254e58;

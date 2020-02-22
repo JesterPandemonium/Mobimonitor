@@ -55,7 +55,7 @@ body {
     top: 0;
     bottom: 0;
     margin-bottom: 50px;
-    padding: 20px;
+    padding: 0 20px;
     overflow: visible;
     transition: 0.8s ease-in-out;
 }
@@ -124,7 +124,7 @@ iframe {
 
 .depart {
     display: flex;
-    margin: 10px;
+    padding: 5px 10px;
     align-items: center;
 }
 
@@ -178,6 +178,8 @@ iframe {
 
 .monitor-entry-head { background-color: #ffab61; }
 
+.depart:nth-child(even) { background-color: #f001; }
+
 @media (prefers-color-scheme: dark) {
     #tab-frame { background-color: #fff2; }
 
@@ -194,4 +196,6 @@ iframe {
         /* Awesome Tool :) https://codepen.io/sosuke/pen/Pjoqqp */
         filter: invert(75%) sepia(11%) saturate(789%) hue-rotate(130deg) brightness(94%) contrast(89%);
     }
+
+    .depart:nth-child(even) { background-color: #fff1; }
 }

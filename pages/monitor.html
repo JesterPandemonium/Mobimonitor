@@ -36,75 +36,81 @@
     <div id="panel-switch">
         <span onclick="moveTabFrame(1)" class="tab fa fa-home"></span>
         <span onclick="moveTabFrame(2)" class="tab fa fa-bus"></span>
-        <span onclick="moveTabFrame(3)" class="tab fa fa-question-circle"></span>
-        <span onclick="moveTabFrame(4)" class="tab fa fa-rotate-left"></span>
+        <span onclick="moveTabFrame(3)" class="tab fa fa-map-marker"></span>
+        <span onclick="moveTabFrame(4)" class="tab fa fa-question-circle"></span>
+        <span onclick="moveTabFrame(5)" class="tab fa fa-rotate-left"></span>
     </div>
     <span id="tab-frame"></span>
     <div id="app" style="display: none">
         <div class="panel" id="mainpanel" :style="panelOffset(1)" style="display:block">
-            <h1>Dein MobiMonitor</h1>
-            <div id="monitor">
-                <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
-                <div v-for="stop in stopOrder" class="monitor-entry">
-                    <div class="monitor-entry-head">
-                        <span class="monitor-entry-logo"></span>
-                        <div>
-                            <span class="monitor-entry-name">{{ stop.name }}</span>
-                            <span class="monitor-entry-city">{{ stop.city }}</span>
-                        </div>
-                        <span @click="editStation(stop.id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
-                        <span @click="removeStation(stop.id)" class="fa fa-trash-o monitor-head-button"></span>
-                    </div>
-                    <div class="monitor-entry-body">
-                        <div class="depart" v-for="depart in stop.departs">
-                            <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
-                            <span class="depart-line">{{ depart.line }}</span>
-                            <span class="depart-dir">{{ depart.dir }}</span>
-                            <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
-                            <span class="depart-time">{{ depart.time }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button onclick="stationPopup(null)">Station hinzuf&uuml;gen</button>
-            <div id="station-popup" style="display:none">
-                <div id="station-such-container">
-                    <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
-                    <div class="station-liste">
-                        <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
-                            <span class="halt-symbol"></span>
-                            <div class="station-list-label">
-                                <div class="station-list-name">{{ station.name }}</div>
-                                <div class="station-list-city">{{ station.stadt }}</div>
+            <div>
+                <h1>Dein MobiMonitor</h1>
+                <div id="monitor">
+                    <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
+                    <div v-for="stop in stopOrder" class="monitor-entry">
+                        <div class="monitor-entry-head">
+                            <span class="monitor-entry-logo"></span>
+                            <div>
+                                <span class="monitor-entry-name">{{ stop.name }}</span>
+                                <span class="monitor-entry-city">{{ stop.city }}</span>
                             </div>
-                        </button>
-                        <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
-                        <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
-                    </div>
-                </div>
-                <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">
-                    <p>Bitte w&auml;hle die Linien aus, die Dich interessieren:</p>
-                    <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
-                    <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
-                    <div id="linien-liste">
-                        <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
-                            <span class="line-symbol" :style="getMotPic(line.mot)"></span>
-                            <span class="line-label">{{ line.line }}</span>
+                            <span @click="editStation(stop.id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
+                            <span @click="removeStation(stop.id)" class="fa fa-trash-o monitor-head-button"></span>
+                        </div>
+                        <div class="monitor-entry-body">
+                            <div class="depart" v-for="depart in stop.departs">
+                                <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
+                                <span class="depart-line">{{ depart.line }}</span>
+                                <span class="depart-dir">{{ depart.dir }}</span>
+                                <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
+                                <span class="depart-time">{{ depart.time }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
-                <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
-                <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
+                <button onclick="stationPopup(null)">Station hinzuf&uuml;gen</button>
+                <div id="station-popup" style="display:none">
+                    <div id="station-such-container">
+                        <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
+                        <div class="station-liste">
+                            <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
+                                <span class="halt-symbol"></span>
+                                <div class="station-list-label">
+                                    <div class="station-list-name">{{ station.name }}</div>
+                                    <div class="station-list-city">{{ station.stadt }}</div>
+                                </div>
+                            </button>
+                            <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
+                            <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
+                        </div>
+                    </div>
+                    <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">
+                        <p>Bitte w&auml;hle die Linien aus, die Dich interessieren:</p>
+                        <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
+                        <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
+                        <div id="linien-liste">
+                            <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
+                                <span class="line-symbol" :style="getMotPic(line.mot)"></span>
+                                <span class="line-label">{{ line.line }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
+                    <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
+                    <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
+                </div>
             </div>
         </div>
-        <div class="panel" id="departpanel" :style="panelOffset(2)">
+        <div class="panel" :style="panelOffset(2)">
             <iframe src="/departure" frameborder="0"></iframe>
         </div>
-        <div class="panel" id="infopanel" :style="panelOffset(3)">
+        <div class="panel" :style="panelOffset(3)">
+            <iframe src="/localstops" frameborder="0"></iframe>
+        </div>
+        <div class="panel" :style="panelOffset(4)">
             <iframe src="/info" frameborder="0"></iframe>
         </div>
-        <div class="panel" id="changelogpanel" :style="panelOffset(4)">
+        <div class="panel" :style="panelOffset(5)">
             <iframe src="/changelog" frameborder="0"></iframe>
         </div>
     </div>
