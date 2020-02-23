@@ -20,6 +20,22 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/pages/index.html');
 });
 
+app.get('/departure', (req, res) => {
+    res.sendFile(__dirname + '/pages/departure.html');
+});
+
+app.get('/localstops', (req, res) => {
+    res.sendFile(__dirname + '/pages/localstops.html');
+});
+
+app.get('/info', (req, res) => {
+    res.sendFile(__dirname + '/pages/info.html');
+});
+
+app.get('/changelog', (req, res) => {
+    res.sendFile(__dirname + '/pages/changelog.html');
+});
+
 app.get('/createNewRecord', (req, res) => {
     let alreadyInUse = false;
     let id = '';
@@ -48,7 +64,7 @@ app.get('/clean', (req, res) => {
             fs.readFile(__dirname + '/data/' + files[i], (err, data) => {
                 if (err) throw err;
                 let json = JSON.parse(data);
-                if (Date.now() - json.lastRequested > 14 * 24 * 60 * 60 * 1000 || Object.keys(json.stops).length == 0) {
+                if (Date.now() - json.lastRequested > 4 * 7 * 24 * 60 * 60 * 1000 || Object.keys(json.stops).length == 0) {
                     fs.unlink(__dirname + '/data/' + files[i], (err) => {
                         if (err) throw err;
                     });
@@ -66,8 +82,8 @@ app.get('/data/:id', (req, res) => {
     fs.readFile(__dirname + '/data/' + req.params.id + '.json', (err, data) => {
         if (err) handleError(res, err);
         else {
-            res.send(data);
             let json = JSON.parse(data);
+            res.json(json);
             json.lastRequested = Date.now();
             fs.writeFile(__dirname + '/data/' + req.params.id + '.json', JSON.stringify(json), (err) => {
                 if (err) handleError({send: x => {}}, err);

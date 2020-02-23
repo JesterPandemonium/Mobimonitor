@@ -149,7 +149,7 @@ let moveDoors = function (t, tGes) {
         let panels = document.getElementsByClassName('panel');
         for (let i = 0; i < panels.length; i++) {
             panels[i].style.overflow = 'scroll';
-            panels[i].style.display = 'block';
+            panels[i].style.display = 'flex';
         }
     } // Yay, fertig :)
 }
