@@ -1,7 +1,7 @@
 let app;
 
 let main = function() {
-    moveTram();
+    if (!noTram) moveTram();
     let id = window.location.pathname;
     let tabCount = document.getElementById('app').childElementCount;
     let tabFrame = document.getElementById('tab-frame');

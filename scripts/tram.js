@@ -10,7 +10,10 @@ let tramData = {
     stopping: false
 }
 
+let noTram = window.location.search == '?notram';
+
 let moveTram = function() {
+    document.getElementById('trams').style.display = 'block';
     if (tramData.mov.v > 2) {
         tramData.mov.a = 0;
         tramData.mov.v = 2;
@@ -146,10 +149,16 @@ let moveDoors = function (t, tGes) {
     }, 20);
     else {
         scaleWindow.style.display = 'none';
-        let panels = document.getElementsByClassName('panel');
-        for (let i = 0; i < panels.length; i++) {
-            panels[i].style.overflow = 'scroll';
-            panels[i].style.display = 'flex';
-        }
-    } // Yay, fertig :)
+        finishTram();
+    }
 }
+
+let finishTram = function() {
+    document.getElementById('panel-switch').style.bottom = '0';
+    document.getElementById('tab-frame').style.bottom = '0';
+    let panels = document.getElementsByClassName('panel');
+    for (let i = 0; i < panels.length; i++) {
+        panels[i].style.overflow = 'scroll';
+        panels[i].style.display = 'flex';
+    }
+} // Yay, fertig :)

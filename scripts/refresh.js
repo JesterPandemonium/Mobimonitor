@@ -51,6 +51,9 @@ let refresh = function (loop) {
                 departs: departs
             });
         }
+        if (typeof noTram !== 'undefined') {
+            if (noTram) finishTram();
+        }
         let appBlock = document.getElementById('app');
         if (appBlock != null) appBlock.style.display = 'block';
         if (typeof tramData !== 'undefined') tramData.stop = true;
