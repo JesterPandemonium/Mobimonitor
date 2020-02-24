@@ -75,7 +75,9 @@ app.get('/clean', (req, res) => {
 });
 
 app.get('/:q', (req, res) => {
-    res.sendFile(__dirname + '/pages/monitor.html');
+    let exists = fs.existsSync(__dirname + '/data/' + req.params.q + '.json');
+    if (exists) res.sendFile(__dirname + '/pages/monitor.html');
+    else res.sendStatus(404);
 });
 
 app.get('/data/:id', (req, res) => {
