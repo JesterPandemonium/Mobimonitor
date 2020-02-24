@@ -8,6 +8,9 @@
         window.onload = () => {
             let id = window.top.location.pathname;
             document.getElementById('datalink').href = '/data' + id;
+            document.getElementById('notramlink').addEventListener('click', () => {
+                top.window.location.href = id + '?notram';
+            })
         }
     </script>
     <title>Info</title>
@@ -38,6 +41,10 @@
     <p>Auf unserem Server speichern wir nur die von Dir gespeicherten Haltestellen und wann du den MobiMonitor zuletzt benutzt hast.</p>
     <p>Was wir &uuml;ber Dich wissen, kannst Du Dir <a target="_blank" id="datalink">hier</a> anschauen.</p>
     <p>Diese Daten befinden sich in einem maschinenlesbaren JSON-Format. Um die Daten besser lesen zu k&ouml;nnen, f&uuml;ge die Daten einfach in <a href="https://jsonformatter.curiousconcept.com/" target="_blank">diesem Tool</a> ein und schon wird alles lesbar!</p>
+    <h3>Diese Animation nervt!</h3>
+    <p>Bei schlechteren Geräten kann die Tram-Animation zu starken Frame-Einbrüchen führen, wodurch sie - auch wenn sie als Ladesymbol konzipiert ist - die Ladezeit noch einmal deutlich verlängert.</p>
+    <p>Um dies zu umgehen, hänge einfach an deinen persönlichen Link die Endung <a href="#notramlink" id="notramlink">?notram</a> an - und schon wird die App ohne Animation geladen.</p>
+    <p>Falls du es dir anders überlegst, kannst du die Endung jederzeit wieder entfernen.</p>
     <h3>Dieser #*%!$ funktioniert nicht!</h3>
     <p>Ziehe bitte in Betracht, dass das Tool von einer Person auf die Beine gestellt wurde. Bugs sind damit vorprogrammiert - wortw&ouml;rtlich.</p>
     <p>Aber wenn Dir ein Fehler auff&auml;llt, dann lass es doch einfach den Entwickler wissen, damit er sich darum k&uuml;mmern kann ;)</p>
