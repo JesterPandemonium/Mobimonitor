@@ -40,8 +40,8 @@ let main = function () {
                     stops.push(stop);
                 }
                 stops.sort((a, b) => {
-                    if (a.dist < b.dist) return -1;
-                    if (a.dist > b.dist) return 1;
+                    if (parseInt(a.dist) < parseInt(b.dist)) return -1;
+                    if (parseInt(a.dist) > parseInt(b.dist)) return 1;
                     return -1;
                 });
                 return stops;
