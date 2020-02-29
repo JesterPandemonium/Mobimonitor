@@ -22,7 +22,7 @@ h1 {
     h1 {
         margin: 10px 0;
         padding: 0;
-        font-size: 28px;
+        font-size: 34px;
     }
 }
 
@@ -48,6 +48,13 @@ button {
     font-weight: 600;
     font-size: 20px;
     margin: 10px;
+}
+
+@media (max-width: 350px) {
+    button {
+        padding: 5px 15px;
+        font-size: 16px;
+    }
 }
 
 a {

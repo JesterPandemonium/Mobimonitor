@@ -49,6 +49,10 @@ body {
     color: #fff;
 }
 
+@media (max-width: 400px) {
+    .tab { font-size: 32px; }
+}
+
 .panel {
     position: absolute;
     display: none;
