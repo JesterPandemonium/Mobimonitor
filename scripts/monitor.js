@@ -1,5 +1,9 @@
 let app;
 
+let touchX;
+let touchY;
+let canMove = false;
+
 let main = function() {
     if (!noTram) moveTram();
     let id = window.location.pathname;
@@ -77,16 +81,42 @@ let main = function() {
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;
-        refresh(true);
+        refresh(true).then(() => { canMove = true; });
     }).catch(alert);
 }
 
 let moveTabFrame = function(id) {
-    app.selectedPanel = id;
     let tabCount = document.getElementById('app').childElementCount;
+    if (id < 1 || id > tabCount) return;
+    app.selectedPanel = id;
     let frame = document.getElementById('tab-frame');
     frame.style.left = ((id - 1) * (100 / tabCount)) + '%';
     frame.style.width = (100 / tabCount) + '%';
 }
+
+let handleTouchStart = evt => {
+    touchX = evt.touches[0].clientX;
+    touchY = evt.touches[0].clientY;
+};
+
+let handleTouchMove = evt => {
+    if (canMove) {
+        let dX = evt.touches[0].clientX - touchX;
+        let dY = evt.touches[0].clientY - touchY;
+        if (Math.abs(dX) > Math.abs(dY) && Math.abs(dX) > 50) {
+            canMove = false;
+            if (dX > 0) moveTabFrame(app.selectedPanel - 1);
+            else moveTabFrame(app.selectedPanel + 1);
+        }
+    }
+};
+
+let handleTouchEnd = evt => {
+    canMove = true;
+};
+
+/* document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchend', handleTouchEnd); */
 
 window.onload = main;
