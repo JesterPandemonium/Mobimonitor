@@ -26,6 +26,7 @@
             <p>Für diese Funktion benötigen wir deinen Standort.</p>
             <button onclick="locate()">Standort abfragen</button>
         </div>
+        <button onclick="locate()" v-show="relocate">Standort aktualisieren</button>
         <span id="location-wait" class="fa fa-compass" v-show="locating"></span>
         <div id="location-denied">
             <p>Schade! So kannst du diese Funktion nicht nutzen.</p>

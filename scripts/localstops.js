@@ -8,7 +8,8 @@ let main = function () {
                 stops: {}
             },
             departs: {},
-            locating: false
+            locating: false,
+            relocate: false
         },
         methods: {
             getMotPic: function (mot) {
@@ -51,6 +52,7 @@ let main = function () {
 }
 
 let locate = function() {
+    app.relocate = false;
     document.getElementById('location-requester').style.display = 'none';
     app.locating = true;
     navigator.geolocation.getCurrentPosition(fetchLocation, locateFail, { timeout: 10000 });
@@ -87,7 +89,7 @@ let fetchLocation = function(position) {
                     app.refreshData.stops[stationSplit[0]] = stationData;
                 }
             }
-            refresh(true).then(() => { app.locating = false; });
+            refresh(true).then(() => { app.locating = false; app.relocate = true });
         } else locateFail({ code: 2 });
     }).catch(errData => {
         alert(errData[0]);
