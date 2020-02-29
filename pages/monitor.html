@@ -46,7 +46,7 @@
             <div>
                 <h1>Dein MobiMonitor</h1>
                 <div id="monitor">
-                    <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum f&uuml;gst Du nicht als erstes ein paar Stationen ein?</p>
+                    <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum fügst Du nicht als erstes ein paar Stationen ein?</p>
                     <div v-for="stop in stopOrder" class="monitor-entry">
                         <div class="monitor-entry-head">
                             <span class="monitor-entry-logo"></span>
@@ -62,13 +62,13 @@
                                 <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                                 <span class="depart-line">{{ depart.line }}</span>
                                 <span class="depart-dir">{{ depart.dir }}</span>
-                                <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
+                                <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FäLLT AUS!</span>
                                 <span class="depart-time">{{ depart.time }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button onclick="stationPopup(null)">Station hinzuf&uuml;gen</button>
+                <button onclick="stationPopup(null)">Station hinzufügen</button>
                 <div id="station-popup" style="display:none">
                     <div id="station-such-container">
                         <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen">
@@ -80,14 +80,14 @@
                                     <div class="station-list-city">{{ station.stadt }}</div>
                                 </div>
                             </button>
-                            <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
+                            <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
                             <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
                         </div>
                     </div>
                     <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">
-                        <p>Bitte w&auml;hle die Linien aus, die Dich interessieren:</p>
-                        <button onclick="selectAllLines(true)">Alle ausw&auml;hlen</button>
-                        <button onclick="selectAllLines(false)">Alle abw&auml;hlen</button>
+                        <p>Bitte wähle die Linien aus, die Dich interessieren:</p>
+                        <button onclick="selectAllLines(true)">Alle auswählen</button>
+                        <button onclick="selectAllLines(false)">Alle abwählen</button>
                         <div id="linien-liste">
                             <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
                                 <span class="line-symbol" :style="getMotPic(line.mot)"></span>

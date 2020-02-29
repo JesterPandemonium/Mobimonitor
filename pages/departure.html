@@ -42,7 +42,7 @@
                         </div>
                         <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
                     </button>
-                    <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse f&uuml;r Deine Suche</div>
+                    <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
                     <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                     <span class="depart-line">{{ depart.line }}</span>
                     <span class="depart-dir">{{ depart.dir }}</span>
-                    <span class="depart-cancel" v-if="depart.state == 'Cancelled'">F&Auml;LLT AUS!</span>
+                    <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FäLLT AUS!</span>
                     <span class="depart-time">{{ depart.time }}</span>
                 </div>
             </div>
