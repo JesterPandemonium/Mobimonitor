@@ -9,7 +9,6 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    user-select: none; /* Verhindert das Selektieren von Textinhalt */
 }
 
 #popup-container {
