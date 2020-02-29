@@ -12,6 +12,9 @@
                 top.window.location.href = id + '?notram';
             })
         }
+        document.addEventListener('touchstart', top.handleTouchStart);
+        document.addEventListener('touchmove', top.handleTouchMove);
+        document.addEventListener('touchend', top.handleTouchEnd);
     </script>
     <title>Info</title>
 </head>

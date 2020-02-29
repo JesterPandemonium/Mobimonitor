@@ -94,16 +94,16 @@ let moveTabFrame = function(id) {
     frame.style.width = (100 / tabCount) + '%';
 }
 
-let handleTouchStart = evt => {
+function handleTouchStart(evt) {
     touchX = evt.touches[0].clientX;
     touchY = evt.touches[0].clientY;
 };
 
-let handleTouchMove = evt => {
+function handleTouchMove(evt) {
     if (canMove) {
         let dX = evt.touches[0].clientX - touchX;
         let dY = evt.touches[0].clientY - touchY;
-        if (Math.abs(dX) > Math.abs(dY) && Math.abs(dX) > 50) {
+        if (Math.abs(dX) > Math.abs(dY) && Math.abs(dX) > 40) {
             canMove = false;
             if (dX > 0) moveTabFrame(app.selectedPanel - 1);
             else moveTabFrame(app.selectedPanel + 1);
@@ -111,12 +111,12 @@ let handleTouchMove = evt => {
     }
 };
 
-let handleTouchEnd = evt => {
+function handleTouchEnd(evt) {
     canMove = true;
 };
 
-/* document.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchstart', handleTouchStart);
 document.addEventListener('touchmove', handleTouchMove);
-document.addEventListener('touchend', handleTouchEnd); */
+document.addEventListener('touchend', handleTouchEnd);
 
 window.onload = main;

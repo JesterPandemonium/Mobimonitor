@@ -106,4 +106,8 @@ let addToHistory = function (station) {
     document.cookie = cookie;
 }
 
+document.addEventListener('touchstart', top.handleTouchStart);
+document.addEventListener('touchmove', top.handleTouchMove);
+document.addEventListener('touchend', top.handleTouchEnd);
+
 window.onload = main;
