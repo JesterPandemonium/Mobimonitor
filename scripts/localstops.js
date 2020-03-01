@@ -74,7 +74,8 @@ let fetchLocation = function(position) {
         assignedStops: true
     }).then(data => {
         if (data.PointStatus != 'NotIdentified') {
-            let usedCodes = []
+            let usedCodes = [];
+            app.refreshData.stops = {};
             for (let i = 0; i < data.Points.length; i++) {
                 let stationSplit = data.Points[i].split('|');
                 let stationData = {
