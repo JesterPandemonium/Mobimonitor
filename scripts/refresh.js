@@ -1,5 +1,6 @@
-let refresh = function (loop) {
-    if (loop) setTimeout(() => { refresh(true) }, 15 * 1000);
+let refresh = function (loop, max) {
+    if (max === undefined) max = 2;
+    if (loop) setTimeout(() => { refresh(true, max) }, 15 * 1000);
     let reqs = [];
     let resData = {}
     for (let stop in app.refreshData.stops) {
@@ -23,7 +24,7 @@ let refresh = function (loop) {
                 let willKeinFernverkehr = app.refreshData.stops[station].lines['IC/ICE'] === false;
                 if (lineNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
                 if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
-                if (alreadyUsed[depart.LineName + depart.Direction] < 2) {
+                if (alreadyUsed[depart.LineName + depart.Direction] < max) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
                     if ('RealTime' in depart) leaveTime = parseInt(depart.RealTime.match(/[0-9]+/)[0]);
                     let timeToGo = (leaveTime - Date.now()) / 60000;

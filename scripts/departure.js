@@ -62,7 +62,7 @@ let main = function() {
         }
     });
     clearMonitor();
-    refresh(true);
+    refresh(true, Infinity);
 }
 
 let displayMonitor = function(station) {
@@ -70,7 +70,7 @@ let displayMonitor = function(station) {
     app.refreshData.stops = {};
     app.refreshData.stops[station.id] = { lines: {} };
     addToHistory(station);
-    refresh(false).then(() => {
+    refresh(false, Infinity).then(() => {
         document.getElementById('line-input').value = '';
         app.stationList = [];
     });
