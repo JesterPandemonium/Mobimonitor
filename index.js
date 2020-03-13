@@ -99,9 +99,19 @@ app.post('/editStop/:id', (req, res) => {
     let path = __dirname + '/data/' + id + '.json';
     dataCorrupted = false;
     if (!(/^[0-9]+$/.test(req.body.id))) dataCorrupted = true;
-    for (let line in req.body.lines) {
-        if (!(/^[A-Za-z0-9\/\u00f6\u00df ]+$/.test(line))) dataCorrupted = true; // Die \u Dinger sind für die L'öß'nitzgrundbahn...
-        if (typeof req.body.lines[line] !== 'boolean') dataCorrupted = true;
+    if (typeof req.body.otherLines !== 'boolean') dataCorrupted = true;
+    if (typeof req.body.lines !== 'object' || req.body.lines === null) dataCorrupted = true;
+    else {
+        for (let line in req.body.lines) {
+            if (!(/^[A-Za-z0-9\/\u00f6\u00df ]+$/.test(line))) dataCorrupted = true; // Die \u Dinger sind für die L'öß'nitzgrundbahn...
+            let lineData = req.body.lines[line];
+            if (typeof lineData !== 'object' || lineData === null) dataCorrupted = true;
+            else {
+                for (let dir in req.body.lines[line]) {
+                    if (typeof req.body.lines[line][dir] !== 'boolean') dataCorrupted = true;
+                }
+            }
+        }
     }
     if (dataCorrupted) handleError(res, 'User ' + id + ' manipulated data: ' + JSON.stringify(req.body));
     else fs.readFile(path, (err, data) => {
@@ -110,6 +120,7 @@ app.post('/editStop/:id', (req, res) => {
             let daten = JSON.parse(data);
             if (!(req.body.id in daten.stops)) daten.stops[req.body.id] = { added: Date.now() };
             daten.stops[req.body.id].lines = req.body.lines;
+            daten.stops[req.body.id].otherLines = req.body.otherLines;
             fs.writeFile(path, JSON.stringify(daten), (err) => {
                 if (err) handleError(err);
                 else res.send({ err: false });
