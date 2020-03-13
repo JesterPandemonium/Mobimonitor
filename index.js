@@ -107,10 +107,11 @@ app.post('/editStop/:id', (req, res) => {
             let lineData = req.body.lines[line];
             if (typeof lineData !== 'object' || lineData === null) dataCorrupted = true;
             else if (typeof lineData.otherDirs !== 'boolean') dataCorrupted = true;
-            else if (Array.isArray(lineData.dir)) dataCorrupted = true;
+            else if (typeof lineData.use !== 'boolean') dataCorrupted = true;
+            else if (typeof lineData.dir !== 'object' || lineData.dir === null) dataCorrupted = true;
             else {
-                for (let i = 0; i < lineData.dir.length; i++) {
-                    if (typeof lineData.dir[i] !== 'string') dataCorrupted = true;
+                for (let dir in lineData.dir.length) {
+                    if (typeof lineData.dir[dir] !== 'boolean') dataCorrupted = true;
                 }
             }
         }
