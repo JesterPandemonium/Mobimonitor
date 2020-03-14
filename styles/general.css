@@ -108,8 +108,9 @@ input:focus {
     height: 20px;
     width: 40px;
     border-radius: 10px;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s;
     cursor: pointer;
+    min-width: 40px;
 }
 
 .switch-slider {
@@ -117,7 +118,7 @@ input:focus {
     width: 20px;
     border-radius: 10px;
     margin-left: 0;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s;
     box-shadow: 0 0 2px;
 }
 

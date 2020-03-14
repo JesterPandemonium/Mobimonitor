@@ -66,7 +66,8 @@ let selectStation = function (id) {
                     line: line,
                     state: preset,
                     mot: data.Lines[i].Mot,
-                    dir: []
+                    dir: [],
+                    otherDirs: true
                 };
                 for (let j = 0; j < data.Lines[i].Directions.length; j++) {
                     let dir = data.Lines[i].Directions[j].Name;
@@ -106,13 +107,13 @@ let submitStation = function () {
             lineData[app.lineList[i].line] = {
                 use: app.lineList[i].state,
                 dir: dirs,
-                otherDirs: true // EDIT
+                otherDirs: app.lineList[i].otherDirs
             }
         }
         sendToServer('/editStop' + window.location.pathname, {
             id: app.selectedStation,
             lines: lineData,
-            otherLines: true // EDIT
+            otherLines: app.otherLines
         }).then(() => {
             return fetch('/data' + window.location.pathname);
         }).then(data => {

@@ -89,9 +89,39 @@
                         <button onclick="selectAllLines(true)">Alle auswählen</button>
                         <button onclick="selectAllLines(false)">Alle abwählen</button>
                         <div id="linien-liste">
-                            <div v-for="line in lineList" class="linien-container" :class="{'line-selected':line.state}" @click="line.state = line.state == false">
-                                <span class="line-symbol" :style="getMotPic(line.mot)"></span>
-                                <span class="line-label">{{ line.line }}</span>
+                            <div class="linien-container" v-for="line in lineList">
+                                <div class="linien-container-head" @click="line.state = !line.state">
+                                    <span class="line-symbol" :style="getMotPic(line.mot)"></span>
+                                    <span class="line-label">{{ line.line }}</span>
+                                    <div class="switch" :class="{ enabled: line.state }" style="margin-left:auto">
+                                        <div class="switch-slider"></div>
+                                    </div>
+                                </div>
+                                <div class="linien-container-body" v-show="line.state">
+                                    <div class="linien-container-dir" v-for="dir in line.dir" @click="dir.state = !dir.state">
+                                        <span class="linien-container-dir-symbol fa fa-exchange"></span>
+                                        <div class="linien-container-dir-name">{{ dir.name }}</div>
+                                        <div class="switch" :class="{ enabled: dir.state }" style="margin-left:auto">
+                                            <div class="switch-slider"></div>
+                                        </div>
+                                    </div>
+                                    <div class="linien-container-dir" @click="line.otherDirs = !line.otherDirs">
+                                        <span class="linien-container-dir-symbol fa fa-exchange"></span>
+                                        <div class="linien-container-dir-name">weitere Richtungen</div>
+                                        <div class="switch" :class="{ enabled: line.otherDirs }" style="margin-left:auto">
+                                            <div class="switch-slider"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="linien-container">
+                                <div class="linien-container-head" @click="otherLines = !otherLines">
+                                    <span class="line-symbol fa fa-code-fork"></span>
+                                    <span class="line-label">weitere Linien</span>
+                                    <div class="switch" :class="{ enabled: otherLines }" style="margin-left:auto">
+                                        <div class="switch-slider"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

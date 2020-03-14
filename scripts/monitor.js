@@ -18,7 +18,8 @@ let main = function() {
             departs: {},
             stationList: [],
             selectedStation: null,
-            lineList: []
+            lineList: [],
+            otherLines: true
         },
         methods: {
             panelOffset: function(id) { 
