@@ -133,6 +133,11 @@
                     <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
                 </div>
             </div>
+            <div id="update-hint">
+                <span>Es gibt eine neue Version!</span>
+                <button @click="updateInfo(true)">Erfahre mehr</button>
+                <button @click="updateInfo(false)">Mir egal</button>
+            </div>
         </div>
         <div class="panel" :style="panelOffset(2)">
             <iframe src="/departure" frameborder="0"></iframe>

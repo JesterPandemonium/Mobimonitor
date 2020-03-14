@@ -4,6 +4,8 @@ let touchX;
 let touchY;
 let canMove = false;
 
+const lastUpdate = 1585200883628;
+
 let main = function() {
     if (!noTram) moveTram();
     let id = window.location.pathname;
@@ -55,6 +57,10 @@ let main = function() {
                     this.refreshData.stops[id1].position = i + 1;
                     this.refreshData.stops[id2].position = i;
                 }).catch(alert)
+            },
+            updateInfo: function(view) {
+                document.getElementById('update-hint').style.display = 'none';
+                if (view) moveTabFrame(5);
             }
         },
         computed: {
@@ -81,7 +87,12 @@ let main = function() {
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;
-        refresh(true, false).then(() => { canMove = true; });
+        refresh(true, false).then(() => { 
+            canMove = true;
+            if (app.refreshData.lastRequested < lastUpdate) {
+                document.getElementById('update-hint').style.display = 'flex';
+            }
+        });
     }).catch(alert);
 }
 

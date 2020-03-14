@@ -182,6 +182,35 @@ iframe {
     text-align: center;
 }
 
+#update-hint {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 10%;
+    flex-direction: column;
+    background-color: #99aeff;
+    padding: 10px;
+    border-radius: 10px 10px 0 10px;
+}
+
+#update-hint::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 20px solid #0000;
+    border-bottom: 20px solid #99aeff;
+    transform: rotate(45deg) translate(25px, -3px);
+}
+
+#update-hint button {
+    padding: 3px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 3px 0;
+}
+
 #tab-frame { background-color: #fff4; }
 
 .tab { background-color: #99aeff; }
