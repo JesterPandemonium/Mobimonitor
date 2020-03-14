@@ -25,7 +25,7 @@ let refresh = function (loop, max) {
                 if (line in availableLines) {
                     dirNotWanted = !availableLines[line].otherDirs;
                     for (let dirString in availableLines[line].dir) {
-                        if (dirString.includes(dir)) dirNotWanted = !availableLines[line].dir[dirString];
+                        if (stringsMatch(dirString, dir)) dirNotWanted = !availableLines[line].dir[dirString];
                     }
                 }
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
@@ -109,4 +109,17 @@ let addDepartures = function (station, data) {
         });
         else resolve(data);
     });
+}
+
+let stringsMatch = function(string1, string2) {
+    let match = false;
+    let list1 = string1.match(/\w+/g);
+    let list2 = string2.match(/\w+/g);
+    let counter = 0;
+    for (let i = 0; i < list1.length; i++) {
+        for (let j = 0; j < list2.length; j++) {
+            if (list1[i] == list2[j]) counter++;
+        }
+    }
+    return counter / list1.length > 0.67 || counter / list2.length > 0.7;
 }
