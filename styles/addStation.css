@@ -149,9 +149,7 @@ input[type="text"] { border: 1px solid #a9a9a9; }
     background-color: #ffab61;
 }
 
-.info-alert {
-    color: #4444;
-}
+.info-alert { color: #4444; }
 
 @media (prefers-color-scheme: dark) {
     input[type="text"] { border: 1px solid #88bdbc; }
@@ -194,4 +192,6 @@ input[type="text"] { border: 1px solid #a9a9a9; }
         background-color: #3c7988;
         color: #fff;
     }
+
+    .info-alert { color: #fff6; }
 }

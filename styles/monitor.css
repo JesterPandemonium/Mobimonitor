@@ -188,7 +188,6 @@ iframe {
     bottom: 70px;
     right: 10%;
     flex-direction: column;
-    background-color: #99aeff;
     padding: 10px;
     border-radius: 10px 10px 0 10px;
 }
@@ -200,7 +199,6 @@ iframe {
     right: 0;
     bottom: 0;
     border: 20px solid #0000;
-    border-bottom: 20px solid #99aeff;
     transform: rotate(45deg) translate(25px, -3px);
 }
 
@@ -224,6 +222,10 @@ iframe {
 
 .depart:nth-child(even) { background-color: #f001; }
 
+#update-hint { background-color: #99aeff; }
+
+#update-hint::after { border-bottom: 20px solid #99aeff; }
+
 @media (prefers-color-scheme: dark) {
     #tab-frame { background-color: #fff2; }
 
@@ -242,4 +244,8 @@ iframe {
     }
 
     .depart:nth-child(even) { background-color: #fff1; }
+
+    #update-hint { background-color: #88bdbc; }
+
+    #update-hint::after { border-bottom: 20px solid #88bdbc; }
 }
