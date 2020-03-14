@@ -16,14 +16,22 @@ let refresh = function (loop, max) {
             for (let i = 0; i < resData[station].Departures.length; i++) {
                 let depart = resData[station].Departures[i];
                 let line = depart.LineName;
+                let dir = depart.Direction;
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
                 let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!availableLines.otherLines);
+                let dirNotWanted = false;
+                if (line in availableLines) {
+                    dirNotWanted = !availableLines[line].otherDirs;
+                    for (let dirString in availableLines[line].dir) {
+                        if (dirString.includes(dir)) dirNotWanted = !availableLines[line].dir[dirString];
+                    }
+                }
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
                 let willKeinFernverkehr = !availableLines.otherLines;
                 if ('IC/ICE' in availableLines) willKeinFernverkehr = availableLines['IC/ICE'].use;
-                if (lineNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
+                if (lineNotWanted || dirNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
                 if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
                 if (alreadyUsed[depart.LineName + depart.Direction] < max) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
