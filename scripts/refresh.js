@@ -1,6 +1,5 @@
-let refresh = function (loop, max) {
-    if (max === undefined) max = 2;
-    if (loop) setTimeout(() => { refresh(true, max) }, 15 * 1000);
+let refresh = function (loop, allowAll) {
+    if (loop) setTimeout(() => { refresh(true, allowAll) }, 15 * 1000);
     let reqs = [];
     let resData = {}
     for (let stop in app.refreshData.stops) {
@@ -20,7 +19,7 @@ let refresh = function (loop, max) {
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
-                let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!availableLines.otherLines);
+                let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!app.refreshData.stops[station].otherLines);
                 let dirNotWanted = false;
                 if (line in availableLines) {
                     dirNotWanted = !availableLines[line].otherDirs;
@@ -33,7 +32,7 @@ let refresh = function (loop, max) {
                 if ('IC/ICE' in availableLines) willKeinFernverkehr = availableLines['IC/ICE'].use;
                 if (lineNotWanted || dirNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
                 if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
-                if (alreadyUsed[depart.LineName + depart.Direction] < max) {
+                if (alreadyUsed[depart.LineName + depart.Direction] < 2 || allowAll) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
                     if ('RealTime' in depart) leaveTime = parseInt(depart.RealTime.match(/[0-9]+/)[0]);
                     let timeToGo = (leaveTime - Date.now()) / 60000;
@@ -61,12 +60,12 @@ let refresh = function (loop, max) {
                 departs: departs
             });
         }
-        if (typeof noTram !== 'undefined') {
+        if (!allowAll) {
             if (noTram) finishTram();
         }
         let appBlock = document.getElementById('app');
         if (appBlock != null) appBlock.style.display = 'block';
-        if (typeof tramData !== 'undefined') tramData.stop = true;
+        if (!allowAll) tramData.stop = true;
     });
 }
 

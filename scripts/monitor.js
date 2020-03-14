@@ -81,7 +81,7 @@ let main = function() {
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;
-        refresh(true).then(() => { canMove = true; });
+        refresh(true, false).then(() => { canMove = true; });
     }).catch(alert);
 }
 

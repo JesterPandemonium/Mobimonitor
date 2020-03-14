@@ -62,15 +62,15 @@ let main = function() {
         }
     });
     clearMonitor();
-    refresh(true, Infinity);
+    refresh(true, true);
 }
 
 let displayMonitor = function(station) {
     app.selectedStation = station.id;
     app.refreshData.stops = {};
-    app.refreshData.stops[station.id] = { lines: {} };
+    app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
     addToHistory(station);
-    refresh(false, Infinity).then(() => {
+    refresh(false, true).then(() => {
         document.getElementById('line-input').value = '';
         app.stationList = [];
     });

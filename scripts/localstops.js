@@ -83,14 +83,15 @@ let fetchLocation = function(position) {
                     stadt: stationSplit[2] || 'Dresden',
                     name: stationSplit[3],
                     dist: stationSplit[6],
-                    lines: {}
+                    lines: {},
+                    otherLines: true
                 }
                 if (usedCodes.indexOf(stationSplit[0]) == -1) {
                     usedCodes.push(stationSplit[0]);
                     app.refreshData.stops[stationSplit[0]] = stationData;
                 }
             }
-            refresh(true).then(() => { app.locating = false; app.relocate = true });
+            refresh(true, true).then(() => { app.locating = false; app.relocate = true });
         } else locateFail({ code: 2 });
     }).catch(errData => {
         alert(errData[0]);
