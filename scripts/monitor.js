@@ -4,7 +4,7 @@ let touchX;
 let touchY;
 let canMove = false;
 
-const lastUpdate = 1585200883628;
+const lastUpdate = 1584209277494;
 
 let main = function() {
     if (!noTram) moveTram();
@@ -21,7 +21,7 @@ let main = function() {
             stationList: [],
             selectedStation: null,
             lineList: [],
-            otherLines: true
+            otherLines: false
         },
         methods: {
             panelOffset: function(id) { 

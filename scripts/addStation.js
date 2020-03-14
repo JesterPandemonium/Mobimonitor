@@ -56,6 +56,7 @@ let selectStation = function (id) {
         app.lineList = [];
         let alreadyUsed = [];
         if (id in app.refreshData.stops) app.otherLines = app.refreshData.stops[id].otherLines;
+        else app.otherLines = false;
         for (let i = 0; i < data.Lines.length; i++) {
             let line = data.Lines[i].Name;
             if (alreadyUsed.indexOf(line) == -1) {
@@ -119,7 +120,7 @@ let submitStation = function () {
             return fetch('/data' + window.location.pathname);
         }).then(data => {
             app.refreshData = data;
-            return refresh(false);
+            return refresh(false, false);
         }).then(() => {
             stationPopup(null);
         }).catch(alert);
@@ -132,6 +133,6 @@ let delStation = function (id) {
         return fetch('/data' + window.location.pathname);
     }).then(data => {
         app.refreshData = data;
-        return refresh(false);
+        return refresh(false, false);
     }).catch(alert);
 }
