@@ -47,7 +47,7 @@
                 <h1>Dein MobiMonitor</h1>
                 <div id="monitor">
                     <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum fügst Du nicht als erstes ein paar Stationen ein?</p>
-                    <div v-for="stop in stopOrder" class="monitor-entry">
+                    <div v-for="(stop, i) in stopOrder" class="monitor-entry">
                         <div class="monitor-entry-head">
                             <span class="monitor-entry-logo"></span>
                             <div>
@@ -56,6 +56,10 @@
                             </div>
                             <span @click="editStation(stop.id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
                             <span @click="removeStation(stop.id)" class="fa fa-trash-o monitor-head-button"></span>
+                            <div class="station-switcher">
+                                <span @click="swapStations(i-1)" class="fa fa-chevron-up" v-if="i>0"></span>
+                                <span @click="swapStations(i)" class="fa fa-chevron-down" v-if="i+1<stopOrder.length"></span>
+                            </div>
                         </div>
                         <div class="monitor-entry-body">
                             <div class="depart" v-for="depart in stop.departs">
@@ -125,8 +129,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-show="wereLinesSelected">Alles fertig eingestellt?</p>
-                    <button class="confirm" v-show="wereLinesSelected" onclick="submitStation()" id="station-submit">Speichern</button>
+                    <button class="confirm" v-show="selectedStation !== null" onclick="submitStation()" id="station-submit">Speichern</button>
                     <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
                 </div>
             </div>

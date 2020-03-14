@@ -44,16 +44,20 @@ let main = function() {
                     PlusBus: 'plusBus.svg'
                 }
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+            },
+            swapStations: function(i) {
+                let id1 = this.stopOrder[i].id;
+                let id2 = this.stopOrder[i + 1].id;
+                sendToServer('/swapStops' + window.location.pathname, {
+                    s1: id1,
+                    s2: id2
+                }).then(() => {
+                    this.refreshData.stops[id1].position = i + 1;
+                    this.refreshData.stops[id2].position = i;
+                }).catch(alert)
             }
         },
         computed: {
-            wereLinesSelected: function() {
-                let selected = false;
-                for (let i = 0; i < this.lineList.length; i++) {
-                    if (this.lineList[i].state) selected = true;
-                }
-                return (this.selectedStation !== null && (selected || this.lineList.length == 0));
-            },
             stopOrder: function() {
                 if (this.refreshData.stops == undefined) return [];
                 let order = [];
@@ -61,12 +65,7 @@ let main = function() {
                     let id = Object.keys(this.refreshData.stops)[i];
                     order.push([id, this.refreshData.stops[id]]);
                 }
-                order = order.sort((a, b) => {
-                    if (a[1].added == undefined) return -1;
-                    if (b[1].added == undefined) return 1;
-                    if (a[1].added < b[1].added) return -1;
-                    else return 1;
-                });
+                order = order.sort((a, b) => (a[1].position <= b[1].position) ? -1 : 1);
                 let stops = [];
                 for (let i = 0; i < order.length; i++) {
                     let id = order[i][0];

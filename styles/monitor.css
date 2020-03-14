@@ -125,6 +125,17 @@ iframe {
     padding: 0 5px;
 }
 
+.station-switcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.station-switcher span {
+
+}
+
 .monitor-entry-body {
     overflow-x: hidden;
     overflow-y: scroll;
