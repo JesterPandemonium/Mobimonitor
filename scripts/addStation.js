@@ -55,12 +55,13 @@ let selectStation = function (id) {
     return fetchAPI('https://webapi.vvo-online.de/stt/lines?format=json', { stopid: id }).then(data => {
         app.lineList = [];
         let alreadyUsed = [];
-        let preset = (id in app.refreshData.stops);
-        if (preset) app.otherLines = app.refreshData.stops[id].otherLines;
+        if (id in app.refreshData.stops) app.otherLines = app.refreshData.stops[id].otherLines;
         for (let i = 0; i < data.Lines.length; i++) {
             let line = data.Lines[i].Name;
             if (alreadyUsed.indexOf(line) == -1) {
-                if (preset && (!(line in app.refreshData.stops[id].lines))) preset = false;
+                let preset;
+                if (!(id in app.refreshData.stops)) preset = false;
+                else if (!(line in app.refreshData.stops[id].lines)) preset = false;
                 else preset = app.refreshData.stops[id].lines[line].use;
                 let lineData = {
                     line: line,
