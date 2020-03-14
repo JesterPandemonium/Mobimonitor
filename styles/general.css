@@ -104,6 +104,27 @@ input:focus {
     padding: 5px;
 }
 
+.switch {
+    height: 20px;
+    width: 40px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.switch-slider {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    margin-left: 0;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 2px;
+}
+
+.switch.enabled .switch-slider {
+    margin-left: 20px;
+}
+
 button { color: #404040 }
 
 a { color: #0700d3 }
@@ -115,6 +136,12 @@ body { background-color: #e9f0ff }
 button { background-color: #ffab61 }
 
 p { background-color: #fde999 }
+
+.switch { background-color: #ccc; }
+
+.switch.enabled { background-color: #7cdf79; }
+
+.switch-slider { background-color: #fff; }
 
 @media (prefers-color-scheme: dark) {
     button, p { color: #88bdbc }
@@ -132,4 +159,10 @@ p { background-color: #fde999 }
     button.confirm { background-color: #418e58 }
 
     button.cancel { background-color: #8e4141 }
+
+    .switch { background-color: #9f9f9f; }
+
+    .switch.enabled { background-color: #9693ff; }
+
+    .switch-slider { background-color: #ddd; }
 }

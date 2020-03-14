@@ -50,8 +50,8 @@
         <div id="mots">
             <div v-for="(use, mot) in mots" class="mot-box">
                 <div class="mot-img" :style="getMotPic(mot)"></div>
-                <div class="mot-switch" :class="{ enabled: use }" @click="mots[mot] = !use">
-                    <div class="mot-switch-slider"></div>
+                <div class="switch" :class="{ enabled: use }" @click="mots[mot] = !use">
+                    <div class="switch-slider"></div>
                 </div>
             </div>
         </div>
