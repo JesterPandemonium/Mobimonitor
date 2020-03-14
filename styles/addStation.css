@@ -70,16 +70,13 @@ input[type="text"] {
     margin: 3px;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .linien-container-head, .linien-container-dir {
     display: flex;
     align-items: center;
     padding: 8px 12px;
-}
-
-.linien-container-head:hover {
-    cursor: pointer;
 }
 
 .line-symbol {
@@ -113,6 +110,15 @@ input[type="text"] {
     text-align: left;
 }
 
+.info-alert {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 input[type="text"] { border: 1px solid #a9a9a9; }
 
 #station-popup {
@@ -141,6 +147,10 @@ input[type="text"] { border: 1px solid #a9a9a9; }
 
 #linienwahl-container button {
     background-color: #ffab61;
+}
+
+.info-alert {
+    color: #4444;
 }
 
 @media (prefers-color-scheme: dark) {

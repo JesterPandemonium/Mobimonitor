@@ -47,6 +47,14 @@ let main = function() {
                 }
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
             },
+            dirHint: function() {
+                let s = 'Aktiviere diese Funktion, um auch Abfahrten in andere Richtungen (wie z. B. Einrückerfahrten, umgeleitete Fahrten etc.) angezeigt zu bekommen.\n\n';
+                s += 'Bei Zügen und Regionallinien empfielt es sich, dieses Feature stets zu aktivieren, da sonst möglicherweise Fahrten nicht angezeigt werden - auch wenn die entsprechende Richtung ausgewählt wurde.';
+                alert(s);
+            },
+            lineHint: function() {
+                alert('Aktiviere diese Funktion, um auch Abfahrten von weiteren Linien zu sehen (wie z. B. verbundübergreifende Busse), welche nicht in der obenstehenden Liste aufgeführt sind.');
+            },
             swapStations: function(i) {
                 let id1 = this.stopOrder[i].id;
                 let id2 = this.stopOrder[i + 1].id;

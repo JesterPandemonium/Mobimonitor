@@ -109,9 +109,10 @@
                                             <div class="switch-slider"></div>
                                         </div>
                                     </div>
-                                    <div class="linien-container-dir" @click="line.otherDirs = !line.otherDirs">
+                                    <div class="linien-container-dir" @click="if (!$event.target.classList.contains('info-alert')) line.otherDirs = !line.otherDirs">
                                         <span class="linien-container-dir-symbol fa fa-exchange"></span>
                                         <div class="linien-container-dir-name">weitere Richtungen</div>
+                                        <span class="info-alert fa fa-question-circle" @click="dirHint"></span>
                                         <div class="switch" :class="{ enabled: line.otherDirs }" style="margin-left:auto">
                                             <div class="switch-slider"></div>
                                         </div>
@@ -119,9 +120,10 @@
                                 </div>
                             </div>
                             <div class="linien-container">
-                                <div class="linien-container-head" @click="otherLines = !otherLines">
+                                <div class="linien-container-head" @click="if (!$event.target.classList.contains('info-alert')) otherLines = !otherLines">
                                     <span class="line-symbol fa fa-code-fork"></span>
                                     <span class="line-label">weitere Linien</span>
+                                    <span class="info-alert fa fa-question-circle" @click="lineHint"></span>
                                     <div class="switch" :class="{ enabled: otherLines }" style="margin-left:auto">
                                         <div class="switch-slider"></div>
                                     </div>
