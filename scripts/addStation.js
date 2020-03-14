@@ -58,13 +58,28 @@ let selectStation = function (id) {
         for (let i = 0; i < data.Lines.length; i++) {
             let line = data.Lines[i].Name;
             if (alreadyUsed.indexOf(line) == -1) {
-                let lookupLine = (id in app.refreshData.stops);
-                let preset = lookupLine ? app.refreshData.stops[id].lines[line] : false;
+                let preset;
+                if (!(id in app.refreshData.stops)) preset = false;
+                else if (!(line in app.refreshData.stops[id].lines)) preset = false;
+                else preset = app.refreshData.stops[id].lines[line].use;
                 let lineData = {
                     line: line,
                     state: preset,
-                    mot: data.Lines[i].Mot
+                    mot: data.Lines[i].Mot,
+                    dir: []
                 };
+                for (let j = 0; j < data.Lines[i].Directions.length; j++) {
+                    let dir = data.Lines[i].Directions[j].Name;
+                    let dirs = {};
+                    if (preset) dirs = app.refreshData.stops[id].lines[line].dir;
+                    let linePreset;
+                    if (!(dir in dirs)) linePreset = true;
+                    else linePreset = dirs[dir];
+                    lineData.dir.push({
+                        name: dir,
+                        state: linePreset
+                    });
+                }
                 app.lineList.push(lineData);
                 alreadyUsed.push(line);
             }
@@ -81,14 +96,23 @@ let selectAllLines = function (bool) {
 
 let submitStation = function () {
     if (app.selectedStation !== null) {
-        let lineStates = {};
+        let lineData = {};
         for (let i = 0; i < app.lineList.length; i++) {
-            let lineData = app.lineList[i];
-            lineStates[lineData.line] = lineData.state;
+            let dirs = {};
+            for (let j = 0; j < app.lineList[i].dir.length; j++) {
+                let dir = app.lineList[i].dir[j];
+                dirs[dir.name] = dir.state;
+            }
+            lineData[app.lineList[i].line] = {
+                use: app.lineList[i].state,
+                dir: dirs,
+                otherDirs: true // EDIT
+            }
         }
         sendToServer('/editStop' + window.location.pathname, {
             id: app.selectedStation,
-            lines: lineStates
+            lines: lineData,
+            otherLines: true // EDIT
         }).then(() => {
             return fetch('/data' + window.location.pathname);
         }).then(data => {

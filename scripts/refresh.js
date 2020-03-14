@@ -19,9 +19,10 @@ let refresh = function (loop, max) {
                 let availableLines = app.refreshData.stops[station].lines;
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
-                let lineNotWanted = app.refreshData.stops[station].lines[line] === false;
+                let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!availableLines.otherLines);
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
-                let willKeinFernverkehr = app.refreshData.stops[station].lines['IC/ICE'] === false;
+                let willKeinFernverkehr = !availableLines.otherLines;
+                if ('IC/ICE' in availableLines) willKeinFernverkehr = availableLines['IC/ICE'].use;
                 if (lineNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
                 if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
                 if (alreadyUsed[depart.LineName + depart.Direction] < max) {
