@@ -94,7 +94,6 @@ let fetchLocation = function(position) {
             refresh(true, true).then(() => { app.locating = false; app.relocate = true });
         } else locateFail({ code: 2 });
     }).catch(errData => {
-        alert(errData[0]);
         console.log(errData);
     });
 }

@@ -44,7 +44,6 @@ let queryStations = function () {
             }
         }
     }).catch(errData => {
-        alert(errData[0]);
         console.log(errData);
     });
     else app.stationList = [];
