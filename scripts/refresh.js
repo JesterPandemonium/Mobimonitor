@@ -20,13 +20,8 @@ let refresh = function (loop, allowAll) {
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
                 let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!app.refreshData.stops[station].otherLines);
-                let dirNotWanted = false;
-                if (line in availableLines) {
-                    dirNotWanted = !availableLines[line].otherDirs;
-                    for (let dirString in availableLines[line].dir) {
-                        if (stringsMatch(dirString, dir)) dirNotWanted = !availableLines[line].dir[dirString];
-                    }
-                }
+                let dirNotWanted;
+                if (line in availableLines) dirNotWanted = filterByUserPreference(dir, availableLines[line].filterMode, availableLines[line].useOnly, availableLines[line].doNotUse);
                 let istFernferkehr = /(IC|ICE|EC|RJ)/.test(line);
                 let willKeinFernverkehr = !availableLines.otherLines;
                 if ('IC/ICE' in availableLines) willKeinFernverkehr = availableLines['IC/ICE'].use;
@@ -110,15 +105,28 @@ let addDepartures = function (station, data) {
     });
 }
 
-let stringsMatch = function(string1, string2) {
-    let match = false;
-    let list1 = string1.match(/\w+/g);
-    let list2 = string2.match(/\w+/g);
-    let counter = 0;
-    for (let i = 0; i < list1.length; i++) {
-        for (let j = 0; j < list2.length; j++) {
-            if (list1[i] == list2[j]) counter++;
+let filterByUserPreference = function(dir, fmode, useOnly, doNotUse) {
+    let wanted;
+    if (fmode == 0) {
+        wanted = true;
+        for (let i = 0; i < doNotUse.length; i++) {
+            let query = doNotUse[i].split(' ');
+            let allMatch = true;
+            for (let j = 0; j < query.length; j++) {
+                if (!dir.toLowerCase().includes(query[j].toLowerCase())) allMatch = false;
+            }
+            if (allMatch) wanted = false;
+        }
+    } else {
+        wanted = false;
+        for (let i = 0; i < useOnly.length; i++) {
+            let query = useOnly[i].split(' ');
+            let allMatch = true;
+            for (let j = 0; j < query.length; j++) {
+                if (!dir.toLowerCase().includes(query[j].toLowerCase())) allMatch = false;
+            }
+            if (allMatch) wanted = true;
         }
     }
-    return counter / list1.length > 0.67 || counter / list2.length > 0.7;
+    return !wanted;
 }

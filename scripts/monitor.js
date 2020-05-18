@@ -33,6 +33,8 @@ let main = function() {
             setStation: function(station) { selectStation(station.id) },
             editStation: function(id) { stationPopup(id) },
             removeStation: function(id) { delStation(id) },
+            addFilter: function(line, mode) { addFilter(line, mode) },
+            removeFilter: function(line, mode, index) { removeFilter(line, mode, index) },
             getMotPic: function(mot) {
                 let map = {
                     Tram: 'tram.svg', 

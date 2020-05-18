@@ -106,12 +106,18 @@ app.post('/editStop/:id', (req, res) => {
             if (!(/^[A-Za-z0-9\/\u00f6\u00df ]+$/.test(line))) dataCorrupted = true; // Die \u Dinger sind für die L'öß'nitzgrundbahn...
             let lineData = req.body.lines[line];
             if (typeof lineData !== 'object' || lineData === null) dataCorrupted = true;
-            else if (typeof lineData.otherDirs !== 'boolean') dataCorrupted = true;
             else if (typeof lineData.use !== 'boolean') dataCorrupted = true;
-            else if (typeof lineData.dir !== 'object' || lineData.dir === null) dataCorrupted = true;
+            else if (typeof lineData.filterMode !== 'number') dataCorrupted = true;
+            else if (!Array.isArray(lineData.useOnly)) dataCorrupted = true;
+            else if (!Array.isArray(lineData.doNotUse)) dataCorrupted = true;
             else {
-                for (let dir in lineData.dir.length) {
-                    if (typeof lineData.dir[dir] !== 'boolean') dataCorrupted = true;
+                for (let i = 0; i < lineData.useOnly.length; i++) {
+                    if (typeof lineData.useOnly[i] !== 'string') dataCorrupted = true;
+                    else if (!(/^[A-Za-z0-9\/\u00c4\u00e4\u00d6\u00f6\u00dc\u00fc\u00df ]+$/.test(lineData.useOnly[i]))) dataCorrupted = true; // ÄäÖöÜüß
+                }
+                for (let i = 0; i < lineData.doNotUse.length; i++) {
+                    if (typeof lineData.doNotUse[i] !== 'string') dataCorrupted = true;
+                    else if (!(/^[A-Za-z0-9\/\u00c4\u00e4\u00d6\u00f6\u00dc\u00fc\u00df ]+$/.test(lineData.doNotUse[i]))) dataCorrupted = true; // ÄäÖöÜüß
                 }
             }
         }

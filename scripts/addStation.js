@@ -59,29 +59,28 @@ let selectStation = function (id) {
         for (let i = 0; i < data.Lines.length; i++) {
             let line = data.Lines[i].Name;
             if (alreadyUsed.indexOf(line) == -1) {
-                let preset;
+                let preset = false;
+                let filterMode = 0;
+                let useOnly = [];
+                let doNotUse = [];
+                let refData;
                 if (!(id in app.refreshData.stops)) preset = false;
                 else if (!(line in app.refreshData.stops[id].lines)) preset = false;
-                else preset = app.refreshData.stops[id].lines[line].use;
+                else {
+                    refData = app.refreshData.stops[id].lines[line];
+                    preset = refData.use;
+                    filterMode = refData.filterMode;
+                    useOnly = refData.useOnly;
+                    doNotUse = refData.doNotUse;
+                }
                 let lineData = {
                     line: line,
                     state: preset,
                     mot: data.Lines[i].Mot,
-                    dir: [],
-                    otherDirs: preset ? app.refreshData.stops[id].lines[line].otherDirs : true
+                    filterMode: filterMode,
+                    useOnly: useOnly,
+                    doNotUse: doNotUse
                 };
-                for (let j = 0; j < data.Lines[i].Directions.length; j++) {
-                    let dir = data.Lines[i].Directions[j].Name;
-                    let dirs = {};
-                    if (preset) dirs = app.refreshData.stops[id].lines[line].dir;
-                    let linePreset;
-                    if (!(dir in dirs)) linePreset = true;
-                    else linePreset = dirs[dir];
-                    lineData.dir.push({
-                        name: dir,
-                        state: linePreset
-                    });
-                }
                 app.lineList.push(lineData);
                 alreadyUsed.push(line);
             }
@@ -100,15 +99,11 @@ let submitStation = function () {
     if (app.selectedStation !== null) {
         let lineData = {};
         for (let i = 0; i < app.lineList.length; i++) {
-            let dirs = {};
-            for (let j = 0; j < app.lineList[i].dir.length; j++) {
-                let dir = app.lineList[i].dir[j];
-                dirs[dir.name] = dir.state;
-            }
-            lineData[app.lineList[i].line] = {
+            if (app.lineList[i].state) lineData[app.lineList[i].line] = {
                 use: app.lineList[i].state,
-                dir: dirs,
-                otherDirs: app.lineList[i].otherDirs
+                filterMode: app.lineList[i].filterMode,
+                useOnly: app.lineList[i].useOnly,
+                doNotUse: app.lineList[i].doNotUse
             }
         }
         sendToServer('/editStop' + window.location.pathname, {
@@ -134,4 +129,23 @@ let delStation = function (id) {
         app.refreshData = data;
         return refresh(false, false);
     }).catch(alert);
+}
+
+let addFilter = function(line, mode) {
+    let query = '';
+    let rightFormat = false;
+    while (!rightFormat) {
+        query = prompt('Gib den Filternamen ein. Die Filterregeln werden auf alle Fahrtrichtungen angewandt, die den Filternamen enthalten.');
+        if (query == null) return;
+        else if (query.length == 0) alert('Feld darf nicht leer sein.');
+        else if (!/^[A-Za-z0-9\/\u00c4\u00e4\u00d6\u00f6\u00dc\u00fc\u00df ]+$/.test(query)) alert('Der Name enthält nicht erlaubte Sonderzeichen.');
+        else rightFormat = true;
+    }
+    if (mode == 0) app.lineList[line].doNotUse.push(query);
+    else app.lineList[line].useOnly.push(query);
+}
+
+let removeFilter = function(line, mode, index) {
+    if (mode == 0) app.lineList[line].doNotUse.splice(index, 1);
+    else app.lineList[line].useOnly.splice(index, 1);
 }

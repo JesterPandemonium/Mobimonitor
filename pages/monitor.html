@@ -66,7 +66,7 @@
                                 <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                                 <span class="depart-line">{{ depart.line }}</span>
                                 <span class="depart-dir">{{ depart.dir }}</span>
-                                <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FäLLT AUS!</span>
+                                <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FÄLLT AUS!</span>
                                 <span class="depart-time">{{ depart.time }}</span>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <button onclick="selectAllLines(true)">Alle auswählen</button>
                         <button onclick="selectAllLines(false)">Alle abwählen</button>
                         <div id="linien-liste">
-                            <div class="linien-container" v-for="line in lineList">
+                            <div class="linien-container" v-for="(line, lineIndex) in lineList">
                                 <div class="linien-container-head" @click="line.state = !line.state">
                                     <span class="line-symbol" :style="getMotPic(line.mot)"></span>
                                     <span class="line-label">{{ line.line }}</span>
@@ -102,21 +102,21 @@
                                     </div>
                                 </div>
                                 <div class="linien-container-body" v-show="line.state">
-                                    <div class="linien-container-dir" v-for="dir in line.dir" @click="dir.state = !dir.state">
-                                        <span class="linien-container-dir-symbol fa fa-exchange"></span>
-                                        <div class="linien-container-dir-name">{{ dir.name }}</div>
-                                        <div class="switch" :class="{ enabled: dir.state }" style="margin-left:auto">
-                                            <div class="switch-slider"></div>
-                                        </div>
+                                    <div class="linien-container-switch">
+                                        <span :class="{active: line.filterMode == 0}" @click="line.filterMode = 0">Nicht nach ...</span>
+                                        <span :class="{active: line.filterMode == 1}" @click="line.filterMode = 1">Nur nach ...</span>
                                     </div>
-                                    <div class="linien-container-dir" @click="line.otherDirs = !line.otherDirs">
+                                    <div class="linien-container-dir" v-show="line.filterMode == 0" v-for="(dir, dirIndex) in line.doNotUse">
                                         <span class="linien-container-dir-symbol fa fa-exchange"></span>
-                                        <div class="linien-container-dir-name">weitere Richtungen</div>
-                                        <span class="info-alert fa fa-question-circle" @click.stop="dirHint"></span>
-                                        <div class="switch" :class="{ enabled: line.otherDirs }" style="margin-left:auto">
-                                            <div class="switch-slider"></div>
-                                        </div>
+                                        <div class="linien-container-dir-name">{{ dir }}</div>
+                                        <span class="linien-container-dir-symbol fa fa-close" style="margin-left:auto" @click="removeFilter(lineIndex, 0, dirIndex)"></span>
                                     </div>
+                                    <div class="linien-container-dir" v-show="line.filterMode == 1" v-for="(dir, dirIndex) in line.useOnly">
+                                        <span class="linien-container-dir-symbol fa fa-exchange"></span>
+                                        <div class="linien-container-dir-name">{{ dir }}</div>
+                                        <span class="linien-container-dir-symbol fa fa-close" style="margin-left:auto" @click="removeFilter(lineIndex, 1, dirIndex)"></span>
+                                    </div>
+                                    <div class="linien-container-plus" @click="addFilter(lineIndex, line.filterMode)"><span class="fa fa-plus-circle"></span>Richtungsfilter hinzufügen</div>
                                 </div>
                             </div>
                             <div class="linien-container">
