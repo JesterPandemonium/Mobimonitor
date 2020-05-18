@@ -99,7 +99,7 @@ let submitStation = function () {
     if (app.selectedStation !== null) {
         let lineData = {};
         for (let i = 0; i < app.lineList.length; i++) {
-            if (app.lineList[i].state) lineData[app.lineList[i].line] = {
+            lineData[app.lineList[i].line] = {
                 use: app.lineList[i].state,
                 filterMode: app.lineList[i].filterMode,
                 useOnly: app.lineList[i].useOnly,
