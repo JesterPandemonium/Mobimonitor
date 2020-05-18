@@ -1,1 +1,54 @@
-{"err":false,"lastRequested":1589825705967,"stops":{"33000832":{"position":0,"lines":{"61":{"use":true,"filterMode":1,"useOnly":["Fernsehturm"],"doNotUse":[]},"63":{"use":true,"filterMode":0,"useOnly":[],"doNotUse":["Gruna"]},"84":{"use":false,"filterMode":0,"useOnly":[],"doNotUse":[]},"309":{"use":false,"filterMode":0,"useOnly":[],"doNotUse":[]},"Schwebebahn":{"use":false,"filterMode":0,"useOnly":[],"doNotUse":[]},"Standseilbahn":{"use":false,"filterMode":0,"useOnly":[],"doNotUse":[]},"alita 84":{"use":false,"filterMode":0,"useOnly":[],"doNotUse":[]}},"otherLines":true}}}
+{
+    "err": false,
+    "lastRequested": 1589825705967,
+    "stops": {
+        "33000832": {
+            "position": 0,
+            "lines": {
+                "61": {
+                    "use": true,
+                    "filterMode": 1,
+                    "useOnly": ["Fernsehturm"],
+                    "doNotUse": []
+                },
+                "63": {
+                    "use": true,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": ["Gruna"]
+                },
+                "84": {
+                    "use": false,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": []
+                },
+                "309": {
+                    "use": false,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": []
+                },
+                "Schwebebahn": {
+                    "use": false,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": []
+                },
+                "Standseilbahn": {
+                    "use": false,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": []
+                },
+                "alita 84": {
+                    "use": false,
+                    "filterMode": 0,
+                    "useOnly": [],
+                    "doNotUse": []
+                }
+            },
+            "otherLines": true
+        }
+    }
+}
