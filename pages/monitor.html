@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <!-- For Production -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <!-- For Development -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -109,10 +109,10 @@
                                             <div class="switch-slider"></div>
                                         </div>
                                     </div>
-                                    <div class="linien-container-dir" @click="if (!$event.target.classList.contains('info-alert')) line.otherDirs = !line.otherDirs">
+                                    <div class="linien-container-dir" @click="line.otherDirs = !line.otherDirs">
                                         <span class="linien-container-dir-symbol fa fa-exchange"></span>
                                         <div class="linien-container-dir-name">weitere Richtungen</div>
-                                        <span class="info-alert fa fa-question-circle" @click="dirHint"></span>
+                                        <span class="info-alert fa fa-question-circle" @click.stop="dirHint"></span>
                                         <div class="switch" :class="{ enabled: line.otherDirs }" style="margin-left:auto">
                                             <div class="switch-slider"></div>
                                         </div>
@@ -120,10 +120,10 @@
                                 </div>
                             </div>
                             <div class="linien-container">
-                                <div class="linien-container-head" @click="if (!$event.target.classList.contains('info-alert')) otherLines = !otherLines">
+                                <div class="linien-container-head" @click="otherLines = !otherLines">
                                     <span class="line-symbol fa fa-code-fork"></span>
                                     <span class="line-label">weitere Linien</span>
-                                    <span class="info-alert fa fa-question-circle" @click="lineHint"></span>
+                                    <span class="info-alert fa fa-question-circle" @click.stop="lineHint"></span>
                                     <div class="switch" :class="{ enabled: otherLines }" style="margin-left:auto">
                                         <div class="switch-slider"></div>
                                     </div>
