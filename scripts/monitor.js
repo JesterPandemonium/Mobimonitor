@@ -50,8 +50,9 @@ let main = function() {
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
             },
             dirHint: function() {
-                let s = 'Aktiviere diese Funktion, um auch Abfahrten in andere Richtungen (wie z. B. Einrückerfahrten, umgeleitete Fahrten etc.) angezeigt zu bekommen.\n\n';
-                s += 'Bei Zügen und Regionallinien empfielt es sich, dieses Feature stets zu aktivieren, da sonst möglicherweise Fahrten nicht angezeigt werden - auch wenn die entsprechende Richtung ausgewählt wurde.';
+                let s = '"Nicht nach ...": Alle von den Filtern betroffenen Abfahrten werden nicht angezeigt.\n\n';
+                s += '"Nur nach ...": Nur die von den Filtern betroffenen Abfragen werden angezeigt.\n\n';
+                s += 'Die Filtersets sind getrennt voneinander gespeichert. Nur das jeweils ausgewählte Filterset ist aktiv.';
                 alert(s);
             },
             lineHint: function() {

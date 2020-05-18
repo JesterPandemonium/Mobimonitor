@@ -105,6 +105,7 @@
                                     <div class="linien-container-switch">
                                         <span :class="{active: line.filterMode == 0}" @click="line.filterMode = 0">Nicht nach ...</span>
                                         <span :class="{active: line.filterMode == 1}" @click="line.filterMode = 1">Nur nach ...</span>
+                                        <i class="info-alert fa fa-question-circle" style="flex:none" @click="dirHint"></i>
                                     </div>
                                     <div class="linien-container-dir" v-show="line.filterMode == 0" v-for="(dir, dirIndex) in line.doNotUse">
                                         <span class="linien-container-dir-symbol fa fa-exchange"></span>

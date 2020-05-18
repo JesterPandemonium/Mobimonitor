@@ -97,6 +97,7 @@ input[type="text"] {
 
 .linien-container-switch {
     display: flex;
+    align-items: center;
 }
 
 .linien-container-switch span {
