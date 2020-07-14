@@ -1,0 +1,40 @@
+.infobox {
+    background-color: #fde999;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.infobox.open {
+    padding-bottom: 10px;
+}
+
+.info-title {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #ffab61;
+    display: flex;
+    cursor: pointer;
+}
+
+.info-title .fa {
+    transform: rotate(-90deg);
+    transition: 0.3s;
+    margin-right: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.infobox.open .info-title .fa {
+    transform: rotate(0);
+}
+
+.info-p {
+    display: none;
+    padding: 10px 15px 0 15px;
+}
+
+.infobox.open .info-p {
+    display: block;
+}
