@@ -51,6 +51,10 @@ let main = function() {
                     PlusBus: this.mots.CityBus
                 }
                 return map[mot];
+            },
+            distLabel: function(dist) {
+                if (dist) return ' (' + dist + 'm)';
+                else return '';
             }
         },
         computed: {
@@ -163,6 +167,7 @@ let fetchLocation = function (position) {
                 if (parseInt(a.dist) > parseInt(b.dist)) return 1;
                 return -1;
             });
+            clearMonitor();
             app.locating = false;
             app.showLocals = true;
             app.stationList = stations;

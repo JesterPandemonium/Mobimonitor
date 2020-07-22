@@ -42,7 +42,7 @@
                     <button v-for="station in stationList" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
                         <span class="halt-symbol" :class="stopSignIcon"></span>
                         <div class="station-list-label">
-                            <div class="station-list-name">{{ station.name }}</div>
+                            <div class="station-list-name">{{ station.name + distLabel(station.dist) }}</div>
                             <div class="station-list-city">{{ station.stadt }}</div>
                         </div>
                         <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
