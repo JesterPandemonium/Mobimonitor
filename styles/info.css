@@ -1,5 +1,4 @@
 .infobox {
-    background-color: #fde999;
     border-radius: 10px;
     overflow: hidden;
     margin: 10px 0;
@@ -13,7 +12,6 @@
     padding: 10px;
     font-weight: bold;
     font-size: 20px;
-    background-color: #ffab61;
     display: flex;
     cursor: pointer;
 }
@@ -37,4 +35,57 @@
 
 .infobox.open .info-p {
     display: block;
+}
+
+.info-h:not(:nth-child(2)) {
+    margin-top: 8px;
+}
+
+.changelog div:not(.info-title) {
+    display: none;
+    padding: 10px 15px 0 15px;
+}
+
+.chlg-h {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.chlg-h:not(:nth-child(2)) {
+    margin-top: 8px;
+}
+
+.changelog.open div:not(.info-title) {
+    display: block;
+}
+
+.chlg-f::before {
+    content: "Feature";
+    display: block;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.chlg-b::before {
+    content: "Bugfix";
+    display: block;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.infobox { background-color: #fde999; }
+
+.info-title { background-color: #ffab61; }
+
+@media (prefers-color-scheme: dark) {
+    .infobox {
+        background-color: #112d32;
+        color: #88bdbc;
+    }
+    .info-title {
+        background-color: #254e58;
+        color: #88bdbc;
+    }
 }

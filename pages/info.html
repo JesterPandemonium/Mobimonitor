@@ -33,6 +33,55 @@
     <h1>Info</h1>
     <h3>Zu erst einmal... Danke!</h3>
     <p>... dass Du dieses Tool nutzt. Dann war der Programmieraufwand wenigstens nicht umsonst.</p>
+    <div class="infobox changelog">
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Changelog - Das ist neu!</span></div>
+        <div class="chlg-h">2.2.1 [May 18, 2020]</div>
+        <div class="chlg-f">Da das jüngste Feature (Richtungsfilter) nur sehr unzuverlässig funktioniert hat, wurde es jetzt wieder entfernt und mit einer etwas aufwändigeren, dafür aber zuverlässigeren Variante ersetzt. Mehr dazu im Info-Tab. (Bisherige Filter wurden aufgrund der neuen Speicherstruktur zurückgesetzt)</div>
+        <div class="chlg-f">In seltenen Fällen wurden bei der Eingabe einer Haltestelle eine Fehlermeldung gezeigt. Dieser hängt mit der VVO-API zusammen. Ab sofort wird er jedoch nur noch in der Konsole geloggt.</div>
+        <div class="chlg-f">Das verwenden von Verkehrsmittelfiltern im Abfahrtsmonitor bringt nun nicht mehr die alternierende Färbung durcheinander.</div></i>
+        <div class="chlg-h">2.2.0 [Mar 14, 2020]</div>
+        <div class="chlg-f">Bei gespeicherten Stationen können ab sofort neben den bevorzugten Linien auch bevorzugte Fahrtrichtungen angegeben werden. Dieses Feature ist allerdings nicht zu 100% zuverlässig (insbesondere bei Zügen und Regionalbuslinien) aufgrund von Abweichungen innerhalb der VVO-API. Es empfielt sich daher, die Option "andere Richtungen" stets aktiviert zu lassen - auch wenn so ggf. zusätzliche, nicht erwünschte Fahrten angezeigt werden.</div>
+        <div class="chlg-f">Gespeicherte Stationen können nun auf Knopfdruck getauscht werden.</div>
+        <div class="chlg-f">Ab sofort erscheint ein Update-Hinweis, sobald eine neue Version verfügbar ist - damit Du keine Features mehr verpasst.</div>
+        <div class="chlg-b">Auf dem Abfahrtsmonitor werden nun wirklich ALLE Fahrten der nächsten Stunde angezeigt - und nicht nur zwei pro Linie und Richtung.</div>
+        <div class="chlg-h">2.1.2 [Mar 1, 2020]</div>
+        <div class="chlg-f">Der Reiter "In deiner Nähe" hat nun einen Button zum Aktualisieren des Standorts, sodass die App hierfür nicht neugestartet werden muss.</div>
+        <div class="chlg-f">Beim Aufruf eines nichtexistierenden Monitors wird ab sofort eine gesonderte 404-Seite gezeigt.</div>
+        <div class="chlg-f">Zwischen den einzelnen Reitern kann jetzt auch per Touch-Bewegung gewechselt werden.</div>
+        <div class="chlg-b">Die Schriftgrößen sind nun zum Teil besser an kleine Bildschirme angepasst.</div>
+        <div class="chlg-b">Text auf der Seite ist nun nicht mehr selektierbar.</div>
+        <div class="chlg-h">2.1.1 [Feb 24, 2020]</div>
+        <div class="chlg-f">Da manche Browser, die nicht Safari heißen, gelegentlich Performance-Probleme durch die Straßenbahn-Animation haben, lässt sich diese nun deaktivieren (mehr dazu im Info-Tab).</div>
+        <div class="chlg-b">Die Haltestellen bei "In deiner Nähe" werden jetzt korrekt nach Entfernung sortiert.</div>
+        <div class="chlg-b">Ein Problem, bei welchem auf kleineren Bildschirmen (nur knapp über 300px Breite) die Inhalte nicht ohne horizonzales Scrollen darstellbar waren, wurde behoben.</div>
+        <div class="chlg-b">Manchmal wurde der Verkehrsmittelfilter durch die History-Funktion im Abfahrtsmonitor aus dem Bildschirm geschoben. Das ist zwar immer noch so, lässt sich nun aber durch Scrollen umgehen.</div>
+        <div class="chlg-b">Bei der Eingabe eines nicht existierenden Links wird nun kein "Interner Fehler" mehr gemeldet.</div>
+        <div class="chlg-h">2.1.0 [Feb 23, 2020]</div>
+        <div class="chlg-f">Einzelne Abfahrten sind jetzt alternierend gefärbt zur besseren Lesbarkeit.</div>
+        <div class="chlg-f">Im Reiter "Abfahrtsmonitor" kannst Du jetzt einmalig nach Stationen suchen, ohne dass diese gespeichert werden. Der Abfahrtsmonitor beinhaltet außerdem eine History-Funktion sowie ein Filter nach Verkehrsmittel.</div>
+        <div class="chlg-f">Im Reiter "In deiner Nähe" kannst Du Dir Abfahrten an Haltestellen aus Deiner Umgebung anzeigen lassen, ohne einen Haltestellennamen eingeben zu müssen.</div>
+        <div class="chlg-f">Die Überschriften der einzelnen Seiten werden auf Mobilgeräten jetzt verkleinert dargestellt.</div>
+        <div class="chlg-f">Inaktive MobiMonitor-Seiten werden ab jetzt erst nach frühestens 4 Wochen gelöscht (vorher 2).</div>
+        <div class="chlg-b">Bei einer Anfrage für die auf dem Server gespeicherten Daten wird nun keine Datei mehr heruntergeladen, sondern ein neuer Tab geöffnet - wie ursprünglich vorgesehen.</div>
+        <div class="chlg-b">Ein Bug, bei welchem Text nicht zentriert wurde, ist nun behoben.</div>
+        <div class="chlg-h">2.0.0 [Feb 12, 2020]</div>
+        <div class="chlg-f">Der MobiMonitor hat jetzt ein neues Farbschema sowie einen Dunkelmodus.</div>
+        <div class="chlg-f">Der neue Stadtbahnwagen für Dresden fungiert als Ladesymbol.</div>
+        <div class="chlg-f">Ab sofort werden pro Linie und Richtung die nächsten zwei Fahrten (statt nur einer) innerhalb der nächsten Stunde angezeigt.</div>
+        <div class="chlg-f">Es wird jetzt angezeigt, wenn eine Fahrt ausfällt.</div>
+        <div class="chlg-f">Neu abgespeicherte Haltestellen werden jetzt immer als letztes hinzugefügt.</div>
+        <div class="chlg-f">Abfahrtsmonitor und Infoseite sind nun auf einer Seite. Zwischen den beiden Ansichten lässt sich über das neue Menü am unteren Bildschirmrand wechseln.</div>
+        <div class="chlg-f">Dieser Changelog hier ist ebenso neu :o</div>
+        <div class="chlg-b">Mangels Zwischenzertifikaten hat die Seite zwischenzeitlich nicht mit Firefox funktioniert. Das ist nun behoben.</div>
+        <div class="chlg-b">Regionalzüge, die zu keiner Linie im VVO gehören, werden nun ohne Linie angezeigt, da es sonst zu Formatierungsfehlern kam.</div>
+        <div class="chlg-b">Einige kleinere Formatierungsfehler wurden behoben und redundante Codestellen entfernt.</div>
+        <div class="chlg-h">1.0.2 [Jan 4, 2020]</div>
+        <div class="chlg-b">Fernzüge (IC/ICE/EC/RJ) werden jetzt nur noch angezeigt, wenn die Linie 'IC/ICE' ausgewählt wurde.</div>
+        <div class="chlg-h">1.0.1 [Jan 2, 2020]</div>
+        <div class="chlg-b">Lö&szlig;nitzgrund- und Wei&szlig;eritztalbahn werden jetzt als 'LöB' und 'WeB' angezeigt.</div>
+        <div class="chlg-h">1.0.0 [Jan 1, 2020]</div>
+        <div>Erstveröffentlichung :)</div>
+    </div>
     <div class="infobox">
         <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was ist das hier?</span></div>
         <div class="info-p">MobiMonitor ist eine kleines Tool, mit welchem sich im VVO-Gebiet für eine Vorauswahl von Haltestellen alle Abfahrten übersichtlich anzeigen lassen.</div>
