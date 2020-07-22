@@ -63,10 +63,12 @@
     display: flex;
     flex-direction: column;
     overflow: scroll;
+    padding-bottom: 10px;
 }
 
 #depApp .monitor-entry {
     flex: 0 1 content;
+    margin-bottom: 0;
 }
 
 #mots {
@@ -78,5 +80,23 @@
     #mots {
         border: 2px solid #88bdbc;
         background-color: #254e58;
+    }
+}
+
+@media (max-height: 450px) {
+    #mots {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top: none;
+    }
+    .mot-box {
+        width: 16.66%
+    }
+    #station-popup {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 }

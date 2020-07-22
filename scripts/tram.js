@@ -5,7 +5,7 @@ let tramData = {
     scale: { s: 0, v: 0, a: 0 },
     monMov: { s: -100, v: 0, a: 0 },
     monScale: { s: 0.7, v: 0, a: 0, j: 0 },
-    tabMov: { s: -50, v: 0, a: 0, j: 0 },
+    tabMov: { s: -40, v: 0, a: 0, j: 0 },
     stop: false,
     stopping: false
 }
