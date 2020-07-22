@@ -76,6 +76,16 @@
     background-color: #e4e4e4;
 }
 
+@keyframes bounce {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(30deg); }
+}
+
+#station-input-container button.fa-compass::before {
+    animation: bounce 0.5s ease-in-out infinite alternate;
+    display: inline-block;
+}
+
 @media (prefers-color-scheme: dark) {
     #mots {
         border: 2px solid #88bdbc;
@@ -88,6 +98,7 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border-top: none;
+        padding: 0 10px;
     }
     .mot-box {
         width: 16.66%
