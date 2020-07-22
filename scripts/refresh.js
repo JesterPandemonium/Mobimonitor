@@ -68,10 +68,11 @@ let addDepartures = function (station, data) {
     return new Promise((resolve, reject) => {
         let requestNeeded = false;
         let requestTime = new Date().toISOString();
+        let leaveTime;
         if (!('Departures' in data)) requestNeeded = true;
         else {
             let lastDep = data.Departures[data.Departures.length - 1];
-            let leaveTime = parseInt(lastDep.ScheduledTime.match(/[0-9]+/)[0]);
+            leaveTime = parseInt(lastDep.ScheduledTime.match(/[0-9]+/)[0]);
             if ('RealTime' in lastDep) leaveTime = parseInt(lastDep.RealTime.match(/[0-9]+/)[0]);
             requestTime = new Date(leaveTime - 60 * 1000).toISOString();
             let dif = leaveTime - Date.now();
@@ -88,11 +89,17 @@ let addDepartures = function (station, data) {
         }).then(result => {
             if (result.Departures.length == 0) resolve(data);
             else {
-                data.Name = result.Name;
-                data.Place = result.Place;
-                if (!('Departures' in data)) data.Departures = [];
-                for (let i = 0; i < result.Departures.length; i++) data.Departures.push(result.Departures[i]);
-                addDepartures(station, data).then(newData => { resolve(newData) });
+                let lastDep = result.Departures[result.Departures.length - 1];
+                let newLastLeave = parseInt(lastDep.ScheduledTime.match(/[0-9]+/)[0]);
+                if ('RealTime' in lastDep) newLastLeave = parseInt(lastDep.RealTime.match(/[0-9]+/)[0]);
+                if (newLastLeave <= leaveTime) resolve(data);
+                else {
+                    data.Name = result.Name;
+                    data.Place = result.Place;
+                    if (!('Departures' in data)) data.Departures = [];
+                    for (let i = 0; i < result.Departures.length; i++) data.Departures.push(result.Departures[i]);
+                    addDepartures(station, data).then(newData => { resolve(newData) });
+                }
             }
         }).catch(errData => {
             console.log(errData);

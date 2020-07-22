@@ -71,7 +71,10 @@ let main = function() {
             },
             updateInfo: function(view) {
                 document.getElementById('update-hint').style.display = 'none';
-                if (view) moveTabFrame(5);
+                if (view) {
+                    moveTabFrame(3);
+                    document.querySelector('iframe[src="/info"]').contentDocument.querySelector('.changelog').classList.add('open');
+                }
             }
         },
         computed: {
