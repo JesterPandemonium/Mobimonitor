@@ -1,6 +1,6 @@
 let stationPopup = function (station) {
     let overlay = document.getElementById('station-popup');
-    let input = document.getElementById('line-input');
+    let input = document.querySelector('.line-input');
     input.value = '';
     app.stationList = [];
     app.selectedStation = station;
@@ -19,7 +19,7 @@ let stationPopup = function (station) {
 let queryStations = function () {
     app.selectedStation = null;
     app.lineList = [];
-    let input = document.getElementById('line-input');
+    let input = document.querySelector('.line-input');
     let isTyping = document.activeElement == input;
     if (input.value.length >= 3 && isTyping) fetchAPI('https://webapi.vvo-online.de/tr/pointfinder?format=json', {
         limit: 5,

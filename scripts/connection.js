@@ -2,9 +2,10 @@ let app;
 
 let main = function() {
     app = new Vue({
-        el: '#depApp',
+        el: '#conApp',
         data: {
-            selectedStation: null,
+            selectedStartStation: null,
+            selectedDestStation: null,
             stationList: [],
             refreshData: {
                 stops: {}
@@ -75,7 +76,7 @@ let main = function() {
     refresh(true, true);
 }
 
-let displayMonitor = function(station) {
+/* let displayMonitor = function(station) {
     app.selectedStation = station.id;
     app.refreshData.stops = {};
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
@@ -98,7 +99,7 @@ let clearMonitor = function() {
         history[i] = JSON.parse(decodeURIComponent(history[i]));
     }
     app.history = history;
-}
+} */
 
 let addToHistory = function (station) {
     let data = encodeURIComponent(JSON.stringify({
@@ -117,7 +118,7 @@ let addToHistory = function (station) {
     document.cookie = cookie;
 }
 
-let locate = function () {
+/* let locate = function () {
     if (!app.locating) {
         app.locating = true;
         document.getElementById('line-input').value = '';
@@ -125,7 +126,7 @@ let locate = function () {
             timeout: 10000
         });
     }
-}
+} */
 
 let locateFail = function (error) {
     app.locating = false;

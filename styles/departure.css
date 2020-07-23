@@ -81,7 +81,7 @@
     to { transform: rotate(30deg); }
 }
 
-#station-input-container button.fa-compass::before {
+.station-input-container button.fa-compass::before {
     animation: bounce 0.5s ease-in-out infinite alternate;
     display: inline-block;
 }

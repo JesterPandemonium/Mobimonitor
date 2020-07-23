@@ -24,8 +24,8 @@
         <h1>Abfahrtsmonitor</h1>
         <div id="station-popup">
             <div id="station-such-container">
-                <div id="station-input-container">
-                    <input id="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off">
+                <div class="station-input-container">
+                    <input class="line-input" type="text" oninput="queryStations()" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off">
                     <button :class="locating ? 'fa fa-compass' : 'fa fa-map-marker'" onclick="locate()"></button>
                 </div>
                 <div class="station-liste" v-show="historyShown">

@@ -81,7 +81,7 @@ let displayMonitor = function(station) {
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
     addToHistory(station);
     refresh(false, true).then(() => {
-        document.getElementById('line-input').value = '';
+        document.querySelector('.line-input').value = '';
         app.stationList = [];
     });
 }
@@ -120,7 +120,7 @@ let addToHistory = function (station) {
 let locate = function () {
     if (!app.locating) {
         app.locating = true;
-        document.getElementById('line-input').value = '';
+        document.querySelector('.line-input').value = '';
         navigator.geolocation.getCurrentPosition(fetchLocation, locateFail, {
             timeout: 10000
         });
