@@ -72,7 +72,7 @@ let main = function() {
             updateInfo: function(view) {
                 document.getElementById('update-hint').style.display = 'none';
                 if (view) {
-                    moveTabFrame(3);
+                    moveTabFrame(5);
                     document.querySelector('iframe[src="/info"]').contentDocument.querySelector('.changelog').classList.add('open');
                 }
             }
