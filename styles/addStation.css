@@ -31,7 +31,6 @@ input[type="text"] {
 
 .station-liste, #linien-liste {
     border-radius: 10px;
-    margin: 10px 0;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -56,6 +55,19 @@ input[type="text"] {
     height: 100%;
     top: 0;
     bottom: 0;
+}
+
+.station-liste .halt-symbol.history-symbol {
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    filter: none;
+}
+
+.station-liste .station-selected .halt-symbol.history-symbol {
+    filter: none;
 }
 
 .station-liste .station-list-label {

@@ -1,28 +1,45 @@
 let stationPopup = function (station) {
     let overlay = document.getElementById('station-popup');
-    let input = document.querySelector('.line-input');
-    input.value = '';
     app.stationList = [];
     app.selectedStation = station;
     app.lineList = [];
     if (overlay.style.display != 'none') overlay.style.display = 'none';
     else {
-        overlay.style.display = 'flex';
-        input.focus();
-        if (station !== null) selectStation(station).then(() => {
-            input.value = app.departs[station].city + ' ' + app.departs[station].name;
-            window.location.href = '#station-popup';
-        });
+        document.querySelector('.line-input').focus();
+        if (station !== null) {
+            app.editing = true;
+            selectStation(station).then(() => {
+                overlay.style.display = 'flex';
+                window.location.href = '#station-popup';
+            });
+        } else {
+            app.editing = false;
+            app.stationInput = '';
+            queryStations();
+            overlay.style.display = 'flex';
+        };
     }
 }
 
-let queryStations = function (input) {
+let changeInputTo = function(value, keepShown) {
+    app.stationInput = value;
+    if (keepShown) queryStations();
+    else app.stationList = [];
+}
+
+let queryStations = function () {
+    let value = app.stationInput;
     app.selectedStation = null;
     app.lineList = [];
-    let isTyping = document.activeElement == input;
-    if (input.value.length >= 3 && isTyping) fetchAPI('https://webapi.vvo-online.de/tr/pointfinder?format=json', {
+    let cookieMatch = document.cookie.match(/history=([^;]*)/);
+    let history = [];
+    if (cookieMatch != null) history = cookieMatch[1].split('§');
+    for (let i = 0; i < history.length; i++) {
+        history[i] = JSON.parse(decodeURIComponent(history[i]));
+    }
+    if (value.length >= 3) fetchAPI('https://webapi.vvo-online.de/tr/pointfinder?format=json', {
         limit: 5,
-        query: input.value,
+        query: value,
         stopsOnly: true,
         dvb: false,
         assignedStops: true
@@ -37,7 +54,8 @@ let queryStations = function (input) {
                     app.stationList.push({
                         id: stationSplit[0],
                         stadt: stationSplit[2] || 'Dresden',
-                        name: stationSplit[3]
+                        name: stationSplit[3],
+                        type: 'result'
                     });
                 }
             }
@@ -45,10 +63,30 @@ let queryStations = function (input) {
     }).catch(errData => {
         console.log(errData);
     });
-    else app.stationList = [];
+    else app.stationList = history;
 }
 
-let selectStation = function (id) {
+let addToHistory = function (station) {
+    let data = encodeURIComponent(JSON.stringify({
+        id: station.id,
+        name: station.name,
+        stadt: station.stadt,
+        type: 'history'
+    }));
+    let match = document.cookie.match(/history=([^;]*)/);
+    let history = [];
+    if (match != null) history = match[1].split('§');
+    if (history.indexOf(data) != -1) history.splice(history.indexOf(data), 1);
+    history.unshift(data);
+    while (history.length > 5) history.pop();
+    let cookie = 'history=' + history.join('§');
+    cookie += ';max-age=' + (60 * 60 * 24 * 7) + ';samesite=strict';
+    document.cookie = cookie;
+}
+
+let selectStation = function (station) {
+    addToHistory(station);
+    let id = station.id;
     app.selectedStation = id;
     return fetchAPI('https://webapi.vvo-online.de/stt/lines?format=json', { stopid: id }).then(data => {
         app.lineList = [];

@@ -18,6 +18,8 @@ let main = function() {
             selectedPanel: 1,
             refreshData: {},
             departs: {},
+            editing: false,
+            stationInput: '',
             stationList: [],
             selectedStation: null,
             lineList: [],
@@ -30,7 +32,7 @@ let main = function() {
                     right: (this.selectedPanel - id) + '00%'
                 }
             },
-            setStation: function(station) { selectStation(station.id) },
+            setStation: function(station) { selectStation(station) },
             editStation: function(id) { stationPopup(id) },
             removeStation: function(id) { delStation(id) },
             addFilter: function(line, mode) { addFilter(line, mode) },
@@ -48,6 +50,11 @@ let main = function() {
                     PlusBus: 'plusBus.svg'
                 }
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+            },
+            stopSignIcon: function (type) {
+                if (type == 'local') return 'history-symbol fa fa-map-marker';
+                else if (type == 'history') return 'history-symbol fa fa-history';
+                else return '';
             },
             dirHint: function() {
                 let s = '"Nicht nach ...": Alle von den Filtern betroffenen Abfahrten werden nicht angezeigt.\n\n';
@@ -98,6 +105,9 @@ let main = function() {
                 return stops;
             }
         },
+        watch: {
+            stationInput: queryStations
+        }
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;

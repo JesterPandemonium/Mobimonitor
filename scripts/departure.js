@@ -5,6 +5,8 @@ let main = function() {
         el: '#depApp',
         data: {
             selectedStation: null,
+            stationInput: '',
+            showStationList: true,
             stationList: [],
             refreshData: {
                 stops: {}
@@ -19,7 +21,6 @@ let main = function() {
                 Ferry: true
             },
             history: [],
-            showLocals: false,
             locating: false
         },
         methods: {
@@ -55,23 +56,29 @@ let main = function() {
             distLabel: function(dist) {
                 if (dist) return ' (' + dist + 'm)';
                 else return '';
+            },
+            stopSignIcon: function(type) {
+                if (type == 'local') return 'history-symbol fa fa-map-marker';
+                else if (type == 'history') return 'history-symbol fa fa-history';
+                else return '';
+            },
+            locateMe: function() {
+                if (!this.locating) {
+                    locate().then(stations => {
+                        app.departs = {};
+                        app.refreshData = { stops: {} };
+                        app.selectedStation = null;
+                        app.stationList = stations;
+                        app.showStationList = true;
+                    });
+                }
             }
         },
-        computed: {
-            historyShown: function() {
-                return (
-                    this.stationList.length == 0 && 
-                    Object.keys(this.departs) == 0 && 
-                    this.history.length > 0
-                );
-            },
-            stopSignIcon: function() {
-                if (this.showLocals) return 'history-symbol fa fa-map-marker';
-                else return '';
-            }
+        watch: {
+            stationInput: queryStations
         }
     });
-    clearMonitor();
+    queryStations();
     refresh(true, true);
 }
 
@@ -81,8 +88,8 @@ let displayMonitor = function(station) {
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
     addToHistory(station);
     refresh(false, true).then(() => {
-        document.querySelector('.line-input').value = '';
-        app.stationList = [];
+        app.showStationList = false;
+        app.stationInput = '';
     });
 }
 
@@ -90,31 +97,9 @@ let clearMonitor = function() {
     app.departs = {};
     app.refreshData = { stops: {} };
     app.selectedStation = null;
-    app.showLocals = false;
-    let match = document.cookie.match(/history=([^;]*)/);
-    let history = [];
-    if (match != null) history = match[1].split('-');
-    for (let i = 0; i < history.length; i++) {
-        history[i] = JSON.parse(decodeURIComponent(history[i]));
-    }
-    app.history = history;
-}
-
-let addToHistory = function (station) {
-    let data = encodeURIComponent(JSON.stringify({
-        id: station.id,
-        name: station.name,
-        stadt: station.stadt
-    }));
-    let match = document.cookie.match(/history=([^;]*)/);
-    let history = [];
-    if (match != null) history = match[1].split('-');
-    if (history.indexOf(data) != -1) history.splice(history.indexOf(data), 1);
-    history.unshift(data);
-    while (history.length > 5) history.pop();
-    let cookie = 'history=' + history.join('-');
-    cookie += ';max-age=' + (60 * 60 * 24 * 7) + ';samesite=strict';
-    document.cookie = cookie;
+    app.stationInput = '';
+    app.showStationList = true;
+    queryStations();
 }
 
 document.addEventListener('touchstart', top.handleTouchStart);

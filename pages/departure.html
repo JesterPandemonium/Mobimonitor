@@ -26,22 +26,13 @@
         <div id="station-popup">
             <div id="station-such-container">
                 <div class="station-input-container">
-                    <input class="line-input locater-input" type="text" oninput="queryStations(this)" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off">
-                    <button :class="locating ? 'fa fa-compass' : 'fa fa-map-marker'" onclick="locate(this.previousSibling)"></button>
+                    <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off" v-model="stationInput">
+                    <button :class="'fa fa-' + (locating ? 'compass' : 'map-marker')" @click="locateMe"></button>
                 </div>
-                <div class="station-liste" v-show="historyShown">
-                    <button v-for="station in history" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
-                        <span class="halt-symbol history-symbol fa fa-history"></span>
-                        <div class="station-list-label">
-                            <div class="station-list-name">{{ station.name }}</div>
-                            <div class="station-list-city">{{ station.stadt }}</div>
-                        </div>
-                        <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
-                    </button>
-                </div>
-                <div class="station-liste" v-show="stationList.length > 0">
+                <div class="space10" v-show="showStationList"></div>
+                <div class="station-liste" v-show="showStationList">
                     <button v-for="station in stationList" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
-                        <span class="halt-symbol" :class="stopSignIcon"></span>
+                        <span class="halt-symbol" :class="stopSignIcon(station.type)"></span>
                         <div class="station-list-label">
                             <div class="station-list-name">{{ station.name + distLabel(station.dist) }}</div>
                             <div class="station-list-city">{{ station.stadt }}</div>
@@ -49,7 +40,6 @@
                         <div v-show="station.id == selectedStation" class="stopspinner fa fa-gear"></div>
                     </button>
                     <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
-                    <div v-show="stationList.length != 0 && (!showLocals)" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
                 </div>
             </div>
         </div>

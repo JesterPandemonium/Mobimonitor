@@ -74,18 +74,18 @@
                 </div>
                 <button onclick="stationPopup(null)">Station hinzufügen</button>
                 <div id="station-popup" style="display:none">
-                    <div id="station-such-container">
-                        <input class="line-input" type="text" oninput="queryStations(this)" placeholder="Nach Haltestelle suchen">
+                    <div id="station-such-container" v-show="!editing">
+                        <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" v-model="stationInput">
+                        <div class="space10"></div>
                         <div class="station-liste">
                             <button v-for="station in stationList" @click="setStation(station)" :class="{ 'station-selected': station.id == selectedStation }">
-                                <span class="halt-symbol"></span>
+                                <span class="halt-symbol" :class="stopSignIcon(station.type)"></span>
                                 <div class="station-list-label">
                                     <div class="station-list-name">{{ station.name }}</div>
                                     <div class="station-list-city">{{ station.stadt }}</div>
                                 </div>
                             </button>
                             <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
-                            <div v-show="stationList.length != 0" id="res-info">Nichts dabei? Entweder zu kurze Eingabe oder vertippt...?</div>
                         </div>
                     </div>
                     <div id="linienwahl-container" v-show="selectedStation !== null && lineList.length > 0">

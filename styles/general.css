@@ -126,6 +126,10 @@ input:focus {
     margin-left: 20px;
 }
 
+.space10 {
+    height: 10px;
+}
+
 button { color: #404040 }
 
 a { color: #0700d3 }
