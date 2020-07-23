@@ -24,16 +24,8 @@ app.get('/departure', (req, res) => {
     res.sendFile(__dirname + '/pages/departure.html');
 });
 
-app.get('/localstops', (req, res) => {
-    res.sendFile(__dirname + '/pages/localstops.html');
-});
-
 app.get('/info', (req, res) => {
     res.sendFile(__dirname + '/pages/info.html');
-});
-
-app.get('/changelog', (req, res) => {
-    res.sendFile(__dirname + '/pages/changelog.html');
 });
 
 app.get('/createNewRecord', (req, res) => {
