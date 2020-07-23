@@ -16,6 +16,7 @@
     <script src="/departure.js"></script>
     <script src="/refresh.js"></script>
     <script src="/addStation.js"></script>
+    <script src="/locate.js"></script>
     <script src="/xhr.js"></script>
     <title>Abfahrten</title>
 </head>
@@ -25,8 +26,8 @@
         <div id="station-popup">
             <div id="station-such-container">
                 <div class="station-input-container">
-                    <input class="line-input" type="text" oninput="queryStations(this)" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off">
-                    <button :class="locating ? 'fa fa-compass' : 'fa fa-map-marker'" onclick="locate()"></button>
+                    <input class="line-input locater-input" type="text" oninput="queryStations(this)" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off">
+                    <button :class="locating ? 'fa fa-compass' : 'fa fa-map-marker'" onclick="locate(this.previousSibling)"></button>
                 </div>
                 <div class="station-liste" v-show="historyShown">
                     <button v-for="station in history" @click="displayMonitor(station)" :class="{ 'station-selected': station.id == selectedStation }">
