@@ -28,6 +28,10 @@ app.get('/info', (req, res) => {
     res.sendFile(__dirname + '/pages/info.html');
 });
 
+app.get('/connection', (req, res) => {
+    res.sendFile(__dirname + '/pages/connection.html');
+});
+
 app.get('/createNewRecord', (req, res) => {
     let alreadyInUse = false;
     let id = '';

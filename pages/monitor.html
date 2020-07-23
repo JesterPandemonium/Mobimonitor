@@ -36,7 +36,9 @@
     <div id="panel-switch">
         <span onclick="moveTabFrame(1)" class="tab fa fa-home"></span>
         <span onclick="moveTabFrame(2)" class="tab fa fa-bus"></span>
-        <span onclick="moveTabFrame(3)" class="tab fa fa-question-circle"></span>
+        <span onclick="moveTabFrame(3)" class="tab fa fa-code-fork"></span>
+        <span onclick="moveTabFrame(4)" class="tab fa fa-hashtag"></span>
+        <span onclick="moveTabFrame(5)" class="tab fa fa-question-circle"></span>
     </div>
     <span id="tab-frame"></span>
     <div id="app" style="display: none">
@@ -144,6 +146,12 @@
             <iframe src="/departure" frameborder="0"></iframe>
         </div>
         <div class="panel" :style="panelOffset(3)">
+            <iframe src="/connection" frameborder="0"></iframe>
+        </div>
+        <div class="panel" :style="panelOffset(4)">
+            <iframe src="" frameborder="0"></iframe>
+        </div>
+        <div class="panel" :style="panelOffset(5)">
             <iframe src="/info" frameborder="0"></iframe>
         </div>
     </div>

@@ -186,7 +186,7 @@ iframe {
     display: none;
     position: fixed;
     bottom: 70px;
-    right: 16.66%;
+    right: 10%;
     flex-direction: column;
     padding: 10px;
     border-radius: 10px 10px 0 10px;
