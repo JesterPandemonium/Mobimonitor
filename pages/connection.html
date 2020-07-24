@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/addStation.css">
     <link rel="stylesheet" href="/monitor.css">
     <link rel="stylesheet" href="/connection.css">
+    <link rel="stylesheet" href="/route.css">
     <script src="/refresh.js"></script>
     <script src="/addStation.js"></script>
     <script src="/xhr.js"></script>
@@ -92,6 +93,106 @@
             </div>
         </div>
         <button v-show="canSubmit" onclick="connect()">Verbindungen suchen</button>
+        <div class="connections">
+            <div class="connection">
+                <div class="connection-head">
+                    <span class="connection-head-icon fa fa-chevron-right"></span>
+                    <div class="connection-head-details">
+                        <div>
+                            <div class="connection-head-info">Ab: 00:00 Uhr</div>
+                            <div class="connection-head-info">An: 00:00 Uhr</div>
+                        </div>
+                        <div>
+                            <div class="connection-head-info">1h 11min</div>
+                            <div class="connection-head-info">3 Umstieg(e)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="connection-body">
+                    <div class="connection-body-mot">
+                        <div class="conn-body-mot-icon">
+                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/mot_icons/tram.svg');"></div>
+                        </div>
+                        <div class="conn-body-mot-info">
+                            <div class="conn-body-mot-line">11</div>
+                            <div class="conn-body-mot-dest">Zschertnitz</div>
+                        </div>
+                    </div>
+                    <div class="connection-body-start">
+                        <div class="conn-body-start-icon">
+                            <div class="route-circle"></div>
+                        </div>
+                        <div class="conn-body-start-info">
+                            <div class="conn-body-start-stop">Schwimmhalle Bühlau</div>
+                            <div class="conn-body-start-details">
+                                <span>Ab: 00:00 Uhr</span>
+                                <span>Steig 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="connection-body-end">
+                        <div class="conn-body-end-icon">
+                            <div class="route-circle route-circle-fill"></div>
+                        </div>
+                        <div class="conn-body-end-info">
+                            <div class="conn-body-end-stop">Bahnhof Neustadt</div>
+                            <div class="conn-body-end-details">
+                                <span>An: 00:00 Uhr</span>
+                                <span>Steig 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="connection-body">
+                    <div class="connection-body-start">
+                        <div class="conn-body-start-icon">
+                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/map_icons/map-footpath-blue.svg');"></div>
+                        </div>
+                        <div class="conn-body-start-info">
+                            <div class="conn-body-start-stop">Fußweg: 2 Minuten</div>
+                            <div class="conn-body-start-details">
+                                <span>Übergangszeit: 10 Minuten</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="connection-body">
+                    <div class="connection-body-mot">
+                        <div class="conn-body-mot-icon">
+                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/mot_icons/SBahn.svg');"></div>
+                        </div>
+                        <div class="conn-body-mot-info">
+                            <div class="conn-body-mot-line">S1</div>
+                            <div class="conn-body-mot-dest">Bahnhof Krippen</div>
+                        </div>
+                    </div>
+                    <div class="connection-body-start">
+                        <div class="conn-body-start-icon">
+                            <div class="route-circle"></div>
+                        </div>
+                        <div class="conn-body-start-info">
+                            <div class="conn-body-start-stop">Bahnhof Neustadt</div>
+                            <div class="conn-body-start-details">
+                                <span>Ab: 00:00 Uhr</span>
+                                <span>Gleis 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="connection-body-end">
+                        <div class="conn-body-end-icon">
+                            <div class="route-circle route-circle-fill"></div>
+                        </div>
+                        <div class="conn-body-end-info">
+                            <div class="conn-body-end-stop">Hauptbahnhof</div>
+                            <div class="conn-body-end-details">
+                                <span>An: 00:00 Uhr</span>
+                                <span>Gleis 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

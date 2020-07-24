@@ -1,0 +1,115 @@
+.connections {
+    margin: 10px;
+}
+
+.connection {
+    background-color: #fde999;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.connection-head {
+    background-color: #ffab61;
+    display: flex;
+    padding: 5px 0;
+}
+
+.connection-head-icon {
+    width: 15%;
+    flex: none;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.connection-head-details {
+    display: flex;
+    flex: 1;
+    margin-right: 5px;
+}
+
+.connection-head-details>div {
+    flex: 1;
+}
+
+.connection-head-info {
+    text-align: left;
+    padding: 3px 0;
+}
+
+.connection-body {
+    text-align: left;
+}
+
+.connection-body-mot, .connection-body-start, .connection-body-end {
+    display: flex;
+    height: 55px;
+}
+
+.conn-body-mot-icon, .conn-body-start-icon, .conn-body-end-icon {
+    width: 15%;
+    flex: none;
+    position: relative;
+}
+
+.conn-body-mot-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.conn-body-mot-line {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #ffab61;
+    padding: 3px 8px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-right: 5px;
+}
+
+.conn-body-start-info, .conn-body-end-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.conn-body-start-stop, .conn-body-end-stop {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.conn-body-start-details, .conn-body-end-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.route-circle {
+    width: 10px;
+    height: 10px;
+    border: 5px solid #404040;
+    position: absolute;
+    top: 17.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.route-circle-fill {
+    background-color: #404040;
+}
+
+.route-icon {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 12.5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
