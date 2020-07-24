@@ -54,7 +54,7 @@
                                 <span class="monitor-entry-name">{{ stop.name }}</span>
                                 <span class="monitor-entry-city">{{ stop.city }}</span>
                             </div>
-                            <span @click="editStation(stop.id)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
+                            <span @click="editStation(stop)" class="fa fa-edit monitor-head-button" style="margin-left:auto"></span>
                             <span @click="removeStation(stop.id)" class="fa fa-trash-o monitor-head-button"></span>
                             <div class="station-switcher">
                                 <span @click="swapStations(i-1)" class="fa fa-chevron-up" v-if="i>0"></span>
@@ -92,6 +92,7 @@
                         <p>Bitte wähle die Linien aus, die Dich interessieren:</p>
                         <button onclick="selectAllLines(true)">Alle auswählen</button>
                         <button onclick="selectAllLines(false)">Alle abwählen</button>
+                        <div class="space10"></div>
                         <div id="linien-liste">
                             <div class="linien-container" v-for="(line, lineIndex) in lineList">
                                 <div class="linien-container-head" @click="line.state = !line.state">
@@ -132,6 +133,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="space10"></div>
                     <button class="confirm" v-show="selectedStation !== null" onclick="submitStation()" id="station-submit">Speichern</button>
                     <button class="cancel" onclick="stationPopup(null)">Abbrechen</button>
                 </div>

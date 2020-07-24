@@ -1,0 +1,173 @@
+.conn-details {
+    margin: 10px;
+    text-align: left;
+}
+
+.conn-details>div.inputChecked {
+    background-color: #fde999;
+}
+
+.conn-start {
+    background-color: #d1ddf9;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    overflow: hidden;
+}
+
+.start-icon, .end-icon, .time-icon {
+    width: 15%;
+    height: 50px;
+    background-color: #ffab61;
+    position: relative;
+    flex: none;
+    font-size: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-icon::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    border: 5px solid #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.start-icon::after {
+    content: "";
+    height: 20px;
+    width: 5px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.start-data {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    flex-wrap: wrap;
+}
+
+.start-stop {
+    font-weight: bold;
+}
+
+.conn-end {
+    background-color: #d1ddf9;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    overflow: hidden;
+}
+
+.end-icon::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    border: 5px solid #fff;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.end-icon::after {
+    content: "";
+    height: 20px;
+    width: 5px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.end-data {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    flex-wrap: wrap;
+}
+
+.end-stop {
+    font-weight: bold;
+}
+
+.conn-time {
+    background-color: #d1ddf9;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    overflow: hidden;
+}
+
+.time-data {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    flex-wrap: wrap;
+}
+
+.time-time {
+    font-weight: bold;
+}
+
+/*
+            <div class="date-pick-container">
+                <div class="time-now" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
+                <input type="datetime-local" v-model="selectedTime">
+                <div class="time-ref-select">
+                    <div @click="isDeparture = true" :class="{ 'time-ref-select': isDeparture }">Abfahrt</div>
+                    <div @click="isDeparture = false" :class="{ 'time-ref-select': !isDeparture }">Ankunft</div>
+                </div>
+            </div>
+*/
+
+.time-now {
+    background-color: #ffab61;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.date-pick-container input {
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #a9a9a9;
+}
+
+.time-ref-select {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-ref-select div {
+    background-color: #d1ddf9;
+    padding: 5px;
+    border-radius: 10px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+}
+
+.time-ref-select .time-ref-selected {
+    background-color: #ffab61;
+}
+

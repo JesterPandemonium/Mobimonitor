@@ -18,12 +18,71 @@
     <script src="/xhr.js"></script>
     <script src="/locate.js"></script>
     <script src="/connection.js"></script>
-    <title>Abfahrten</title>
+    <title>Verbindungen</title>
 </head>
 <body>
     <div id="conApp">
         <h1>Verbindungen</h1>
-        
+        <div class="conn-details">
+            <div class="conn-start" @click="inputType = inputType == 1 ? 0 : 1" :class="{ inputChecked: inputType == 1 }">
+                <div class="start-icon"></div>
+                <div class="start-data">
+                    <div>
+                        <span class="start-stop">{{ getSelectedStartStation.name }}</span>
+                        <span class="start-city">{{ getSelectedStartStation.stadt }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="space10"></div>
+            <div class="conn-end" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }">
+                <div class="end-icon"></div>
+                <div class="end-data">
+                    <div>
+                        <span class="end-stop">{{ getSelectedDestStation.name }}</span>
+                        <span class="end-city">{{ getSelectedDestStation.stadt }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="space10"></div>
+            <div class="conn-time" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
+                <div class="time-icon fa fa-clock-o"></div>
+                <div class="time-data">
+                    <div>
+                        <span class="time-ref">{{ getSelectedTime.ref }}</span>
+                        <span class="time-time">{{ getSelectedTime.time }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="station-popup" v-show="inputType != 0">
+            <div id="station-such-container" v-show="inputType < 3">
+                <div class="station-input-container">
+                    <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" @focus="stationInput = ''" autocomplete="off" v-model="stationInput">
+                    <button :class="'fa fa-' + (locating ? 'compass' : 'map-marker')" @click="locateMe"></button>
+                </div>
+                <div class="space10"></div>
+                <div class="station-liste">
+                    <button v-for="station in stationList" @click="chooseStop(station)">
+                        <span class="halt-symbol" :class="stopSignIcon(station.type)"></span>
+                        <div class="station-list-label">
+                            <div class="station-list-name">{{ station.name }}</div>
+                            <div class="station-list-city">{{ station.stadt }}</div>
+                        </div>
+                    </button>
+                    <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
+                </div>
+            </div>
+            <div class="date-pick-container" v-show="inputType == 3">
+                <div class="time-now" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
+                <div class="space10"></div>
+                <input type="datetime-local" v-model="selectedTime">
+                <div class="space10"></div>
+                <div class="time-ref-select">
+                    <div @click="isDeparture = true" :class="{ 'time-ref-selected': isDeparture }">Abfahrt</div>
+                    <div @click="isDeparture = false" :class="{ 'time-ref-selected': !isDeparture }">Ankunft</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

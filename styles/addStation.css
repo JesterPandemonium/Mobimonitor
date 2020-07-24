@@ -176,7 +176,7 @@ input[type="text"] { border: 1px solid #a9a9a9; }
 }
 
 .station-liste button, .linien-container-head {    
-    background-color: #b4dfe5;
+    background-color: #d1ddf9;
 }
 
 .station-liste button.station-selected {

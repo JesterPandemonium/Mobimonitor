@@ -33,7 +33,7 @@ let main = function() {
                 }
             },
             setStation: function(station) { selectStation(station) },
-            editStation: function(id) { stationPopup(id) },
+            editStation: function(station) { stationPopup(station) },
             removeStation: function(id) { delStation(id) },
             addFilter: function(line, mode) { addFilter(line, mode) },
             removeFilter: function(line, mode, index) { removeFilter(line, mode, index) },
