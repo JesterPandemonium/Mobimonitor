@@ -29,6 +29,29 @@ input[type="text"] {
     font-size: 25px;
 }
 
+#mots {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.mot-box {
+    display: flex;
+    width: 33.33%;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.mot-img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
 .station-liste, #linien-liste {
     border-radius: 10px;
     padding: 10px;
@@ -170,6 +193,11 @@ input[type="text"] { border: 1px solid #a9a9a9; }
     color: #404040;
 }
 
+#mots {
+    border: 2px solid #a9a9a9;
+    background-color: #e4e4e4;
+}
+
 .station-liste, #linien-liste {
     border: 2px solid #a9a9a9;
     background-color: #cacaca;
@@ -206,6 +234,11 @@ input[type="text"] { border: 1px solid #a9a9a9; }
     input[type="text"] { border: 1px solid #88bdbc; }
     
     #station-popup {
+        border: 2px solid #88bdbc;
+        background-color: #254e58;
+    }
+
+    #mots {
         border: 2px solid #88bdbc;
         background-color: #254e58;
     }
@@ -253,4 +286,25 @@ input[type="text"] { border: 1px solid #a9a9a9; }
     }
 
     .info-alert { color: #fff6; }
+}
+
+@media (max-height: 450px) {
+    #mots {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top: none;
+        padding: 0 10px;
+    }
+
+    .mot-box {
+        width: 16.66%
+    }
+
+    #station-popup {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 }

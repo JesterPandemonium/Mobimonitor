@@ -3,12 +3,7 @@
     text-align: left;
 }
 
-.conn-details>div.inputChecked {
-    background-color: #fde999;
-}
-
 .conn-start {
-    background-color: #d1ddf9;
     border-radius: 10px;
     height: 50px;
     display: flex;
@@ -18,11 +13,9 @@
 .start-icon, .end-icon, .time-icon {
     width: 15%;
     height: 50px;
-    background-color: #ffab61;
     position: relative;
     flex: none;
     font-size: 30px;
-    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +25,6 @@
     content: "";
     height: 10px;
     width: 10px;
-    border: 5px solid #fff;
     border-radius: 10px;
     position: absolute;
     top: 15px;
@@ -44,7 +36,6 @@
     content: "";
     height: 20px;
     width: 5px;
-    background-color: #fff;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -63,7 +54,6 @@
 }
 
 .conn-end {
-    background-color: #d1ddf9;
     border-radius: 10px;
     height: 50px;
     display: flex;
@@ -74,8 +64,6 @@
     content: "";
     height: 10px;
     width: 10px;
-    border: 5px solid #fff;
-    background-color: #fff;
     border-radius: 10px;
     position: absolute;
     top: 15px;
@@ -87,7 +75,6 @@
     content: "";
     height: 20px;
     width: 5px;
-    background-color: #fff;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -106,7 +93,6 @@
 }
 
 .conn-time {
-    background-color: #d1ddf9;
     border-radius: 10px;
     height: 50px;
     display: flex;
@@ -124,19 +110,7 @@
     font-weight: bold;
 }
 
-/*
-            <div class="date-pick-container">
-                <div class="time-now" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
-                <input type="datetime-local" v-model="selectedTime">
-                <div class="time-ref-select">
-                    <div @click="isDeparture = true" :class="{ 'time-ref-select': isDeparture }">Abfahrt</div>
-                    <div @click="isDeparture = false" :class="{ 'time-ref-select': !isDeparture }">Ankunft</div>
-                </div>
-            </div>
-*/
-
 .time-now {
-    background-color: #ffab61;
     padding: 5px;
     border-radius: 10px;
     font-weight: bold;
@@ -150,7 +124,6 @@
     margin: 0;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #a9a9a9;
 }
 
 .time-ref-select {
@@ -159,7 +132,6 @@
 }
 
 .time-ref-select div {
-    background-color: #d1ddf9;
     padding: 5px;
     border-radius: 10px;
     width: 45%;
@@ -167,7 +139,75 @@
     justify-content: center;
 }
 
-.time-ref-select .time-ref-selected {
+.conn-details>div.inputChecked { background-color: #fde999 }
+
+.conn-start { background-color: #d1ddf9 }
+
+.start-icon, .end-icon, .time-icon {
     background-color: #ffab61;
+    color: #fff;
 }
 
+.start-icon::before { border: 5px solid #fff }
+
+.start-icon::after { background-color: #fff }
+
+.conn-end { background-color: #d1ddf9 }
+
+.end-icon::before {
+    border: 5px solid #fff;
+    background-color: #fff;
+}
+
+.end-icon::after { background-color: #fff }
+
+.conn-time { background-color: #d1ddf9 }
+
+.time-now { background-color: #ffab61 }
+
+.date-pick-container input { border: 1px solid #a9a9a9 }
+
+.time-ref-select div { background-color: #d1ddf9 }
+
+.time-ref-select .time-ref-selected { background-color: #ffab61 }
+
+@media (prefers-color-scheme: dark) {
+    .conn-details>div.inputChecked { background-color: #254e58 }
+
+    .conn-start { background-color: #254e58 }
+
+    .start-icon, .end-icon, .time-icon {
+        background-color: #254e58;
+        color: #fff;
+    }
+
+    .conn-start, .conn-end, .conn-time { color: #fff; }
+
+    .start-icon::before { border: 5px solid #fff }
+
+    .start-icon::after { background-color: #fff }
+
+    .conn-end { background-color: #254e58 }
+
+    .end-icon::before {
+        border: 5px solid #fff;
+        background-color: #fff;
+    }
+
+    .end-icon::after { background-color: #fff }
+
+    .conn-time { background-color: #254e58 }
+
+    .date-pick-container { color: #254e58 }
+    
+    .time-now { background-color: #88bdbc }
+
+    .date-pick-container input { border: 1px solid #88bdbc }
+
+    .time-ref-select div { 
+        background-color: #3c7988; 
+        color: #fff; 
+    }
+
+    .time-ref-select .time-ref-selected { background-color: #88bdbc }
+}

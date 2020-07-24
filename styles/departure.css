@@ -20,29 +20,6 @@
     to { transform: rotate(360deg) translateY(-50%); }
 }
 
-#mots {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 10px;
-    border-radius: 10px;
-}
-
-.mot-box {
-    display: flex;
-    width: 33.33%;
-    justify-content: center;
-    padding: 5px 0;
-}
-
-.mot-img {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-
 #depApp {
     position: absolute;
     top: 0;
@@ -60,11 +37,6 @@
     margin-bottom: 0;
 }
 
-#mots {
-    border: 2px solid #a9a9a9;
-    background-color: #e4e4e4;
-}
-
 @keyframes bounce {
     from { transform: rotate(0deg); }
     to { transform: rotate(30deg); }
@@ -73,30 +45,4 @@
 .station-input-container button.fa-compass::before {
     animation: bounce 0.5s ease-in-out infinite alternate;
     display: inline-block;
-}
-
-@media (prefers-color-scheme: dark) {
-    #mots {
-        border: 2px solid #88bdbc;
-        background-color: #254e58;
-    }
-}
-
-@media (max-height: 450px) {
-    #mots {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        border-top: none;
-        padding: 0 10px;
-    }
-    .mot-box {
-        width: 16.66%
-    }
-    #station-popup {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
 }
