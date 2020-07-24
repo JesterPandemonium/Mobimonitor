@@ -172,29 +172,18 @@
 .time-ref-select .time-ref-selected { background-color: #ffab61 }
 
 @media (prefers-color-scheme: dark) {
-    .conn-details>div.inputChecked { background-color: #254e58 }
+    .conn-details>div.inputChecked { background-color: #88bdbc }
 
     .conn-start { background-color: #254e58 }
 
     .start-icon, .end-icon, .time-icon {
-        background-color: #254e58;
+        background-color: #9693ff;
         color: #fff;
     }
 
     .conn-start, .conn-end, .conn-time { color: #fff; }
 
-    .start-icon::before { border: 5px solid #fff }
-
-    .start-icon::after { background-color: #fff }
-
     .conn-end { background-color: #254e58 }
-
-    .end-icon::before {
-        border: 5px solid #fff;
-        background-color: #fff;
-    }
-
-    .end-icon::after { background-color: #fff }
 
     .conn-time { background-color: #254e58 }
 

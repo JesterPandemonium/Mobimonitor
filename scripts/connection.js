@@ -21,12 +21,9 @@ let main = function() {
                 Train: true,
                 Ferry: true
             },
-            /* 
-            refreshData: {
-                stops: {}
-            },
-            departs: {}, */
-            
+            searching: false,
+            tripData: null,
+            allowResearch: true
         },
         methods: {
             locateMe: function() {},
@@ -89,10 +86,20 @@ let main = function() {
                         ref: this.isDeparture ? 'Abfahrt' : 'Ankunft'
                     };
                 }
+            },
+            canSubmit: function() {
+                if (this.selectedStartStation != null && this.selectedDestStation != null) {
+                    return this.allowResearch && (!app.searching);
+                }
+                else return false;
             }
         },
         watch: {
-            stationInput: queryStations
+            stationInput: queryStations,
+            selectedStartStation: function() { this.allowResearch = true },
+            selectedDestStation: function() { this.allowResearch = true },
+            selectedTime: function() { this.allowResearch = true },
+            isDeparture: function() { this.allowResearch = true }
         }
     });
     queryStations();
@@ -118,6 +125,51 @@ let convertToString = function(date) {
     if (hour.length == 1) hour = '0' + hour;
     if (min.length == 1) min = '0' + min;
     return year + '-' + month + '-' + day + 'T' + hour + ':' + min;
+}
+
+let connect = function () {
+    app.allowResearch = false;
+    app.searching = true;
+    let mots = ['HailedSharedTaxi'];
+    for (let mot in app.mots) {
+        if (app.mots[mot]) {
+            mots.push(mot);
+            if (mot == 'CityBus') mots.push('IntercityBus');
+        }
+    }
+    let time = app.selectedTime;
+    if (time == null) time = new Date().toISOString();
+    else time = new Date(time).toISOString();
+    let requestData = {
+        origin: app.selectedStartStation.id,
+        destination: app.selectedDestStation.id,
+        time: time,
+        isarrivaltime: !app.isDeparture,
+        shorttermchanges: true,
+        mobilitySettings: {
+            mobilityRestriction: 'None'
+        },
+        standardSettings: {
+            maxChanges: 'Unlimited',
+            walkingSpeed: 'Fast', // change to 'Normal' if too fast
+            extraCharge: 'None',
+            footpathToStop: 10, // might change to 5
+            mot: mots,
+            includeAlternativeStops: true
+        }
+    };
+    fetchAPI('https://webapi.vvo-online.de/tr/trips?format=json', requestData).then(data => {
+        app.searching = false;
+        app.tripData = data;
+    }).catch(errData => {
+        app.searching = false;
+        app.allowResearch = true;
+        if ('Status' in errData[1]) {
+            if (errData[1].Status.Message == 'origin too close to destination') {
+                alert('Bitte zwei weiter voneinander entfernte Orte eingeben.');
+            } else console.log(errData);
+        } else console.log(errData);
+    });
 }
 
 document.addEventListener('touchstart', top.handleTouchStart);
