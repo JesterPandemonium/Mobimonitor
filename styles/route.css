@@ -8,6 +8,14 @@
     overflow: hidden;
 }
 
+.connection i {
+    display: inline-flex;
+    width: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3px;
+}
+
 .connection-head {
     background-color: #ffab61;
     display: flex;
@@ -40,6 +48,10 @@
 
 .connection-body {
     text-align: left;
+}
+
+.connection-body:not(:last-child) {
+    border-bottom: 1px solid #404040;
 }
 
 .connection-body-mot, .connection-body-start, .connection-body-end {
@@ -112,4 +124,28 @@
     top: 12.5px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
+    font-size: 30px;
+}
+
+.route-path-before::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 20px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid #404040;
+}
+
+.route-path-after::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid #404040;
 }

@@ -147,23 +147,20 @@
 
 .conn-start { background-color: #d1ddf9 }
 
-.start-icon, .end-icon, .time-icon {
-    background-color: #ffab61;
-    color: #fff;
-}
+.start-icon, .end-icon, .time-icon { background-color: #ffab61 }
 
-.start-icon::before { border: 5px solid #fff }
+.start-icon::before { border: 5px solid #404040 }
 
-.start-icon::after { background-color: #fff }
+.start-icon::after { background-color: #404040 }
 
 .conn-end { background-color: #d1ddf9 }
 
 .end-icon::before {
-    border: 5px solid #fff;
-    background-color: #fff;
+    border: 5px solid #404040;
+    background-color: #404040;
 }
 
-.end-icon::after { background-color: #fff }
+.end-icon::after { background-color: #404040 }
 
 .conn-time { background-color: #d1ddf9 }
 
