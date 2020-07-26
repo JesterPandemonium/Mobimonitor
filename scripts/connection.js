@@ -51,6 +51,50 @@ let main = function() {
                     PlusBus: 'plusBus.svg'
                 }
                 return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+            },
+            getRouteMotPic: function (mot) {
+                let map = {
+                    Footpath: 'map-footpath-blue.svg',
+                    StayInVehicle: 'stay-in-vehicle.svg',
+                    Bus: 'bus.svg',
+                    Tram: 'tram.svg',
+                    Ferry: 'ferry.svg',
+                    Train: 'zug.svg',
+                    PlusBus: 'plusBus.svg',
+                    RapidTransit: 'SBahn.svg',
+                    OverheadRailway: 'lift.svg',
+                    Taxi: 'alita.svg',
+                    Wait: ''
+                };
+                let link = 'https://www.vvo-mobil.de/img/mot_icons/';
+                if (mot == 'Footpath') link = 'https://www.vvo-mobil.de/img/map_icons/';
+                else if (mot == 'StayInVehicle' || mot == 'Wait') link = '';
+                return "background-image:url('" + link + map[mot] + "')";
+            },
+            getTime: function(timestamp) {
+                let date = new Date(timestamp);
+                let h = date.getHours().toString();
+                let m = date.getMinutes().toString();
+                if (h.length == 1) h = '0' + h;
+                if (m.length == 1) m = '0' + m;
+                return h + ':' + m + ' Uhr';
+            },
+            getDuration: function(minutes) {
+                if (minutes == 1) return '1 Minute';
+                else if (minutes < 60) return minutes + ' Minuten';
+                else {
+                    let res = '';
+                    let h = Math.floor(minutes / 60);
+                    let m = minutes % 60;
+                    if (m == 0) {
+                        if (h == 1) res = '1 Stunde';
+                        else res = h + ' Stunden';
+                    } else res = h + 'h ' + m + 'min';
+                    return res;
+                }
+            },
+            trimLine: function(mot) {
+
             }
         },
         computed: {
@@ -151,23 +195,23 @@ let connect = function () {
         },
         standardSettings: {
             maxChanges: 'Unlimited',
-            walkingSpeed: 'Fast', // change to 'Normal' if too fast
+            walkingSpeed: 'Normal',
             extraCharge: 'None',
             footpathToStop: 10, // might change to 5
             mot: mots,
             includeAlternativeStops: true
         }
     };
-    fetchAPI('https://webapi.vvo-online.de/tr/trips?format=json', requestData).then(data => {
-        app.searching = false;
-        app.tripData = data;
-    }).catch(errData => {
+    fetchAPI('https://webapi.vvo-online.de/tr/trips?format=json', requestData).then(processConnectionResult).catch(errData => {
         app.searching = false;
         app.allowResearch = true;
         if ('Status' in errData[1]) {
             if (errData[1].Status.Message == 'origin too close to destination') {
                 alert('Bitte zwei weiter voneinander entfernte Orte eingeben.');
-            } else console.log(errData);
+            } else if (errData[1].Status.Message == 'invalid date') {
+                alert('Das eingegebene Datum liegt in der Vergangenheit oder zu weit in der Zukunft');
+            }
+            else console.log(errData);
         } else console.log(errData);
     });
 }

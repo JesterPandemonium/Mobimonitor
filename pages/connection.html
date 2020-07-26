@@ -19,9 +19,10 @@
     <script src="/xhr.js"></script>
     <script src="/locate.js"></script>
     <script src="/connection.js"></script>
+    <script src="/route.js"></script>
     <title>Verbindungen</title>
 </head>
-<body>
+<body style="overflow: scroll;">
     <div id="conApp">
         <h1>Verbindungen</h1>
         <div class="conn-details">
@@ -94,99 +95,55 @@
         </div>
         <button v-show="canSubmit" onclick="connect()">Verbindungen suchen</button>
         <div class="connections">
-            <div class="connection">
+            <div class="connection" v-for="conn in tripData">
                 <div class="connection-head">
                     <span class="connection-head-icon fa fa-chevron-right"></span>
                     <div class="connection-head-details">
                         <div>
-                            <div class="connection-head-info"><i class="fa fa-sign-out"></i>00:00 Uhr</div>
-                            <div class="connection-head-info"><i class="fa fa-sign-in"></i>00:00 Uhr</div>
+                            <div class="connection-head-info"><i class="fa fa-sign-out"></i>{{ getTime(conn.start) }}</div>
+                            <div class="connection-head-info"><i class="fa fa-sign-in"></i>{{ getTime(conn.end) }}</div>
                         </div>
                         <div>
-                            <div class="connection-head-info"><i class="fa fa-clock-o"></i>1h 11min</div>
-                            <div class="connection-head-info"><i class="fa fa-retweet"></i>3 Umstieg(e)</div>
+                            <div class="connection-head-info"><i class="fa fa-clock-o"></i>{{ getDuration(conn.duration) }}</div>
+                            <div class="connection-head-info"><i class="fa fa-retweet"></i>{{ conn.interchanges }} Umstieg(e)</div>
                         </div>
                     </div>
                 </div>
-                <div class="connection-body">
-                    <div class="connection-body-mot">
+                <div class="connection-body" v-for="segm in conn.route">
+                    <div class="connection-body-mot" v-if="segm.isVehicle">
                         <div class="conn-body-mot-icon route-path-after">
-                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/mot_icons/tram.svg');"></div>
+                            <div class="route-icon" :style="getRouteMotPic(segm.type)"></div>
                         </div>
                         <div class="conn-body-mot-info">
-                            <div class="conn-body-mot-line">11</div>
-                            <div class="conn-body-mot-dest"><i class="fa fa-arrow-right"></i>Zschertnitz</div>
+                            <div class="conn-body-mot-line">{{ segm.line }}</div>
+                            <div class="conn-body-mot-dest">{{ segm.dest }}</div>
                         </div>
                     </div>
                     <div class="connection-body-start">
-                        <div class="conn-body-start-icon route-path-before route-path-after">
-                            <div class="route-circle"></div>
+                        <div class="conn-body-start-icon" :class="segm.isVehicle ? 'route-path-before route-path-after' : ''">
+                            <div class="route-circle" v-if="segm.isVehicle"></div>
+                            <div class="route-icon" :style="getRouteMotPic(segm.type)" v-if="!segm.isVehicle" :class="segm.type == 'Wait' ? 'fa fa-clock-o' : ''"></div>
                         </div>
                         <div class="conn-body-start-info">
-                            <div class="conn-body-start-stop">Schwimmhalle Bühlau</div>
+                            <div class="conn-body-start-stop" v-if="segm.isVehicle">{{ segm.start.name }}</div>
+                            <div class="conn-body-start-stop" v-else-if="segm.type=='Footpath'">Fußweg: {{ getDuration(segm.duration) }}</div>
+                            <div class="conn-body-start-stop" v-else-if="segm.type=='StayInVehicle'">Weiterfahrt im selben Fahrzeug</div>
                             <div class="conn-body-start-details">
-                                <span><i class="fa fa-sign-out"></i>00:00 Uhr</span>
-                                <span>Steig 1</span>
+                                <span v-if="segm.isVehicle"><i class="fa fa-sign-out"></i>{{ getTime(segm.start.time) }}</span>
+                                <span v-if="segm.isVehicle && segm.start.platform != null">{{ segm.start.platform }}</span>
+                                <span v-if="!segm.isVehicle && segm.wait != null">Übergangszeit: {{ getDuration(segm.wait) }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="connection-body-end">
+                    <div class="connection-body-end" v-if="segm.isVehicle">
                         <div class="conn-body-end-icon route-path-before">
                             <div class="route-circle route-circle-fill"></div>
                         </div>
                         <div class="conn-body-end-info">
-                            <div class="conn-body-end-stop">Bahnhof Neustadt</div>
+                            <div class="conn-body-end-stop">{{ segm.end.name }}</div>
                             <div class="conn-body-end-details">
-                                <span><i class="fa fa-sign-in"></i>00:00 Uhr</span>
-                                <span>Steig 2</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="connection-body">
-                    <div class="connection-body-start">
-                        <div class="conn-body-start-icon">
-                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/map_icons/map-footpath-blue.svg');"></div>
-                        </div>
-                        <div class="conn-body-start-info">
-                            <div class="conn-body-start-stop">Fußweg: 2 Minuten</div>
-                            <div class="conn-body-start-details">
-                                <span>Übergangszeit: 10 Minuten</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="connection-body">
-                    <div class="connection-body-mot">
-                        <div class="conn-body-mot-icon route-path-after">
-                            <div class="route-icon" style="background-image: url('https://www.vvo-mobil.de/img/mot_icons/SBahn.svg');"></div>
-                        </div>
-                        <div class="conn-body-mot-info">
-                            <div class="conn-body-mot-line">S1</div>
-                            <div class="conn-body-mot-dest"><i class="fa fa-arrow-right"></i>Bahnhof Krippen</div>
-                        </div>
-                    </div>
-                    <div class="connection-body-start">
-                        <div class="conn-body-start-icon route-path-before route-path-after">
-                            <div class="route-circle"></div>
-                        </div>
-                        <div class="conn-body-start-info">
-                            <div class="conn-body-start-stop">Bahnhof Neustadt</div>
-                            <div class="conn-body-start-details">
-                                <span><i class="fa fa-sign-out"></i>00:00 Uhr</span>
-                                <span>Gleis 1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="connection-body-end">
-                        <div class="conn-body-end-icon route-path-before">
-                            <div class="route-circle route-circle-fill"></div>
-                        </div>
-                        <div class="conn-body-end-info">
-                            <div class="conn-body-end-stop">Hauptbahnhof</div>
-                            <div class="conn-body-end-details">
-                                <span><i class="fa fa-sign-in"></i>00:00 Uhr</span>
-                                <span>Gleis 2</span>
+                                <span><i class="fa fa-sign-in"></i>{{ getTime(segm.end.time) }}</span>
+                                <span v-if="segm.end.platform != null">{{ segm.end.platform }}</span>
                             </div>
                         </div>
                     </div>
