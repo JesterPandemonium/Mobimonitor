@@ -56,8 +56,8 @@
                 </div>
             </div>
         </div>
-        <div id="station-popup" v-show="inputType != 0">
-            <div id="station-such-container" v-show="inputType < 3">
+        <div id="station-popup" style="display: none">
+            <div id="station-such-container">
                 <div class="station-input-container">
                     <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" @focus="stationInput = ''" autocomplete="off" v-model="stationInput">
                     <button :class="'fa fa-' + (locating ? 'compass' : 'map-marker')" @click="locateMe"></button>
@@ -74,7 +74,7 @@
                     <div v-show="stationList.length == 0">Hier erscheinen die Ergebnisse für Deine Suche</div>
                 </div>
             </div>
-            <div class="date-pick-container" v-show="inputType == 3">
+            <div id="date-pick-container">
                 <div class="time-now" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
                 <div class="space10"></div>
                 <input type="datetime-local" v-model="selectedTime">
@@ -93,11 +93,11 @@
                 </div>
             </div>
         </div>
-        <button v-show="canSubmit" onclick="connect()">Verbindungen suchen</button>
+        <button onclick="connect()">{{ searching ? 'Suche läuft...' : 'Verbindungen suchen' }}</button>
         <div class="connections">
             <div class="connection" v-for="conn in tripData">
-                <div class="connection-head">
-                    <span class="connection-head-icon fa fa-chevron-right"></span>
+                <div class="connection-head" @click="conn.show = !conn.show">
+                    <span class="connection-head-icon fa fa-chevron-right" :style="conn.show ? 'transform:rotate(90deg)' : ''"></span>
                     <div class="connection-head-details">
                         <div>
                             <div class="connection-head-info"><i class="fa fa-sign-out"></i>{{ getTime(conn.start) }}</div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="connection-body" v-for="segm in conn.route">
+                <div class="connection-body" v-for="segm in conn.route" v-show="conn.show">
                     <div class="connection-body-mot" v-if="segm.isVehicle">
                         <div class="conn-body-mot-icon route-path-after">
                             <div class="route-icon" :style="getRouteMotPic(segm.type)"></div>

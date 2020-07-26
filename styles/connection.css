@@ -120,7 +120,7 @@
     font-weight: bold;
 }
 
-.date-pick-container input {
+#date-pick-container input {
     display: block;
     font-size: 16px;
     padding: 10px;
@@ -166,7 +166,7 @@
 
 .time-now { background-color: #ffab61 }
 
-.date-pick-container input { border: 1px solid #a9a9a9 }
+#date-pick-container input { border: 1px solid #a9a9a9 }
 
 .time-ref-select div { background-color: #d1ddf9 }
 
@@ -188,11 +188,11 @@
 
     .conn-time { background-color: #254e58 }
 
-    .date-pick-container { color: #254e58 }
+    #date-pick-container { color: #254e58 }
     
     .time-now { background-color: #88bdbc }
 
-    .date-pick-container input { border: 1px solid #88bdbc }
+    #date-pick-container input { border: 1px solid #88bdbc }
 
     .time-ref-select div { 
         background-color: #3c7988; 

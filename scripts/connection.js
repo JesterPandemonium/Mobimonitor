@@ -22,8 +22,7 @@ let main = function() {
                 Ferry: true
             },
             searching: false,
-            tripData: null,
-            allowResearch: true
+            tripData: null
         },
         methods: {
             locateMe: function() {},
@@ -37,6 +36,7 @@ let main = function() {
                 else if (this.inputType == 2) this.selectedDestStation = station;
                 this.inputType = 0;
                 this.stationInput = '';
+                addToHistory(station);
             },
             getMotPic: function (mot) {
                 let map = {
@@ -130,20 +130,26 @@ let main = function() {
                         ref: this.isDeparture ? 'Abfahrt' : 'Ankunft'
                     };
                 }
-            },
-            canSubmit: function() {
-                if (this.selectedStartStation != null && this.selectedDestStation != null) {
-                    return this.allowResearch && (!app.searching);
-                }
-                else return false;
             }
         },
         watch: {
             stationInput: queryStations,
-            selectedStartStation: function() { this.allowResearch = true },
-            selectedDestStation: function() { this.allowResearch = true },
-            selectedTime: function() { this.allowResearch = true },
-            isDeparture: function() { this.allowResearch = true }
+            inputType: function(val) {
+                if (val == 0) {
+                    document.getElementById('station-popup').style.display = 'none';
+                } else if (val == 1 || val == 2) {
+                    document.getElementById('station-popup').style.display = 'block';
+                    document.getElementById('date-pick-container').style.display = 'none';
+                    document.getElementById('station-such-container').style.display = 'block';
+                    document.querySelector('.line-input').focus();
+                }
+                else if (val == 3) {
+                    document.getElementById('station-popup').style.display = 'block';
+                    document.getElementById('station-such-container').style.display = 'none';
+                    document.getElementById('date-pick-container').style.display = 'block';
+                    document.querySelector('input[type="datetime-local"]').focus();
+                }
+            }
         }
     });
     queryStations();
@@ -152,7 +158,7 @@ let main = function() {
 
 let restrictDateInput = function() {
     let date = new Date();
-    let picker = document.querySelector('.date-pick-container input');
+    let picker = document.querySelector('#date-pick-container input');
     picker.min = convertToString(date);
     let nextMin = new Date(convertToString(new Date(Date.now() + 60 * 1000)));
     setTimeout(restrictDateInput, nextMin.getTime() - Date.now());
@@ -172,7 +178,7 @@ let convertToString = function(date) {
 }
 
 let connect = function () {
-    app.allowResearch = false;
+    if (app.selectedStartStation == null || app.selectedDestStation == null || app.searching) return;
     app.searching = true;
     let mots = ['HailedSharedTaxi'];
     for (let mot in app.mots) {
@@ -204,7 +210,6 @@ let connect = function () {
     };
     fetchAPI('https://webapi.vvo-online.de/tr/trips?format=json', requestData).then(processConnectionResult).catch(errData => {
         app.searching = false;
-        app.allowResearch = true;
         if ('Status' in errData[1]) {
             if (errData[1].Status.Message == 'origin too close to destination') {
                 alert('Bitte zwei weiter voneinander entfernte Orte eingeben.');

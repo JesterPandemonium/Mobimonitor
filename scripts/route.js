@@ -9,7 +9,8 @@ let processConnectionResult = function(result) {
             end: parseInt(route.PartialRoutes[l1].RegularStops[l2].ArrivalTime.match(/[0-9]+/)[0]),
             duration: route.Duration,
             interchanges: route.Interchanges,
-            route: []
+            route: [],
+            show: false
         }
         for (let j = 0; j < route.PartialRoutes.length; j++) {
             let segment = route.PartialRoutes[j];
@@ -48,6 +49,12 @@ let processConnectionResult = function(result) {
                 if ('Platform' in segment.RegularStops[index]) {
                     segmentData.end.platform = trackMap[segment.RegularStops[index].Platform.Type] + segment.RegularStops[index].Platform.Name;
                 }
+                if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('WTB')) segmentData.line = 'WeB';
+                if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('LGB')) segmentData.line = 'LöB';
+                if (segment.Mot.Name == 'Standseilbahn') segmentData.line = 'StB';
+                if (segment.Mot.Name == 'Schwebebahn') segmentData.line = 'SwB';
+                if (segment.Mot.Name == 'Kirnitzschtalbahn') segmentData.line = 'KiB';
+                if (segmentData.line.length > 10) segmentData.line = 'Zug';
             } else if (segment.Mot.Type == 'Footpath') segmentData.duration = segment.Duration;
             if (isVehicle && routeData.route.length > 1) {
                 let motBefore = routeData.route[routeData.route.length - 1].type;
@@ -84,5 +91,6 @@ let processConnectionResult = function(result) {
         }
         routes.push(routeData);
     }
+    app.searching = false;
     app.tripData = routes;
 }
