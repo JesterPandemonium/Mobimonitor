@@ -1,16 +1,10 @@
-#chgApp {
-    color: #404040;
-}
-
 .line-change {
-    background-color: #fde999;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
 }
 
 .line-change-head {
-    background-color: #ffab61;
     display: flex;
     font-size: 20px;
     padding: 10px;
@@ -51,7 +45,6 @@
 }
 
 .change {
-    border: 3px solid #ffab61;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -61,7 +54,6 @@
 }
 
 .change-head {
-    background-color: #ffab61;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -81,12 +73,10 @@
 }
 
 .change-body {
-    border-top: 3px solid #ffab61;
     padding: 5px;
 }
 
 .change-period {
-    border: 1px solid #404040;
     border-radius: 5px;
     padding: 2px;
 }
@@ -113,7 +103,6 @@
 
 .change-details h2 {
     font-size: 20px;
-    color: #0700d3;
     margin: 0 0 10px 0;
 }
 
@@ -130,4 +119,40 @@
 
 .change-details li {
     margin-bottom: 5px;
+}
+
+#chgApp { color: #404040 }
+
+.line-change { background-color: #fde999 }
+
+.line-change-head { background-color: #ffab61 }
+
+.change { border: 3px solid #ffab61 }
+
+.change-head { background-color: #ffab61 }
+
+.change-body { border-top: 3px solid #ffab61 }
+
+.change-period { border: 1px solid #404040 }
+
+.change-details h2 { color: #0700d3 }
+
+@media (prefers-color-scheme: dark) {
+    #chgApp { color: #88bdbc }
+
+    .line-change { background-color: #254e58 }
+
+    .line-change-head { background-color: #112d32 }
+
+    .change { border: 3px solid #112d32 }
+
+    .change-head { background-color: #112d32 }
+
+    .change-body { border-top: 3px solid #112d32 }
+
+    .change-period { border: 1px solid #fff }
+
+    .change-details h2 { color: #9693ff }
+
+    .change-details p { background-color: #254e58 }
 }
