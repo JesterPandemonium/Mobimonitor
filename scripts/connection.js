@@ -202,7 +202,7 @@ let connect = function () {
         standardSettings: {
             maxChanges: 'Unlimited',
             walkingSpeed: 'Normal',
-            extraCharge: 'None',
+            extraCharge: 'LocalTraffic',
             footpathToStop: 10, // might change to 5
             mot: mots,
             includeAlternativeStops: true
@@ -214,7 +214,7 @@ let connect = function () {
             if (errData[1].Status.Message == 'origin too close to destination') {
                 alert('Bitte zwei weiter voneinander entfernte Orte eingeben.');
             } else if (errData[1].Status.Message == 'invalid date') {
-                alert('Das eingegebene Datum liegt in der Vergangenheit oder zu weit in der Zukunft');
+                alert('Das eingegebene Datum liegt in der Vergangenheit oder zu weit in der Zukunft.');
             }
             else console.log(errData);
         } else console.log(errData);

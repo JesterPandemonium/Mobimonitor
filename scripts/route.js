@@ -35,6 +35,7 @@ let processConnectionResult = function(result) {
                 segmentData.dest = segment.Mot.Direction.trim();
                 segmentData.start = {
                     name: segment.RegularStops[0].Name,
+                    city: segment.RegularStops[0].Place,
                     time: parseInt(segment.RegularStops[0].DepartureTime.match(/[0-9]+/)[0]),
                     platform: null
                 };
@@ -43,6 +44,7 @@ let processConnectionResult = function(result) {
                 }
                 segmentData.end = {
                     name: segment.RegularStops[index].Name,
+                    city: segment.RegularStops[index].Place,
                     time: parseInt(segment.RegularStops[index].ArrivalTime.match(/[0-9]+/)[0]),
                     platform: null
                 };

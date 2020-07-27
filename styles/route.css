@@ -58,7 +58,7 @@
 
 .connection-body-mot, .connection-body-start, .connection-body-end {
     display: flex;
-    height: 55px;
+    height: 60px;
 }
 
 .conn-body-mot-icon, .conn-body-start-icon, .conn-body-end-icon {
@@ -98,6 +98,11 @@
 .conn-body-start-stop, .conn-body-end-stop {
     font-weight: bold;
     font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.conn-body-start-city, .conn-body-end-city {
+    font-weight: normal;
 }
 
 .conn-body-start-details, .conn-body-end-details {
@@ -110,7 +115,7 @@
     height: 10px;
     border: 5px solid #404040;
     position: absolute;
-    top: 17.5px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px;
@@ -127,7 +132,7 @@
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    top: 12.5px;
+    top: 15px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -150,7 +155,7 @@
     content: '';
     display: block;
     position: absolute;
-    height: 20px;
+    height: 22px;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
