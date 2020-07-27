@@ -26,7 +26,7 @@
     <div id="conApp">
         <h1>Verbindungen</h1>
         <div class="conn-details">
-            <div class="conn-start" @click="inputType = inputType == 1 ? 0 : 1" :class="{ inputChecked: inputType == 1 }">
+            <div class="conn-start sh" @click="inputType = inputType == 1 ? 0 : 1" :class="{ inputChecked: inputType == 1 }">
                 <div class="start-icon"></div>
                 <div class="start-data">
                     <div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="space10"></div>
-            <div class="conn-end" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }">
+            <div class="conn-end sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }">
                 <div class="end-icon"></div>
                 <div class="end-data">
                     <div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="space10"></div>
-            <div class="conn-time" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
+            <div class="conn-time sh" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
                 <div class="time-icon fa fa-clock-o"></div>
                 <div class="time-data">
                     <div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div id="station-popup" style="display: none">
+        <div id="station-popup" style="display: none" class="sh">
             <div id="station-such-container">
                 <div class="station-input-container">
                     <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" @focus="stationInput = ''" autocomplete="off" v-model="stationInput">
@@ -75,17 +75,17 @@
                 </div>
             </div>
             <div id="date-pick-container">
-                <div class="time-now" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
+                <div class="time-now sh" @click="inputType = 0; selectedTime = null">Ab sofort!</div>
                 <div class="space10"></div>
                 <input type="datetime-local" v-model="selectedTime">
                 <div class="space10"></div>
                 <div class="time-ref-select">
-                    <div @click="isDeparture = true" :class="{ 'time-ref-selected': isDeparture }">Abfahrt</div>
-                    <div @click="isDeparture = false" :class="{ 'time-ref-selected': !isDeparture }">Ankunft</div>
+                    <div @click="isDeparture = true" :class="{ 'time-ref-selected': isDeparture }" class="sh">Abfahrt</div>
+                    <div @click="isDeparture = false" :class="{ 'time-ref-selected': !isDeparture }" class="sh">Ankunft</div>
                 </div>
             </div>
         </div>
-        <div id="mots">
+        <div id="mots" class="sh">
             <div v-for="(use, mot) in mots" class="mot-box">
                 <div class="mot-img" :style="getMotPic(mot)"></div>
                 <div class="switch" :class="{ enabled: use }" @click="mots[mot] = !use">
@@ -95,7 +95,7 @@
         </div>
         <button onclick="connect()">{{ searching ? 'Suche läuft...' : 'Verbindungen suchen' }}</button>
         <div class="connections">
-            <div class="connection" v-for="conn in tripData">
+            <div class="connection sh" v-for="conn in tripData">
                 <div class="connection-head" @click="conn.show = !conn.show">
                     <span class="connection-head-icon fa fa-chevron-right" :style="conn.show ? 'transform:rotate(90deg)' : ''"></span>
                     <div class="connection-head-details">

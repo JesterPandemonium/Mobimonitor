@@ -48,7 +48,7 @@
                 <div id="alert" :class="showAlert ? 'show' : ''">Die VVO-Fahrplan-API ist derzeit nicht erreichbar. Versuche es in wenigen Minuten erneut.</div>
                 <div id="monitor">
                     <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum fügst Du nicht als erstes ein paar Stationen ein?</p>
-                    <div v-for="(stop, i) in stopOrder" class="monitor-entry">
+                    <div v-for="(stop, i) in stopOrder" class="monitor-entry sh">
                         <div class="monitor-entry-head">
                             <span class="monitor-entry-logo"></span>
                             <div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <button onclick="stationPopup(null)">Station hinzufügen</button>
-                <div id="station-popup" style="display:none">
+                <div id="station-popup" style="display:none" class="sh">
                     <div id="station-such-container" v-show="!editing">
                         <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" v-model="stationInput">
                         <div class="space10"></div>
@@ -95,7 +95,7 @@
                         <button onclick="selectAllLines(false)">Alle abwählen</button>
                         <div class="space10"></div>
                         <div id="linien-liste">
-                            <div class="linien-container" v-for="(line, lineIndex) in lineList">
+                            <div class="linien-container sh" v-for="(line, lineIndex) in lineList">
                                 <div class="linien-container-head" @click="line.state = !line.state">
                                     <span class="line-symbol" :style="getMotPic(line.mot)"></span>
                                     <span class="line-label">{{ line.line }}</span>
@@ -105,8 +105,8 @@
                                 </div>
                                 <div class="linien-container-body" v-show="line.state">
                                     <div class="linien-container-switch">
-                                        <span :class="{active: line.filterMode == 0}" @click="line.filterMode = 0">Nicht nach ...</span>
-                                        <span :class="{active: line.filterMode == 1}" @click="line.filterMode = 1">Nur nach ...</span>
+                                        <span :class="{active: line.filterMode == 0}" @click="line.filterMode = 0" class="sh">Nicht nach ...</span>
+                                        <span :class="{active: line.filterMode == 1}" @click="line.filterMode = 1" class="sh">Nur nach ...</span>
                                         <i class="info-alert fa fa-question-circle" style="flex:none" @click="dirHint"></i>
                                     </div>
                                     <div class="linien-container-dir" v-show="line.filterMode == 0" v-for="(dir, dirIndex) in line.doNotUse">

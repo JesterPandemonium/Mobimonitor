@@ -20,7 +20,7 @@
     <div id="chgApp">
         <h1>Änderungen</h1>
         <div class="space10"></div>
-        <div id="mots">
+        <div id="mots" class="sh">
             <div v-for="(use, mot) in mots" class="mot-box">
                 <div class="mot-img" :style="getMotPic(mot)"></div>
                 <div class="switch" :class="{ enabled: use }" @click="mots[mot] = !use">
@@ -30,7 +30,7 @@
         </div>
         <p class="placeholder" v-show="placeholder">Wähle ein Verkehrsmittel aus um Änderungen für entsprechende Linien einzusehen.</p>
         <div class="space10"></div>
-        <div class="line-change" v-for="line in lineOrder" :key="line.id" v-show="canShow(line.mot)">
+        <div class="line-change sh" v-for="line in lineOrder" :key="line.id" v-show="canShow(line.mot)">
             <div class="line-change-head" @click="line.show = !line.show">
                 <div class="line-change-icon fa fa-chevron-right" :style="line.show ? 'transform: rotate(90deg)' : ''"></div>
                 <div class="line-change-mot" :style="getMotPic(line.mot)"></div>
@@ -38,7 +38,7 @@
                 <div class="line-change-comp">{{ line.comp }}</div>
             </div>
             <div class="line-change-body" v-show="line.show">
-                <div class="change" v-for="c in line.changes">
+                <div class="change sh" v-for="c in line.changes">
                     <div class="change-head" @click="c.show = !c.show">
                         <div class="change-state" :style="getTimeBanner(changes[c.i].time).style">{{ getTimeBanner(changes[c.i].time).info }}</div>
                         <div class="change-title">{{ changes[c.i].title }}</div>

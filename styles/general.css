@@ -138,7 +138,10 @@ h1, h3 { color: #0700d3 }
 
 body { background-color: #e9f0ff }
 
-button { background-color: #ffab61 }
+button { 
+    background-color: #ffab61;
+    box-shadow: 0 0 10px -2px #b1b1b1;
+}
 
 p { background-color: #fde999 }
 
@@ -147,6 +150,8 @@ p { background-color: #fde999 }
 .switch.enabled { background-color: #7cdf79; }
 
 .switch-slider { background-color: #fff; }
+
+.sh { box-shadow: 0 0 10px -2px #b1b1b1 }
 
 @media (prefers-color-scheme: dark) {
     button, p { color: #88bdbc }
