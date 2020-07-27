@@ -209,6 +209,26 @@ iframe {
     margin: 3px 0;
 }
 
+#alert {
+    position: absolute;
+    background-color: #99aeff;
+    z-index: 5;
+    width: 90%;
+    top: 0;
+    transform: translate(-50%, -100%);
+    left: 50%;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#alert.show {
+    top: 20px;
+    transform: translate(-50%, 0);
+}
+
 #tab-frame { background-color: #fff4; }
 
 .tab { background-color: #99aeff; }

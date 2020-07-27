@@ -23,7 +23,8 @@ let main = function() {
             stationList: [],
             selectedStation: null,
             lineList: [],
-            otherLines: false
+            otherLines: false,
+            showAlert: false
         },
         methods: {
             panelOffset: function(id) { 
@@ -127,6 +128,13 @@ let moveTabFrame = function(id) {
     let frame = document.getElementById('tab-frame');
     frame.style.left = ((id - 1) * (100 / tabCount)) + '%';
     frame.style.width = (100 / tabCount) + '%';
+}
+
+function showAlert() {
+    app.showAlert = true;
+    setTimeout(() => {
+        app.showAlert = false;
+    }, 5 * 1000);
 }
 
 function handleTouchStart(evt) {
