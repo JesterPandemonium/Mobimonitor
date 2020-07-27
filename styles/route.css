@@ -3,7 +3,6 @@
 }
 
 .connection {
-    background-color: #fde999;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
@@ -18,7 +17,6 @@
 }
 
 .connection-head {
-    background-color: #ffab61;
     display: flex;
     padding: 5px 0;
 }
@@ -52,10 +50,6 @@
     text-align: left;
 }
 
-.connection-body:not(:last-child) {
-    border-bottom: 1px solid #404040;
-}
-
 .connection-body-mot, .connection-body-start, .connection-body-end {
     display: flex;
     height: 60px;
@@ -80,7 +74,6 @@
 .conn-body-mot-line {
     font-weight: bold;
     font-size: 18px;
-    background-color: #ffab61;
     padding: 3px 8px;
     border-radius: 10px;
     width: fit-content;
@@ -113,16 +106,11 @@
 .route-circle {
     width: 10px;
     height: 10px;
-    border: 5px solid #404040;
     position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px;
-}
-
-.route-circle-fill {
-    background-color: #404040;
 }
 
 .route-icon {
@@ -148,7 +136,6 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    border-left: 5px solid #404040;
 }
 
 .route-path-after::after {
@@ -159,5 +146,44 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    border-left: 5px solid #404040;
+}
+
+.connection { background-color: #fde999 }
+
+.connection-head { background-color: #ffab61 }
+
+.connection-body:not(:last-child) { border-bottom: 1px solid #404040 }
+
+.conn-body-mot-line { background-color: #ffab61 }
+
+.route-circle { border: 5px solid #404040 }
+
+.route-circle-fill { background-color: #404040 }
+
+.route-path-before::before { border-left: 5px solid #404040 }
+
+.route-path-after::after { border-left: 5px solid #404040 }
+
+@media (prefers-color-scheme: dark) {
+    .connection {
+        background-color: #254e58;
+        color: #88bdbc;
+    }
+
+    .connection-head { background-color: #112d32 }
+
+    .connection-body:not(:last-child) { border-bottom: 1px solid #88bdbc }
+
+    .conn-body-mot-line {
+        background-color: #9693ff;
+        color: white;
+    }
+
+    .route-circle { border: 5px solid #88bdbc }
+
+    .route-circle-fill { background-color: #88bdbc }
+
+    .route-path-before::before { border-left: 5px solid #88bdbc }
+
+    .route-path-after::after { border-left: 5px solid #88bdbc }
 }

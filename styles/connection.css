@@ -184,7 +184,18 @@
 
     .conn-start, .conn-end, .conn-time { color: #fff; }
 
+    .start-icon::before { border: 5px solid #fff }
+
+    .start-icon::after { background-color: #fff }
+
     .conn-end { background-color: #254e58 }
+
+    .end-icon::before {
+        border: 5px solid #fff;
+        background-color: #fff;
+    }
+
+    .end-icon::after { background-color: #fff }
 
     .conn-time { background-color: #254e58 }
 

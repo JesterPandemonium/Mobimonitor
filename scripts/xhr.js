@@ -38,8 +38,10 @@ let fetchAPI = function (url, params) {
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function () {
-            if (xhr.status != 200) reject(['Der Fahrplan-API ist momentan nicht erreichbar.', { errCode: xhr.status }]);
-            else {
+            if (xhr.status != 200) {
+                if (xhr.status >= 500) alert('Die VVO-Fahrplan-API ist derzeit nicht erreichbar. Versuche es in wenigen Minuten erneut.');
+                reject(['Der Fahrplan-API ist momentan nicht erreichbar.', { errCode: xhr.status }]);
+            } else {
                 let response = JSON.parse(this.responseText);
                 if (response.Status.Code != 'Ok') reject(['Es ist ein API-interner Fehler aufgetreten.', response]);
                 else resolve(response);
