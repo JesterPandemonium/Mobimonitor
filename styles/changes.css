@@ -1,0 +1,133 @@
+#chgApp {
+    color: #404040;
+}
+
+.line-change {
+    background-color: #fde999;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.line-change-head {
+    background-color: #ffab61;
+    display: flex;
+    font-size: 20px;
+    padding: 10px;
+    align-items: center;
+}
+
+.line-change-icon {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    transition: 0.3s;
+}
+
+.line-change-mot {
+    width: 25px;
+    height: 25px;
+    flex: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.line-change-line {
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.line-change-comp {
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+.line-change-body {
+    padding: 10px;
+}
+
+.change {
+    border: 3px solid #ffab61;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.change:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.change-head {
+    background-color: #ffab61;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+}
+
+.change-title {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.change-state {
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.change-body {
+    border-top: 3px solid #ffab61;
+    padding: 5px;
+}
+
+.change-period {
+    border: 1px solid #404040;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.change-period:not(:first-child) {
+    margin-top: 5px;
+}
+
+.change-time {
+    padding: 2px;
+    font-size: 15px;
+}
+
+.change-time span:first-child {
+    display: inline-block;
+    font-weight: bold;
+    width: 30px;
+    font-size: 16px;
+}
+
+.change-details {
+    margin-top: 5px;
+}
+
+.change-details h2 {
+    font-size: 20px;
+    color: #0700d3;
+    margin: 0 0 10px 0;
+}
+
+.change-details p {
+    text-align: left;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+.change-details ul {
+    padding-left: 25px;
+    margin: 0 0 15px 0;
+}
+
+.change-details li {
+    margin-bottom: 5px;
+}

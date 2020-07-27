@@ -32,6 +32,10 @@ app.get('/connection', (req, res) => {
     res.sendFile(__dirname + '/pages/connection.html');
 });
 
+app.get('/changes', (req, res) => {
+    res.sendFile(__dirname + '/pages/changes.html');
+});
+
 app.get('/createNewRecord', (req, res) => {
     let alreadyInUse = false;
     let id = '';
