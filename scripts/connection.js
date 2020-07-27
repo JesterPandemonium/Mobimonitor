@@ -25,7 +25,20 @@ let main = function() {
             tripData: null
         },
         methods: {
-            locateMe: function() {},
+            locateMe: function() {
+                if (!this.locating) {
+                    locate(true).then(list => {
+                        if (list.length > 0) {
+                            let station = list[0];
+                            if (this.inputType == 1) this.selectedStartStation = station;
+                            else if (this.inputType == 2) this.selectedDestStation = station;
+                            this.inputType = 0;
+                            this.stationInput = '';
+                        }
+                        
+                    });
+                }
+            },
             stopSignIcon: function (type) {
                 if (type == 'local') return 'history-symbol fa fa-map-marker';
                 else if (type == 'history') return 'history-symbol fa fa-history';
@@ -92,9 +105,6 @@ let main = function() {
                     } else res = h + 'h ' + m + 'min';
                     return res;
                 }
-            },
-            trimLine: function(mot) {
-
             }
         },
         computed: {

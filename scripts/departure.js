@@ -64,7 +64,7 @@ let main = function() {
             },
             locateMe: function() {
                 if (!this.locating) {
-                    locate().then(stations => {
+                    locate(false).then(stations => {
                         app.departs = {};
                         app.refreshData = { stops: {} };
                         app.selectedStation = null;
