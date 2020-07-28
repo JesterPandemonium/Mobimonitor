@@ -4,8 +4,7 @@ let touchX;
 let touchY;
 let canMove = false;
 
-// DELETE COOKIE RESET in one of the following updates
-const lastUpdate = 1595455450954;
+const lastUpdate = 1595929383788;
 
 let main = function() {
     if (!noTram) moveTram();
