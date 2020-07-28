@@ -32,10 +32,13 @@ let queryStations = function () {
     app.selectedStation = null;
     app.lineList = [];
     let cookieMatch = document.cookie.match(/history=([^;]*)/);
+    let historyData = [];
     let history = [];
-    if (cookieMatch != null) history = cookieMatch[1].split('§');
-    for (let i = 0; i < history.length; i++) {
-        history[i] = JSON.parse(decodeURIComponent(history[i]));
+    if (cookieMatch != null) historyData = cookieMatch[1].split('§');
+    for (let i = 0; i < historyData.length; i++) {
+        try {
+            history.push(JSON.parse(decodeURIComponent(historyData[i])));
+        } catch (e) {}
     }
     if (value.length >= 3) fetchAPI('https://webapi.vvo-online.de/tr/pointfinder?format=json', {
         limit: 5,

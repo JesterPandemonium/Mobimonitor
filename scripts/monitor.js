@@ -4,6 +4,7 @@ let touchX;
 let touchY;
 let canMove = false;
 
+// DELETE COOKIE RESET in one of the following updates
 const lastUpdate = 1595455450954;
 
 let main = function() {
@@ -115,6 +116,7 @@ let main = function() {
         refresh(true, false).then(() => { 
             canMove = true;
             if (app.refreshData.lastRequested < lastUpdate) {
+                document.cookie = "history=;expires=" + new Date().toString();
                 document.getElementById('update-hint').style.display = 'flex';
             }
         });
