@@ -58,7 +58,7 @@ let processConnectionResult = function(result) {
                 if (segment.Mot.Name == 'Kirnitzschtalbahn') segmentData.line = 'KiB';
                 if (segmentData.line.length > 10) segmentData.line = 'Zug';
             } else if (segment.Mot.Type == 'Footpath') segmentData.duration = segment.Duration;
-            if (isVehicle && routeData.route.length > 1) {
+            if (isVehicle && routeData.route.length > 0) {
                 let motBefore = routeData.route[routeData.route.length - 1].type;
                 if (['Footpath', 'StayInVehicle'].indexOf(motBefore) == -1) {
                     routeData.route.push({
