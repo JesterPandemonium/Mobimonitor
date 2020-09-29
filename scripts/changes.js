@@ -17,18 +17,7 @@ let main = function() {
         },
         methods: {
             getMotPic: function (mot) {
-                let map = {
-                    Tram: 'tram.svg',
-                    CityBus: 'bus.svg',
-                    IntercityBus: 'bus.svg',
-                    SuburbanRailway: 'SBahn.svg',
-                    Train: 'zug.svg',
-                    Cableway: 'lift.svg',
-                    Ferry: 'ferry.svg',
-                    HailedSharedTaxi: 'alita.svg',
-                    PlusBus: 'plusBus.svg'
-                }
-                return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+                return "background-image:url('" + g_Mots[mot] + "')";
             },
             getTimeLabel: function(start, end) {
                 if (Date.now() > end) return 'von';

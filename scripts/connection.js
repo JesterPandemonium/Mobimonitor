@@ -52,37 +52,10 @@ let main = function() {
                 addToHistory(station);
             },
             getMotPic: function (mot) {
-                let map = {
-                    Tram: 'tram.svg',
-                    CityBus: 'bus.svg',
-                    IntercityBus: 'bus.svg',
-                    SuburbanRailway: 'SBahn.svg',
-                    Train: 'zug.svg',
-                    Cableway: 'lift.svg',
-                    Ferry: 'ferry.svg',
-                    HailedSharedTaxi: 'alita.svg',
-                    PlusBus: 'plusBus.svg'
-                }
-                return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+                return "background-image:url('" + g_Mots[mot] + "')";
             },
             getRouteMotPic: function (mot) {
-                let map = {
-                    Footpath: 'map-footpath-blue.svg',
-                    StayInVehicle: 'stay-in-vehicle.svg',
-                    Bus: 'bus.svg',
-                    Tram: 'tram.svg',
-                    Ferry: 'ferry.svg',
-                    Train: 'zug.svg',
-                    PlusBus: 'plusBus.svg',
-                    RapidTransit: 'SBahn.svg',
-                    OverheadRailway: 'lift.svg',
-                    Taxi: 'alita.svg',
-                    Wait: ''
-                };
-                let link = 'https://www.vvo-mobil.de/img/mot_icons/';
-                if (mot == 'Footpath') link = 'https://www.vvo-mobil.de/img/map_icons/';
-                else if (mot == 'StayInVehicle' || mot == 'Wait') link = '';
-                return "background-image:url('" + link + map[mot] + "')";
+                return "background-image:url('" + g_Mots[mot] + "')";
             },
             getTime: function(timestamp) {
                 let date = new Date(timestamp);

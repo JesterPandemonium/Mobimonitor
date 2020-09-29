@@ -26,18 +26,7 @@ let main = function() {
         methods: {
             displayMonitor: function(station) { displayMonitor(station); },
             getMotPic: function (mot) {
-                let map = {
-                    Tram: 'tram.svg',
-                    CityBus: 'bus.svg',
-                    IntercityBus: 'bus.svg',
-                    SuburbanRailway: 'SBahn.svg',
-                    Train: 'zug.svg',
-                    Cableway: 'lift.svg',
-                    Ferry: 'ferry.svg',
-                    HailedSharedTaxi: 'alita.svg',
-                    PlusBus: 'plusBus.svg'
-                }
-                return "background-image:url('https://www.vvo-mobil.de/img/mot_icons/" + map[mot] + "')";
+                return "background-image:url('" + g_Mots[mot] + "')";
             },
             wantsMot: function(mot) {
                 let map = {
