@@ -23,21 +23,23 @@ body {
 
 #panel-switch {
     position: fixed;
-    bottom: -40px;
+    bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
+    height: calc(40px + env(safe-area-inset-bottom, 0));
     display: flex;
     z-index: 1;
+    transform: translateY(100%);
 }
 
 #tab-frame {
     position: fixed;
-    bottom: -40px;
+    bottom: 0;
     left: 0;
-    height: 40px;
+    height: calc(40px + env(safe-area-inset-bottom, 0));
     z-index: 2;
     transition: left 0.5s;
+    transform: translateY(100%);
 }
 
 .tab {
@@ -46,6 +48,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 30px;
+    height: 40px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
     color: #fff;
 }
 
@@ -58,10 +62,11 @@ body {
     display: none;
     top: 0;
     bottom: 0;
-    margin-bottom: 40px;
-    padding: 0 20px;
+    margin-bottom: calc(40px + env(safe-area-inset-bottom, 0));
     overflow: visible;
     transition: 0.5s;
+    padding-left: max(env(safe-area-inset-left, 0), 20px);
+    padding-right: max(env(safe-area-inset-right, 0), 20px);
 }
 
 @media (max-width: 400px) {
@@ -232,7 +237,7 @@ iframe {
 
 #tab-frame { background-color: #fff4; }
 
-.tab { background-color: #99aeff; }
+#panel-switch { background-color: #99aeff; }
 
 .monitor-entry { 
     background-color: #fde999; 
@@ -250,7 +255,7 @@ iframe {
 @media (prefers-color-scheme: dark) {
     #tab-frame { background-color: #fff2; }
 
-    .tab { background-color: #005c66; }
+    #panel-switch { background-color: #005c66; }
     
     .monitor-entry {
         background-color: #254e58;

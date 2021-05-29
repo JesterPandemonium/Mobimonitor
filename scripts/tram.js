@@ -5,7 +5,7 @@ let tramData = {
     scale: { s: 0, v: 0, a: 0 },
     monMov: { s: -100, v: 0, a: 0 },
     monScale: { s: 0.7, v: 0, a: 0, j: 0 },
-    tabMov: { s: -40, v: 0, a: 0, j: 0 },
+    tabMov: { s: 100, v: 0, a: 0, j: 0 },
     stop: false,
     stopping: false
 }
@@ -98,13 +98,13 @@ let openDoors = function() {
     tramData.monScale.a = monScaleA;
     tramData.monScale.v = monScaleA;
     tramData.monScale.s = 0.7 + monScaleA;
-    let tabMovS = 50;
+    let tabMovS = -100;
     let tabMovJ = 3 * tabMovS / ((t / 4) * ((t / 4) + 1) * ((t / 2) + 1));
     let tabMovA = tabMovJ * t / 4;
     tramData.tabMov.j = -tabMovJ;
     tramData.tabMov.a = tabMovA;
     tramData.tabMov.v = tabMovA;
-    tramData.tabMov.s = tabMovA - 50;
+    tramData.tabMov.s = tabMovA + 100;
     moveDoors(1.5 * t, 1.5 * t);
 }
 
@@ -128,8 +128,8 @@ let moveDoors = function (t, tGes) {
         tramData.door.v += tramData.door.a;
         tramData.door.s += tramData.door.v;
     } else {
-        panelSwitch.style.bottom = tramData.tabMov.s + 'px';
-        tabframe.style.bottom = tramData.tabMov.s + 'px';
+        panelSwitch.style.transform = 'translateY(' + tramData.tabMov.s + '%)';
+        tabframe.style.transform = 'translateY(' + tramData.tabMov.s + '%)';
         tramData.tabMov.a += tramData.tabMov.j;
         tramData.tabMov.v += tramData.tabMov.a;
         tramData.tabMov.s += tramData.tabMov.v;
@@ -154,8 +154,8 @@ let moveDoors = function (t, tGes) {
 }
 
 let finishTram = function() {
-    document.getElementById('panel-switch').style.bottom = '0';
-    document.getElementById('tab-frame').style.bottom = '0';
+    document.getElementById('panel-switch').style.transform = 'translateY(0)';
+    document.getElementById('tab-frame').style.transform = 'translateY(0)';
     let panels = document.getElementsByClassName('panel');
     for (let i = 0; i < panels.length; i++) {
         panels[i].style.overflow = 'scroll';
