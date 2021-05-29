@@ -69,7 +69,7 @@
                                 <span class="depart-line">{{ depart.line }}</span>
                                 <span class="depart-dir">{{ depart.dir }}</span>
                                 <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FÄLLT AUS!</span>
-                                <span class="depart-time">{{ depart.time }}</span>
+                                <span class="depart-time" :style="delay(depart.dly)">{{ depart.time }}</span>
                             </div>
                         </div>
                     </div>

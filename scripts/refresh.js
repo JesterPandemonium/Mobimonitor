@@ -29,6 +29,7 @@ let refresh = function (loop, allowAll) {
                 if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
                 if (alreadyUsed[depart.LineName + depart.Direction] < 2 || allowAll) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
+                    let schedTime = (leaveTime - Date.now()) / 60000;
                     if ('RealTime' in depart) leaveTime = parseInt(depart.RealTime.match(/[0-9]+/)[0]);
                     let timeToGo = (leaveTime - Date.now()) / 60000;
                     if (line == 'Standseilbahn') line = 'StB';
@@ -43,7 +44,8 @@ let refresh = function (loop, allowAll) {
                             dir: depart.Direction,
                             mot: depart.Mot,
                             time: Math.floor(timeToGo),
-                            state: depart.State
+                            state: depart.State,
+                            dly: timeToGo - schedTime
                         });
                         alreadyUsed[depart.LineName + depart.Direction]++;
                     }

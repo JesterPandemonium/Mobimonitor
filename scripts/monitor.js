@@ -72,6 +72,10 @@ let main = function() {
                     moveTabFrame(5);
                     document.querySelector('iframe[src="/info"]').contentDocument.querySelector('.changelog').classList.add('open');
                 }
+            },
+            delay: function(dly) {
+                if (dly >= 10) return 'background-color: #f00a';
+                return 'background-color: #f00' + dly;
             }
         },
         computed: {

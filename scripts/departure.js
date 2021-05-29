@@ -61,6 +61,10 @@ let main = function() {
                         app.showStationList = true;
                     });
                 }
+            },
+            delay: function(dly) {
+                if (dly >= 10) return 'background-color: #f00a';
+                return 'background-color: #f00' + dly;
             }
         },
         watch: {
