@@ -36,8 +36,19 @@
                     </div>
                 </div>
             </div>
+            <div class="via-plus-cross" :class="via ? 'via-ext' : ''" @click="via = !via; inputType = 0"></div>
             <div class="space10"></div>
-            <div class="conn-end sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }">
+            <div class="conn-start sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }" v-show="via">
+                <div class="start-icon via-icon"></div>
+                <div class="start-data">
+                    <div>
+                        <span class="start-stop">{{ getSelectedViaStation.name }}</span>
+                        <span class="start-city">{{ getSelectedViaStation.stadt }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="space10" v-show="via"></div>
+            <div class="conn-end sh" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
                 <div class="end-icon"></div>
                 <div class="end-data">
                     <div>
@@ -47,7 +58,7 @@
                 </div>
             </div>
             <div class="space10"></div>
-            <div class="conn-time sh" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
+            <div class="conn-time sh" @click="inputType = inputType == 4 ? 0 : 4" :class="{ inputChecked: inputType == 4 }">
                 <div class="time-icon fa fa-clock-o"></div>
                 <div class="time-data">
                     <div>

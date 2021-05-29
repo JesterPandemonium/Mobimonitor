@@ -6,6 +6,8 @@ let main = function() {
         data: {
             selectedStartStation: null,
             selectedDestStation: null,
+            selectedViaStation: null,
+            via: false,
             selectedTime: null,
             isDeparture: true,
             inputType: 0,
@@ -31,11 +33,11 @@ let main = function() {
                         if (list.length > 0) {
                             let station = list[0];
                             if (this.inputType == 1) this.selectedStartStation = station;
-                            else if (this.inputType == 2) this.selectedDestStation = station;
+                            else if (this.inputType == 2) this.selectedViaStation = station;
+                            else if (this.inputType == 3) this.selectedDestStation = station;
                             this.inputType = 0;
                             this.stationInput = '';
                         }
-                        
                     });
                 }
             },
@@ -46,7 +48,8 @@ let main = function() {
             },
             chooseStop: function(station) {
                 if (this.inputType == 1) this.selectedStartStation = station;
-                else if (this.inputType == 2) this.selectedDestStation = station;
+                else if (this.inputType == 2) this.selectedViaStation = station;
+                else if (this.inputType == 3) this.selectedDestStation = station;
                 this.inputType = 0;
                 this.stationInput = '';
                 addToHistory(station);
@@ -85,6 +88,10 @@ let main = function() {
                 if (this.selectedStartStation == null) return { name: '', stadt: 'Startpunkt wählen'};
                 else return this.selectedStartStation;
             },
+            getSelectedViaStation: function () {
+                if (this.selectedViaStation == null) return { name: '', stadt: 'Zwischenhalt wählen' };
+                else return this.selectedViaStation;
+            },
             getSelectedDestStation: function () {
                 if (this.selectedDestStation == null) return { name: '', stadt: 'Endpunkt wählen' };
                 else return this.selectedDestStation;
@@ -120,13 +127,13 @@ let main = function() {
             inputType: function(val) {
                 if (val == 0) {
                     document.getElementById('station-popup').style.display = 'none';
-                } else if (val == 1 || val == 2) {
+                } else if (val == 1 || val == 2 || val == 3) {
                     document.getElementById('station-popup').style.display = 'block';
                     document.getElementById('date-pick-container').style.display = 'none';
                     document.getElementById('station-such-container').style.display = 'block';
                     document.querySelector('.line-input').focus();
                 }
-                else if (val == 3) {
+                else if (val == 4) {
                     document.getElementById('station-popup').style.display = 'block';
                     document.getElementById('station-such-container').style.display = 'none';
                     document.getElementById('date-pick-container').style.display = 'block';
@@ -161,7 +168,12 @@ let convertToString = function(date) {
 }
 
 let connect = function () {
-    if (app.selectedStartStation == null || app.selectedDestStation == null || app.searching) return;
+    if (
+        app.selectedStartStation == null || 
+        app.selectedDestStation == null || 
+        (app.selectedViaStation == null && app.via) ||
+        app.searching
+    ) return;
     app.searching = true;
     let mots = ['HailedSharedTaxi'];
     for (let mot in app.mots) {
@@ -191,6 +203,7 @@ let connect = function () {
             includeAlternativeStops: true
         }
     };
+    if (app.via) requestData.via = app.selectedViaStation.id;
     fetchAPI('https://webapi.vvo-online.de/tr/trips?format=json', requestData).then(processConnectionResult).catch(errData => {
         app.searching = false;
         if ('Status' in errData[1]) {

@@ -5,6 +5,7 @@
 .conn-details {
     margin: 10px;
     text-align: left;
+    position: relative;
 }
 
 .conn-start {
@@ -12,6 +13,7 @@
     height: 50px;
     display: flex;
     overflow: hidden;
+    align-items: center;
 }
 
 .start-icon, .end-icon, .time-icon {
@@ -34,6 +36,7 @@
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 }
 
 .start-icon::after {
@@ -46,11 +49,53 @@
     bottom: 0;
 }
 
+.start-icon.via-icon::after {
+    height: 50px;
+}
+
 .start-data {
     display: flex;
     align-items: center;
     padding: 0 5px;
     flex-wrap: wrap;
+}
+
+.via-plus-cross {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    border-radius: 12px;
+    position: absolute;
+    right: 10px;
+    top: 43px;
+    transition: 0.5s;
+}
+
+.via-plus-cross.via-ext {
+    top: 73px;
+    transform: rotate(45deg);
+}
+
+.via-plus-cross::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 4px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.via-plus-cross::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .start-stop {
@@ -149,9 +194,16 @@
 
 .start-icon, .end-icon, .time-icon { background-color: #ffab61 }
 
-.start-icon::before { border: 5px solid #404040 }
+.start-icon::before {
+    border: 5px solid #404040;
+    background-color: #ffab61;
+}
 
 .start-icon::after { background-color: #404040 }
+
+.via-plus-cross { background-color: #ffab61 }
+
+.via-plus-cross::after, .via-plus-cross::before { background-color: #404040 }
 
 .conn-end { background-color: #d1ddf9 }
 
@@ -184,9 +236,16 @@
 
     .conn-start, .conn-end, .conn-time { color: #fff; }
 
-    .start-icon::before { border: 5px solid #fff }
+    .start-icon::before {
+        border: 5px solid #fff;
+        background-color: #9693ff;
+    }
 
     .start-icon::after { background-color: #fff }
+
+    .via-plus-cross { background-color: #9693ff }
+
+    .via-plus-cross::after, .via-plus-cross::before { background-color: #fff }
 
     .conn-end { background-color: #254e58 }
 
