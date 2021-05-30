@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="via-plus-cross" :class="via ? 'via-ext' : ''" @click="via = !via; inputType = 0"></div>
+            <div class="plus-cross via-pc" :class="via ? 'via-ext' : ''" @click="via = !via; inputType = 0"></div>
             <div class="space10"></div>
             <div class="conn-start sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }" v-show="via">
                 <div class="start-icon via-icon"></div>
@@ -131,37 +131,31 @@
                             <div class="conn-body-mot-dest">{{ segm.dest }}</div>
                         </div>
                     </div>
-                    <div class="connection-body-start">
-                        <div class="conn-body-start-icon" :class="segm.isVehicle ? 'route-path-before route-path-after' : ''">
-                            <div class="route-circle" v-if="segm.isVehicle"></div>
-                            <div class="route-icon" :style="getRouteMotPic(segm.type)" v-if="!segm.isVehicle" :class="segm.type == 'Wait' ? 'fa fa-clock-o' : ''"></div>
+                    <div class="connection-body-path" v-for="(stop, i) in segm.path" v-if="segm.isVehicle" v-show="segm.exp || i == 0 || i+1 == segm.path.length">
+                        <div class="conn-body-path-icon route-path-before route-path-after">
+                            <div class="route-circle"></div>
+                            <div v-if="i == 0 && segm.path.length > 2" class="plus-cross int-pc" :class="segm.exp ? 'int-ext' : ''" @click="segm.exp = !segm.exp"></div>
                         </div>
-                        <div class="conn-body-start-info">
-                            <div class="conn-body-start-stop" v-if="segm.isVehicle">
-                                <span class="conn-body-start-name">{{ segm.start.name }}</span>
-                                <span class="conn-body-start-city">{{ segm.start.city }}</span>
+                        <div class="conn-body-path-info">
+                            <div class="conn-body-stop">
+                                <span class="conn-body-name">{{ stop.name }}</span>
+                                <span class="conn-body-city">{{ stop.city }}</span>
                             </div>
-                            <div class="conn-body-start-stop" v-else-if="segm.type=='Footpath'">Fußweg: {{ getDuration(segm.duration) }}</div>
-                            <div class="conn-body-start-stop" v-else-if="segm.type=='StayInVehicle'">Weiterfahrt im selben Fahrzeug</div>
-                            <div class="conn-body-start-details">
-                                <span v-if="segm.isVehicle"><i class="fa fa-sign-out"></i>{{ getTime(segm.start.time) }}</span>
-                                <span v-if="segm.isVehicle && segm.start.platform != null">{{ segm.start.platform }}</span>
-                                <span v-if="!segm.isVehicle && segm.wait != null">Übergangszeit: {{ getDuration(segm.wait) }}</span>
+                            <div class="conn-body-details">
+                                <span><i :class="i==0 ? 'fa fa-sign-out' : 'fa fa-sign-in'"></i>{{ getTime(stop.time) }}</span>
+                                <span v-if="stop.platform != null">{{ stop.platform }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="connection-body-end" v-if="segm.isVehicle">
-                        <div class="conn-body-end-icon route-path-before">
-                            <div class="route-circle route-circle-fill"></div>
+                    <div class="connection-body-path" v-if="!segm.isVehicle">
+                        <div class="conn-body-path-icon">
+                            <div class="route-icon" :style="getRouteMotPic(segm.type)" :class="segm.type == 'Wait' ? 'fa fa-clock-o' : ''"></div>
                         </div>
-                        <div class="conn-body-end-info">
-                            <div class="conn-body-end-stop">
-                                <span class="conn-body-end-name">{{ segm.end.name }}</span>
-                                <span class="conn-body-end-city">{{ segm.end.city }}</span>
-                            </div>
-                            <div class="conn-body-end-details">
-                                <span><i class="fa fa-sign-in"></i>{{ getTime(segm.end.time) }}</span>
-                                <span v-if="segm.end.platform != null">{{ segm.end.platform }}</span>
+                        <div class="conn-body-path-info">
+                            <div class="conn-body-stop" v-if="segm.type=='Footpath'">Fußweg: {{ getDuration(segm.duration) }}</div>
+                            <div class="conn-body-stop" v-else-if="segm.type=='StayInVehicle'">Weiterfahrt im selben Fahrzeug</div>
+                            <div class="conn-body-details">
+                                <span v-if="segm.wait != null">Übergangszeit: {{ getDuration(segm.wait) }}</span>
                             </div>
                         </div>
                     </div>

@@ -60,23 +60,37 @@
     flex-wrap: wrap;
 }
 
-.via-plus-cross {
+.plus-cross {
     width: 24px;
     height: 24px;
     flex: none;
     border-radius: 12px;
     position: absolute;
-    right: 10px;
-    top: 43px;
     transition: 0.5s;
+    z-index: 1;
 }
 
-.via-plus-cross.via-ext {
+.plus-cross.via-pc {
+    right: 10px;
+    top: 43px;
+}
+
+.plus-cross.via-ext {
     top: 73px;
     transform: rotate(45deg);
 }
 
-.via-plus-cross::before {
+.plus-cross.int-pc {
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, 50%) scale(0.8);
+}
+
+.plus-cross.int-ext {
+    transform: translate(50%, 50%) rotate(45deg) scale(0.8);
+}
+
+.plus-cross::before {
     content: "";
     display: block;
     width: 20px;
@@ -87,7 +101,7 @@
     transform: translate(-50%, -50%);
 }
 
-.via-plus-cross::after {
+.plus-cross::after {
     content: "";
     display: block;
     width: 4px;
@@ -201,9 +215,9 @@
 
 .start-icon::after { background-color: #404040 }
 
-.via-plus-cross { background-color: #ffab61 }
+.plus-cross { background-color: #ffab61 }
 
-.via-plus-cross::after, .via-plus-cross::before { background-color: #404040 }
+.plus-cross::after, .plus-cross::before { background-color: #404040 }
 
 .conn-end { background-color: #d1ddf9 }
 
@@ -243,9 +257,9 @@
 
     .start-icon::after { background-color: #fff }
 
-    .via-plus-cross { background-color: #9693ff }
+    .plus-cross { background-color: #9693ff }
 
-    .via-plus-cross::after, .via-plus-cross::before { background-color: #fff }
+    .plus-cross::after, .plus-cross::before { background-color: #fff }
 
     .conn-end { background-color: #254e58 }
 

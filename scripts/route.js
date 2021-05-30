@@ -25,31 +25,26 @@ let processConnectionResult = function(result) {
                 wait: null,
                 line: null,
                 dest: null,
-                start: null,
-                end: null
+                path: [],
+                exp: false
             };
             if (isVehicle) {
                 let trackMap = { Platform: 'Steig ', Railtrack: 'Gleis ' };
-                let index = segment.RegularStops.length - 1;
                 segmentData.line = segment.Mot.Name;
                 segmentData.dest = segment.Mot.Direction.trim();
-                segmentData.start = {
-                    name: segment.RegularStops[0].Name,
-                    city: segment.RegularStops[0].Place,
-                    time: parseInt(segment.RegularStops[0].DepartureTime.match(/[0-9]+/)[0]),
-                    platform: null
-                };
-                if ('Platform' in segment.RegularStops[0]) {
-                    segmentData.start.platform = trackMap[segment.RegularStops[0].Platform.Type] + segment.RegularStops[0].Platform.Name;
-                }
-                segmentData.end = {
-                    name: segment.RegularStops[index].Name,
-                    city: segment.RegularStops[index].Place,
-                    time: parseInt(segment.RegularStops[index].ArrivalTime.match(/[0-9]+/)[0]),
-                    platform: null
-                };
-                if ('Platform' in segment.RegularStops[index]) {
-                    segmentData.end.platform = trackMap[segment.RegularStops[index].Platform.Type] + segment.RegularStops[index].Platform.Name;
+                for (let k = 0; k < segment.RegularStops.length; k++) {
+                    segmentData.path.push({
+                        name: segment.RegularStops[k].Name,
+                        city: segment.RegularStops[k].Place,
+                        time: parseInt(segment.RegularStops[k].ArrivalTime.match(/[0-9]+/)[0]),
+                        platform: null
+                    });
+                    if ('Platform' in segment.RegularStops[k]) {
+                        segmentData.path[k].platform = trackMap[segment.RegularStops[k].Platform.Type] + segment.RegularStops[k].Platform.Name;
+                    }
+                    if (k == 0) {
+                        segmentData.path[k].time = parseInt(segment.RegularStops[k].DepartureTime.match(/[0-9]+/)[0]);
+                    }
                 }
                 if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('WTB')) segmentData.line = 'WeB';
                 if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('LGB')) segmentData.line = 'LöB';
@@ -79,12 +74,12 @@ let processConnectionResult = function(result) {
         let indexList = [];
         for (let j = 0; j < routeData.route.length; j++) {
             if (routeData.route[j].isVehicle) {
-                if (indexList.length == 0) waitTime = -routeData.route[j].end.time;
+                if (indexList.length == 0) waitTime = -routeData.route[j].path[0].time;
                 else {
-                    waitTime += routeData.route[j].start.time;
+                    waitTime += routeData.route[j].path[0].time;
                     waitTime /= 60000;
                     for (let k = 0; k < indexList.length; k++) routeData.route[indexList[k]].wait = waitTime;
-                    waitTime = -routeData.route[j].end.time;
+                    waitTime = -routeData.route[j].path[routeData.route[j].path.length - 1].time;
                     indexList = [];
                 }
             } else if (waitTime) {

@@ -50,18 +50,18 @@
     text-align: left;
 }
 
-.connection-body-mot, .connection-body-start, .connection-body-end {
+.connection-body-mot, .connection-body-path {
     display: flex;
     height: 60px;
 }
 
-.conn-body-mot-icon, .conn-body-start-icon, .conn-body-end-icon {
+.conn-body-mot-icon, .conn-body-path-icon {
     width: 15%;
     flex: none;
     position: relative;
 }
 
-.conn-body-mot-info, .conn-body-start-info, .conn-body-end-info {
+.conn-body-mot-info, .conn-body-path-info {
     margin-right: 10px;
 }
 
@@ -81,24 +81,24 @@
     flex: none;
 }
 
-.conn-body-start-info, .conn-body-end-info {
+.conn-body-path-info {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.conn-body-start-stop, .conn-body-end-stop {
+.conn-body-stop {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 3px;
 }
 
-.conn-body-start-city, .conn-body-end-city {
+.conn-body-city {
     font-weight: normal;
 }
 
-.conn-body-start-details, .conn-body-end-details {
+.conn-body-details {
     display: flex;
     justify-content: space-between;
 }
@@ -148,6 +148,10 @@
     transform: translateX(-50%);
 }
 
+.connection-body-path:last-child .route-path-after::after {
+    display: none;
+}
+
 .connection { background-color: #fde999 }
 
 .connection-head { background-color: #ffab61 }
@@ -158,7 +162,7 @@
 
 .route-circle { border: 5px solid #404040 }
 
-.route-circle-fill { background-color: #404040 }
+.connection-body-path:last-child .route-circle { background-color: #404040 }
 
 .route-path-before::before { border-left: 5px solid #404040 }
 
@@ -181,7 +185,7 @@
 
     .route-circle { border: 5px solid #88bdbc }
 
-    .route-circle-fill { background-color: #88bdbc }
+    .connection-body-path:last-child .route-circle { background-color: #88bdbc }
 
     .route-path-before::before { border-left: 5px solid #88bdbc }
 
