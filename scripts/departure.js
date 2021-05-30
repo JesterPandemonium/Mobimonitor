@@ -24,7 +24,7 @@ let main = function() {
             locating: false
         },
         methods: {
-            displayMonitor: function(station) { displayMonitor(station); },
+            displayMonitor: function(station) { displayMonitor(station, true); },
             getMotPic: function (mot) {
                 return "background-image:url('" + g_Mots[mot] + "')";
             },
@@ -75,18 +75,18 @@ let main = function() {
     refresh(true, true);
 }
 
-let displayMonitor = function(station) {
+function displayMonitor(station, history) {
     app.selectedStation = station.id;
     app.refreshData.stops = {};
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
-    addToHistory(station);
+    if (history) addToHistory(station);
     refresh(false, true).then(() => {
         app.showStationList = false;
         app.stationInput = '';
     });
 }
 
-let clearMonitor = function() {
+function clearMonitor() {
     app.departs = {};
     app.refreshData = { stops: {} };
     app.selectedStation = null;

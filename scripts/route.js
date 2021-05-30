@@ -34,6 +34,7 @@ let processConnectionResult = function(result) {
                 segmentData.dest = segment.Mot.Direction.trim();
                 for (let k = 0; k < segment.RegularStops.length; k++) {
                     segmentData.path.push({
+                        id: segment.RegularStops[k].DataId,
                         name: segment.RegularStops[k].Name,
                         city: segment.RegularStops[k].Place,
                         time: parseInt(segment.RegularStops[k].ArrivalTime.match(/[0-9]+/)[0]),

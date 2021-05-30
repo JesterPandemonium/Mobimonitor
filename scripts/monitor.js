@@ -115,7 +115,7 @@ let main = function() {
     }).catch(alert);
 }
 
-let moveTabFrame = function(id) {
+function moveTabFrame(id) {
     let tabCount = document.getElementById('app').childElementCount;
     if (id < 1 || id > tabCount) return;
     app.selectedPanel = id;

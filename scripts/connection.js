@@ -81,6 +81,16 @@ let main = function() {
                     } else res = h + 'h ' + m + 'min';
                     return res;
                 }
+            },
+            lookupDeparts: function(stationdata) {
+                let topdoc = window.top.document;
+                let func = topdoc.querySelector('#app .panel:nth-child(2) iframe').contentWindow.displayMonitor;
+                func({
+                    id: stationdata.id,
+                    name: stationdata.name,
+                    stadt: stationdata.city
+                }, false);
+                window.top.moveTabFrame(2);
             }
         },
         computed: {

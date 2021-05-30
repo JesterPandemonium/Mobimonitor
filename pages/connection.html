@@ -146,6 +146,7 @@
                                 <span v-if="stop.platform != null">{{ stop.platform }}</span>
                             </div>
                         </div>
+                        <div class="conn-body-deps fa fa-bus" @click="lookupDeparts(stop)"></div>
                     </div>
                     <div class="connection-body-path" v-if="!segm.isVehicle">
                         <div class="conn-body-path-icon">
