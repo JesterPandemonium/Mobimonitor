@@ -107,7 +107,6 @@ let main = function() {
         refresh(true, false).then(() => { 
             canMove = true;
             if (app.refreshData.lastRequested < lastUpdate) {
-                document.cookie = "history=;expires=" + new Date().toString();
                 document.getElementById('update-hint').style.display = 'flex';
             }
         });

@@ -31,14 +31,12 @@ let queryStations = function () {
     let value = app.stationInput;
     app.selectedStation = null;
     app.lineList = [];
-    let cookieMatch = document.cookie.match(/history=([^;]*)/);
-    let historyData = [];
-    let history = [];
-    if (cookieMatch != null) historyData = cookieMatch[1].split('§');
-    for (let i = 0; i < historyData.length; i++) {
-        try {
-            history.push(JSON.parse(decodeURIComponent(historyData[i])));
-        } catch (e) {}
+    let history = localStorage.getItem('history');
+    if (history == null) history = '';
+    try {
+        history = JSON.parse(history);
+    } catch (e) {
+        history = [];
     }
     if (value.length >= 3) fetchAPI('https://webapi.vvo-online.de/tr/pointfinder?format=json', {
         limit: 5,
@@ -70,21 +68,27 @@ let queryStations = function () {
 }
 
 let addToHistory = function (station) {
-    let data = encodeURIComponent(JSON.stringify({
+    let data = {
         id: station.id,
         name: station.name,
         stadt: station.stadt,
         type: 'history'
-    }));
-    let match = document.cookie.match(/history=([^;]*)/);
-    let history = [];
-    if (match != null) history = match[1].split('§');
-    if (history.indexOf(data) != -1) history.splice(history.indexOf(data), 1);
+    };
+    let history = localStorage.getItem('history');
+    if (history == null) history = '';
+    try {
+        history = JSON.parse(history);
+    } catch (e) {
+        history = [];
+    }
+    let i = 0;
+    while (i < history.length) {
+        if (history[i].id == station.id) history.splice(i, 1);
+        else i++;
+    }
     history.unshift(data);
     while (history.length > 5) history.pop();
-    let cookie = 'history=' + history.join('§');
-    cookie += ';max-age=' + (60 * 60 * 24 * 7) + ';samesite=strict';
-    document.cookie = cookie;
+    localStorage.setItem('history', JSON.stringify(history));
 }
 
 let selectStation = function (station) {
