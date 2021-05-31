@@ -30,6 +30,7 @@ body {
     display: flex;
     z-index: 1;
     transform: translateY(100%);
+    background-color: var(--navbar);
 }
 
 #tab-frame {
@@ -40,6 +41,7 @@ body {
     z-index: 2;
     transition: left 0.5s;
     transform: translateY(100%);
+    background-color: #fff3;
 }
 
 .tab {
@@ -50,7 +52,7 @@ body {
     font-size: 30px;
     height: 40px;
     padding-bottom: env(safe-area-inset-bottom, 0);
-    color: #fff;
+    color: var(--text-bright);
 }
 
 @media (max-width: 400px) {
@@ -93,12 +95,14 @@ iframe {
     display: flex;
     flex-direction: column;
     text-align: left;
+    background-color: var(--accent-light);
 }
 
 .monitor-entry-head {
     display: flex;
     padding: 6px 10px;
     min-height: max-content;
+    background-color: var(--accent-dark);
 }
 
 .monitor-entry-logo {
@@ -106,9 +110,16 @@ iframe {
     background-size: contain;
     width: 32px;
     display: block;
-    filter: invert(1) brightness(25%);
+    filter: invert(23%) sepia(37%) saturate(0%) hue-rotate(257deg) brightness(89%) contrast(88%); /* #404040 */
     background-repeat: no-repeat;
     background-position: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .monitor-entry-logo {
+        /* Awesome Tool :) https://codepen.io/sosuke/pen/Pjoqqp */
+        filter: invert(77%) sepia(14%) saturate(2554%) hue-rotate(192deg) brightness(97%) contrast(104%); /* #a7b0fc */
+    }
 }
 
 .monitor-entry-name {
@@ -146,6 +157,10 @@ iframe {
 .depart {
     display: flex;
     align-items: center;
+}
+
+.depart:nth-child(even) {
+    background-color: #8e860017;
 }
 
 .depart>* {
@@ -201,6 +216,7 @@ iframe {
     padding: 10px;
     border-radius: 10px 10px 0 10px;
     transform: translateY(calc((-1) * env(safe-area-inset-bottom, 0)));
+    background-color: var(--menu-dark);
 }
 
 #update-hint::after {
@@ -211,6 +227,7 @@ iframe {
     bottom: 0;
     border: 20px solid #0000;
     transform: rotate(45deg) translate(25px, -3px);
+    border-bottom: 20px solid var(--menu-dark);
 }
 
 #update-hint button {
@@ -222,13 +239,13 @@ iframe {
 
 #alert {
     position: absolute;
-    background-color: #99aeff;
+    background-color: var(--navbar);
     z-index: 5;
     width: 90%;
     top: 0;
     transform: translate(-50%, -150%);
     left: 50%;
-    color: white;
+    color: var(--text-bright);
     padding: 10px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -239,45 +256,4 @@ iframe {
 #alert.show {
     top: 20px;
     transform: translate(-50%, 0);
-}
-
-#tab-frame { background-color: #fff4; }
-
-#panel-switch { background-color: #99aeff; }
-
-.monitor-entry { 
-    background-color: #fde999; 
-    color: #404040;
-}
-
-.monitor-entry-head { background-color: #ffab61; }
-
-.depart:nth-child(even) { background-color: #f001; }
-
-#update-hint { background-color: #99aeff; }
-
-#update-hint::after { border-bottom: 20px solid #99aeff; }
-
-@media (prefers-color-scheme: dark) {
-    #tab-frame { background-color: #fff2; }
-
-    #panel-switch { background-color: #005c66; }
-    
-    .monitor-entry {
-        background-color: #254e58;
-        color: #88bdbc;
-    }
-
-    .monitor-entry-head { background-color: #112d32; }
-
-    .monitor-entry-logo {
-        /* Awesome Tool :) https://codepen.io/sosuke/pen/Pjoqqp */
-        filter: invert(75%) sepia(11%) saturate(789%) hue-rotate(130deg) brightness(94%) contrast(89%);
-    }
-
-    .depart:nth-child(even) { background-color: #fff1; }
-
-    #update-hint { background-color: #88bdbc; }
-
-    #update-hint::after { border-bottom: 20px solid #88bdbc; }
 }

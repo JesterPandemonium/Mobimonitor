@@ -2,6 +2,7 @@
     border-radius: 10px;
     overflow: hidden;
     margin: 10px 0;
+    background-color: var(--accent-light);
 }
 
 .infobox.open {
@@ -14,6 +15,7 @@
     font-size: 20px;
     display: flex;
     cursor: pointer;
+    background-color: var(--accent-dark);
 }
 
 .info-title .fa {
@@ -73,19 +75,4 @@
     font-style: italic;
     letter-spacing: 2px;
     margin-bottom: 5px;
-}
-
-.infobox { background-color: #fde999; }
-
-.info-title { background-color: #ffab61; }
-
-@media (prefers-color-scheme: dark) {
-    .infobox {
-        background-color: #112d32;
-        color: #88bdbc;
-    }
-    .info-title {
-        background-color: #254e58;
-        color: #88bdbc;
-    }
 }

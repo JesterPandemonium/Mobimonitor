@@ -3,6 +3,8 @@
     padding: 10px;
     flex-direction: column;
     margin: 10px;
+    border: 2px solid var(--menu-border);
+    background-color: var(--menu-light);
 }
 
 input[type="text"] {
@@ -13,6 +15,7 @@ input[type="text"] {
     margin: 0;
     width: 100%;
     box-sizing: border-box;
+    border: 1px solid var(--menu-border);
 }
 
 .station-input-container {
@@ -34,6 +37,8 @@ input[type="text"] {
     flex-wrap: wrap;
     margin: 0 10px;
     border-radius: 10px;
+    border: 2px solid var(--menu-border);
+    background-color: var(--menu-light);
 }
 
 .mot-box {
@@ -57,6 +62,8 @@ input[type="text"] {
     padding: 10px;
     display: flex;
     flex-direction: column;
+    border: 2px solid var(--menu-border);
+    background-color: var(--menu-dark);
 }
 
 .station-liste button {
@@ -66,6 +73,11 @@ input[type="text"] {
     text-align: left;
     font-size: 16px;
     position: relative;
+    background-color: var(--station);
+}
+
+.station-liste button.station-selected {
+    background-color: var(--accent-dark);
 }
 
 .station-liste .halt-symbol {
@@ -75,10 +87,16 @@ input[type="text"] {
     background-size: contain;
     position: absolute;
     width: 30px;
-    filter: invert(1) brightness(25%);
+    filter: invert(23%) sepia(37%) saturate(0%) hue-rotate(257deg) brightness(89%) contrast(88%); /* #404040 */
     height: 100%;
     top: 0;
     bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .station-liste .halt-symbol {
+        filter: invert(77%) sepia(14%) saturate(2554%) hue-rotate(192deg) brightness(97%) contrast(104%); /* #a7b0fc */
+    }
 }
 
 .station-liste .halt-symbol.history-symbol {
@@ -114,6 +132,7 @@ input[type="text"] {
     font-size: 16px;
     margin: 0;
     padding: 5px 10px;
+    background-color: var(--accent-dark);
 }
 
 .linien-container {
@@ -121,6 +140,7 @@ input[type="text"] {
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
+    background-color: var(--station);
 }
 
 .linien-container-head, .linien-container-dir {
@@ -155,6 +175,11 @@ input[type="text"] {
     padding: 5px;
     border-radius: 5px;
     margin: 5px;
+    background-color: var(--menu-dark);
+}
+
+.linien-container-switch span.active {
+    background-color: var(--accent-dark);
 }
 
 .linien-container-dir-symbol {
@@ -177,6 +202,11 @@ input[type="text"] {
     padding: 5px;
 }
 
+.linien-container-body {
+    border-top: 2px dashed var(--menu-border);
+    font-size: 14px;
+}
+
 .info-alert {
     width: 30px;
     height: 30px;
@@ -184,109 +214,7 @@ input[type="text"] {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-}
-
-input[type="text"] { border: 1px solid #a9a9a9; }
-
-#station-popup {
-    border: 2px solid #a9a9a9;
-    background-color: #e4e4e4;
-    color: #404040;
-}
-
-#mots {
-    border: 2px solid #a9a9a9;
-    background-color: #e4e4e4;
-}
-
-.station-liste, #linien-liste {
-    border: 2px solid #a9a9a9;
-    background-color: #cacaca;
-}
-
-.station-liste button, .linien-container-head {    
-    background-color: #d1ddf9;
-}
-
-.station-liste button.station-selected {
-    background-color: #ffab61;
-}
-
-.linien-container-body {
-    background-color: #d3f4f9;
-    font-size: 14px;
-}
-
-.linien-container-switch span {
-    background-color: #cacaca;
-}
-
-.linien-container-switch span.active {
-    background-color: #ffab61;
-}
-
-#linienwahl-container button {
-    background-color: #ffab61;
-}
-
-.info-alert { color: #4444; }
-
-@media (prefers-color-scheme: dark) {
-    input[type="text"] { border: 1px solid #88bdbc; }
-    
-    #station-popup {
-        border: 2px solid #88bdbc;
-        background-color: #254e58;
-    }
-
-    #mots {
-        border: 2px solid #88bdbc;
-        background-color: #254e58;
-    }
-
-    #linienwahl-container button {
-        color: #254e58;
-        background-color: #88bdbc;
-    }
-
-    .station-liste, #linien-liste {
-        border: 2px solid #88bdbc;
-        background-color: #112d32;
-        color: #88bdbc;
-    }
-
-    .station-liste button, .linien-container-head {
-        color: #fff;
-        background-color: #254e58;
-    }
-
-    .station-liste button.station-selected {
-        background-color: #88bdbc;
-        color: #254e58;
-    }
-
-    .station-liste .halt-symbol {
-        filter: invert(1);
-    }
-
-    .station-liste button.station-selected .halt-symbol {
-        filter: invert(21%) sepia(4%) saturate(6142%) hue-rotate(145deg) brightness(104%) contrast(81%);
-    }
-
-    .linien-container-body { 
-        background-color: #3c7988;
-        color: #fff;
-    }
-
-    .linien-container-switch span {
-        background-color: #254e58;
-    }
-    
-    .linien-container-switch span.active {
-        background-color: #88bdbc;
-    }
-
-    .info-alert { color: #fff6; }
+    opacity: 0.5;
 }
 
 @media (max-height: 450px) {

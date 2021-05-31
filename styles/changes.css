@@ -2,6 +2,7 @@
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
+    background-color: var(--accent-light);
 }
 
 .line-change-head {
@@ -9,6 +10,7 @@
     font-size: 20px;
     padding: 10px;
     align-items: center;
+    background-color: var(--accent-dark);
 }
 
 .line-change-icon {
@@ -47,6 +49,7 @@
 .change {
     border-radius: 12px;
     overflow: hidden;
+    border: 3px solid var(--accent-dark);
 }
 
 .change:not(:last-child) {
@@ -58,6 +61,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 5px;
+    background-color: var(--accent-dark);
 }
 
 .change-title {
@@ -74,11 +78,13 @@
 
 .change-body {
     padding: 5px;
+    border-top: 3px solid var(--accent-dark);
 }
 
 .change-period {
     border-radius: 5px;
     padding: 2px;
+    border: 1px solid var(--text-std);
 }
 
 .change-period:not(:first-child) {
@@ -104,6 +110,7 @@
 .change-details h2 {
     font-size: 20px;
     margin: 0 0 10px 0;
+    color: var(--heading);
 }
 
 .change-details p {
@@ -119,40 +126,4 @@
 
 .change-details li {
     margin-bottom: 5px;
-}
-
-#chgApp { color: #404040 }
-
-.line-change { background-color: #fde999 }
-
-.line-change-head { background-color: #ffab61 }
-
-.change { border: 3px solid #ffab61 }
-
-.change-head { background-color: #ffab61 }
-
-.change-body { border-top: 3px solid #ffab61 }
-
-.change-period { border: 1px solid #404040 }
-
-.change-details h2 { color: #0700d3 }
-
-@media (prefers-color-scheme: dark) {
-    #chgApp { color: #88bdbc }
-
-    .line-change { background-color: #254e58 }
-
-    .line-change-head { background-color: #112d32 }
-
-    .change { border: 3px solid #112d32 }
-
-    .change-head { background-color: #112d32 }
-
-    .change-body { border-top: 3px solid #112d32 }
-
-    .change-period { border: 1px solid #fff }
-
-    .change-details h2 { color: #9693ff }
-
-    .change-details p { background-color: #254e58 }
 }
