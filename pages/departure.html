@@ -24,7 +24,7 @@
 <body>
     <div id="depApp">
         <h1>Abfahrtsmonitor</h1>
-        <div id="station-popup" class="sh">
+        <div id="station-popup" class="sh" :class="{clps: Object.keys(departs).length > 0}">
             <div id="station-such-container">
                 <div class="station-input-container">
                     <input class="line-input" type="text" placeholder="Nach Haltestelle suchen" onfocus="clearMonitor()" autocomplete="off" v-model="stationInput">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div id="mots" class="sh" v-show="Object.keys(departs).length > 0">
+        <div id="mots" class="clps sh" v-show="Object.keys(departs).length > 0">
             <div v-for="(use, mot) in mots" class="mot-box">
                 <div class="mot-img" :style="getMotPic(mot)"></div>
                 <div class="switch" :class="{ enabled: use }" @click="mots[mot] = !use">

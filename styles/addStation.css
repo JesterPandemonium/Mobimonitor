@@ -291,17 +291,20 @@ input[type="text"] { border: 1px solid #a9a9a9; }
 
 @media (max-height: 450px) {
     #mots {
+        padding: 0 10px;
+    }
+    
+    #mots.clps {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border-top: none;
-        padding: 0 10px;
     }
 
     .mot-box {
         width: 16.66%
     }
 
-    #station-popup {
+    #station-popup.clps {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         border-bottom: none;
