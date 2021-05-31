@@ -23,8 +23,7 @@ let main = function() {
             stationList: [],
             selectedStation: null,
             lineList: [],
-            otherLines: false,
-            showAlert: false
+            otherLines: false
         },
         methods: {
             panelOffset: function(id) { 
@@ -125,10 +124,18 @@ function moveTabFrame(id) {
 }
 
 function showAlert() {
-    app.showAlert = true;
-    setTimeout(() => {
-        app.showAlert = false;
-    }, 5 * 1000);
+    let wait = ms => new Promise((res, rej) => setTimeout(res, ms)); 
+    let alt = document.getElementById('alert');
+    alt.style.display = 'block';
+    wait(100).then(() => {
+        alt.classList.add('show');
+        return wait(5000);
+    }).then(() => {
+        alt.classList.remove('show');
+        return wait(500);
+    }).then(() => {
+        alt.style.display = 'none';
+    });
 }
 
 function handleTouchStart(evt) {

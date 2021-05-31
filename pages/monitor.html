@@ -46,7 +46,7 @@
         <div class="panel" id="mainpanel" :style="panelOffset(1)" style="display:block;flex-direction:column">
             <div>
                 <h1>Dein MobiMonitor</h1>
-                <div id="alert" :class="showAlert ? 'show' : ''" class="sh">Die VVO-Fahrplan-API ist derzeit nicht erreichbar. Versuche es in wenigen Minuten erneut.</div>
+                <div id="alert" class="sh">Die VVO-Fahrplan-API ist derzeit nicht erreichbar. Versuche es in wenigen Minuten erneut.</div>
                 <div id="monitor">
                     <p v-show="Object.keys(departs).length == 0">Hier ist ja noch alles leer! Warum fügst Du nicht als erstes ein paar Stationen ein?</p>
                     <div v-for="(stop, i) in stopOrder" class="monitor-entry sh">

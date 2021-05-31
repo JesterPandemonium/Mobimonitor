@@ -200,6 +200,7 @@ iframe {
     flex-direction: column;
     padding: 10px;
     border-radius: 10px 10px 0 10px;
+    transform: translateY(calc((-1) * env(safe-area-inset-bottom, 0)));
 }
 
 #update-hint::after {
@@ -225,13 +226,14 @@ iframe {
     z-index: 5;
     width: 90%;
     top: 0;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, -150%);
     left: 50%;
     color: white;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: transform 0.3s, top 0.3s;
+    display: none;
 }
 
 #alert.show {
