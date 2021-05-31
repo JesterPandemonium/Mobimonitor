@@ -4,26 +4,68 @@
     position: relative;
 }
 
-.conn-start {
+.conn-segm {
     border-radius: 10px;
     height: 50px;
     display: flex;
     overflow: hidden;
-    align-items: center;
-}
-
-.conn-start, .conn-end, .conn-time {
     background-color: var(--station);
 }
 
-.conn-details>div.inputChecked {
+.conn-segm.inputChecked {
     background-color: var(--accent-light);
 }
 
-.start-icon, .end-icon, .time-icon {
+.conn-icon {
     width: 15%;
     height: 50px;
     position: relative;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-dark);
+}
+
+.conn-icon::before, .conn-icon::after {
+    content: "";
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.conn-icon::before {
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    top: 15px;
+    z-index: 1;
+    border: 5px solid var(--text-std);
+    background-color: var(--accent-dark);
+}
+
+.end-icon::before {
+    background-color: var(--text-std);
+}
+
+.conn-icon::after {
+    background-color: var(--text-std);
+    width: 5px;
+    height: 20px;
+    bottom: 0;
+}
+
+.via-icon::after {
+    height: 50px;
+}
+
+.end-icon::after {
+    bottom: 30px;
+}
+
+.time-icon {
+    width: 15%;
+    height: 50px;
     flex: none;
     font-size: 30px;
     display: flex;
@@ -32,40 +74,51 @@
     background-color: var(--accent-dark);
 }
 
-.start-icon::before {
-    content: "";
-    height: 10px;
-    width: 10px;
-    border-radius: 10px;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-    border: 5px solid var(--text-std);
-    background-color: var(--accent-dark);
-}
-
-.start-icon::after {
-    content: "";
-    height: 20px;
-    width: 5px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    background-color: var(--text-std);
-}
-
-.start-icon.via-icon::after {
-    height: 50px;
-}
-
-.start-data {
+.conn-data {
     display: flex;
     align-items: center;
     padding: 0 5px;
     flex-wrap: wrap;
+}
+
+.start-stop, .end-stop, .time-time {
+    font-weight: bold;
+}
+
+.time-now {
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: var(--accent-dark);
+}
+
+#date-pick-container input {
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--menu-border);
+}
+
+.time-ref-select {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-ref-select div {
+    padding: 5px;
+    border-radius: 10px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--station);
+}
+
+.time-ref-select .time-ref-selected {
+    background-color: var(--accent-dark);
 }
 
 .plus-cross {
@@ -121,104 +174,4 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--text-std);
-}
-
-.start-stop {
-    font-weight: bold;
-}
-
-.conn-end {
-    border-radius: 10px;
-    height: 50px;
-    display: flex;
-    overflow: hidden;
-}
-
-.end-icon::before {
-    content: "";
-    height: 10px;
-    width: 10px;
-    border-radius: 10px;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid var(--text-std);
-    background-color: var(--text-std);
-}
-
-.end-icon::after {
-    content: "";
-    height: 20px;
-    width: 5px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    background-color: var(--text-std);
-}
-
-.end-data {
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    flex-wrap: wrap;
-}
-
-.end-stop {
-    font-weight: bold;
-}
-
-.conn-time {
-    border-radius: 10px;
-    height: 50px;
-    display: flex;
-    overflow: hidden;
-}
-
-.time-data {
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
-    flex-wrap: wrap;
-}
-
-.time-time {
-    font-weight: bold;
-}
-
-.time-now {
-    padding: 5px;
-    border-radius: 10px;
-    font-weight: bold;
-    background-color: var(--accent-dark);
-}
-
-#date-pick-container input {
-    display: block;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 0;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--menu-border);
-}
-
-.time-ref-select {
-    display: flex;
-    justify-content: space-between;
-}
-
-.time-ref-select div {
-    padding: 5px;
-    border-radius: 10px;
-    width: 45%;
-    display: flex;
-    justify-content: center;
-    background-color: var(--station);
-}
-
-.time-ref-select .time-ref-selected {
-    background-color: var(--accent-dark);
 }

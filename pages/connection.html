@@ -27,9 +27,9 @@
     <div id="conApp">
         <h1>Verbindungen</h1>
         <div class="conn-details">
-            <div class="conn-start sh" @click="inputType = inputType == 1 ? 0 : 1" :class="{ inputChecked: inputType == 1 }">
-                <div class="start-icon"></div>
-                <div class="start-data">
+            <div class="conn-segm sh" @click="inputType = inputType == 1 ? 0 : 1" :class="{ inputChecked: inputType == 1 }">
+                <div class="conn-icon start-icon"></div>
+                <div class="conn-data">
                     <div>
                         <span class="start-stop">{{ getSelectedStartStation.name }}</span>
                         <span class="start-city">{{ getSelectedStartStation.stadt }}</span>
@@ -38,9 +38,9 @@
             </div>
             <div class="plus-cross via-pc" :class="via ? 'via-ext' : ''" @click="via = !via; inputType = 0"></div>
             <div class="space10"></div>
-            <div class="conn-start sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }" v-show="via">
-                <div class="start-icon via-icon"></div>
-                <div class="start-data">
+            <div class="conn-segm sh" @click="inputType = inputType == 2 ? 0 : 2" :class="{ inputChecked: inputType == 2 }" v-show="via">
+                <div class="conn-icon via-icon"></div>
+                <div class="conn-data">
                     <div>
                         <span class="start-stop">{{ getSelectedViaStation.name }}</span>
                         <span class="start-city">{{ getSelectedViaStation.stadt }}</span>
@@ -48,9 +48,9 @@
                 </div>
             </div>
             <div class="space10" v-show="via"></div>
-            <div class="conn-end sh" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
-                <div class="end-icon"></div>
-                <div class="end-data">
+            <div class="conn-segm sh" @click="inputType = inputType == 3 ? 0 : 3" :class="{ inputChecked: inputType == 3 }">
+                <div class="conn-icon end-icon"></div>
+                <div class="conn-data">
                     <div>
                         <span class="end-stop">{{ getSelectedDestStation.name }}</span>
                         <span class="end-city">{{ getSelectedDestStation.stadt }}</span>
@@ -58,9 +58,9 @@
                 </div>
             </div>
             <div class="space10"></div>
-            <div class="conn-time sh" @click="inputType = inputType == 4 ? 0 : 4" :class="{ inputChecked: inputType == 4 }">
+            <div class="conn-segm sh" @click="inputType = inputType == 4 ? 0 : 4" :class="{ inputChecked: inputType == 4 }">
                 <div class="time-icon fa fa-clock-o"></div>
-                <div class="time-data">
+                <div class="conn-data">
                     <div>
                         <span class="time-ref">{{ getSelectedTime.ref }}</span>
                         <span class="time-time">{{ getSelectedTime.time }}</span>
