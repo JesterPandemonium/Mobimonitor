@@ -37,6 +37,10 @@
     margin-bottom: 0;
 }
 
+#depApp .monitor-entry-body {
+    height: 100%;
+}
+
 @keyframes bounce {
     from { transform: rotate(0deg); }
     to { transform: rotate(30deg); }
