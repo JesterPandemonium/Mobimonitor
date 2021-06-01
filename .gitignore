@@ -4,3 +4,4 @@ pm2log
 data/**
 !data/abcdef.json
 todo
+sample

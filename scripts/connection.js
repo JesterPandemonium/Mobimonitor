@@ -55,10 +55,10 @@ let main = function() {
                 addToHistory(station);
             },
             getMotPic: function (mot) {
-                return "background-image:url('" + g_Mots[mot] + "')";
+                return 'background-image:url("' + g_Mots[mot] + '")';
             },
             getRouteMotPic: function (mot) {
-                return "background-image:url('" + g_Mots[mot] + "')";
+                return 'background-image:url("' + g_Mots[mot] + '")';
             },
             getTime: function(timestamp) {
                 let date = new Date(timestamp);

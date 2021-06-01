@@ -107,7 +107,7 @@
         </div>
         <button onclick="connect()">{{ searching ? 'Suche läuft...' : 'Verbindungen suchen' }}</button>
         <div class="connections">
-            <div class="connection sh" v-for="conn in tripData">
+            <div class="connection sh" :class="{canceled: conn.miss || conn.cancel}" v-for="conn in tripData">
                 <div class="connection-head" @click="conn.show = !conn.show">
                     <span class="connection-head-icon fa fa-chevron-right" :style="conn.show ? 'transform:rotate(90deg)' : ''"></span>
                     <div class="connection-head-details">
@@ -128,7 +128,10 @@
                         </div>
                         <div class="conn-body-mot-info">
                             <div class="conn-body-mot-line">{{ segm.line }}</div>
-                            <div class="conn-body-mot-dest">{{ segm.dest }}</div>
+                            <div class="conn-body-mot-dest">
+                                <span>{{ segm.dest }}</span>
+                                <span class="urgent" v-if="segm.cancel">Fahrt fällt aus!</span>
+                            </div>
                         </div>
                     </div>
                     <div class="connection-body-path" v-for="(stop, i) in segm.path" v-if="segm.isVehicle" v-show="segm.exp || i == 0 || i+1 == segm.path.length">
@@ -136,7 +139,7 @@
                             <div class="route-circle"></div>
                             <div v-if="i == 0 && segm.path.length > 2" class="plus-cross int-pc" :class="segm.exp ? 'int-ext' : ''" @click="segm.exp = !segm.exp"></div>
                         </div>
-                        <div class="conn-body-path-info">
+                        <div class="conn-body-path-info" :class="{ ruledout: stop.cancel }">
                             <div class="conn-body-stop">
                                 <span class="conn-body-name">{{ stop.name }}</span>
                                 <span class="conn-body-city">{{ stop.city }}</span>
@@ -153,10 +156,19 @@
                             <div class="route-icon" :style="getRouteMotPic(segm.type)" :class="segm.type == 'Wait' ? 'fa fa-clock-o' : ''"></div>
                         </div>
                         <div class="conn-body-path-info">
-                            <div class="conn-body-stop" v-if="segm.type=='Footpath'">Fußweg: {{ getDuration(segm.duration) }}</div>
+                            <div class="conn-body-stop" v-if="segm.type=='Footpath'">
+                                <span>Fußweg: {{ getDuration(segm.duration) }}</span>
+                                <span v-if="segm.urgent && (!segm.miss)" class="urgent"> Beeilung!</span>
+                                <span v-if="segm.miss" class="urgent"> Zu knapp!</span>
+                            </div>
                             <div class="conn-body-stop" v-else-if="segm.type=='StayInVehicle'">Weiterfahrt im selben Fahrzeug</div>
-                            <div class="conn-body-details">
-                                <span v-if="segm.wait != null">Übergangszeit: {{ getDuration(segm.wait) }}</span>
+                            <div class="conn-body-stop" v-else-if="segm.type=='MobilityStairsUp'">Treppe aufwärts</div>
+                            <div class="conn-body-stop" v-else-if="segm.type=='MobilityStairsDown'">Treppe abwärts</div>
+                            <div class="conn-body-details" :class="{ urgent: segm.urgent || segm.miss }">
+                                <span v-if="segm.wait != null">
+                                    <span v-if="!segm.miss">Übergangszeit: {{ getDuration(segm.wait) }}</span>
+                                    <span v-if="segm.miss">Anschluss wird verpasst.</span>
+                                </span>
                             </div>
                         </div>
                     </div>

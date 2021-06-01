@@ -48,6 +48,19 @@
     padding: 3px 0;
 }
 
+.connection.canceled .connection-head {
+    background-color: var(--menu-dark);
+}
+
+.connection.canceled>:nth-child(2)::before {
+    display: block;
+    content: "Es liegt ein Problem mit dieser Verbindung vor.";
+    background-color: var(--cancel);
+    color: var(--text-bright);
+    padding: 8px;
+    text-align: center;
+}
+
 .connection-body {
     text-align: left;
 }
@@ -90,6 +103,16 @@
     background-color: var(--accent-dark);
 }
 
+.conn-body-mot-dest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.conn-body-mot-dest .urgent {
+    font-weight: bold;
+}
+
 .conn-body-path-info {
     flex: 1;
     display: flex;
@@ -101,6 +124,14 @@
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 3px;
+}
+
+.ruledout {
+    text-decoration: line-through;
+}
+
+.urgent {
+    color: #f00;
 }
 
 .conn-body-city {
