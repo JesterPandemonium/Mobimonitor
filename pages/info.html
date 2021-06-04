@@ -25,14 +25,16 @@
                     } else this.parentElement.classList.add('open');
                 });
             }
+            if (window.self == window.top) {
+                document.getElementById('privacy-personal').style.display = 'none';
+            }
         }
     </script>
     <title>Info</title>
 </head>
 <body>
     <h1>Info</h1>
-    <h3>Zu erst einmal... Danke!</h3>
-    <p>... dass Du dieses Tool nutzt. Dann war der Programmieraufwand wenigstens nicht umsonst.</p>
+    <h3>Fragen und Antworten</h3>
     <div class="infobox changelog sh">
         <div class="info-title"><span class="fa fa-chevron-down"></span><span>Changelog - Das ist neu!</span></div>
         <div class="chlg-h">2.3.1 [Sep 29, 2020]</div>
@@ -58,7 +60,7 @@
         <div class="chlg-h">2.2.0 [Mar 14, 2020]</div>
         <div class="chlg-f">Bei gespeicherten Stationen können ab sofort neben den bevorzugten Linien auch bevorzugte Fahrtrichtungen angegeben werden. Dieses Feature ist allerdings nicht zu 100% zuverlässig (insbesondere bei Zügen und Regionalbuslinien) aufgrund von Abweichungen innerhalb der VVO-API. Es empfielt sich daher, die Option "andere Richtungen" stets aktiviert zu lassen - auch wenn so ggf. zusätzliche, nicht erwünschte Fahrten angezeigt werden.</div>
         <div class="chlg-f">Gespeicherte Stationen können nun auf Knopfdruck getauscht werden.</div>
-        <div class="chlg-f">Ab sofort erscheint ein Update-Hinweis, sobald eine neue Version verfügbar ist - damit Du keine Features mehr verpasst.</div>
+        <div class="chlg-f">Ab sofort erscheint ein Update-Hinweis, sobald eine neue Version verfügbar ist - damit du keine Features mehr verpasst.</div>
         <div class="chlg-b">Auf dem Abfahrtsmonitor werden nun wirklich ALLE Fahrten der nächsten Stunde angezeigt - und nicht nur zwei pro Linie und Richtung.</div>
         <div class="chlg-h">2.1.2 [Mar 1, 2020]</div>
         <div class="chlg-f">Der Reiter "In deiner Nähe" hat nun einen Button zum Aktualisieren des Standorts, sodass die App hierfür nicht neugestartet werden muss.</div>
@@ -74,8 +76,8 @@
         <div class="chlg-b">Bei der Eingabe eines nicht existierenden Links wird nun kein "Interner Fehler" mehr gemeldet.</div>
         <div class="chlg-h">2.1.0 [Feb 23, 2020]</div>
         <div class="chlg-f">Einzelne Abfahrten sind jetzt alternierend gefärbt zur besseren Lesbarkeit.</div>
-        <div class="chlg-f">Im Reiter "Abfahrtsmonitor" kannst Du jetzt einmalig nach Stationen suchen, ohne dass diese gespeichert werden. Der Abfahrtsmonitor beinhaltet außerdem eine History-Funktion sowie ein Filter nach Verkehrsmittel.</div>
-        <div class="chlg-f">Im Reiter "In deiner Nähe" kannst Du Dir Abfahrten an Haltestellen aus Deiner Umgebung anzeigen lassen, ohne einen Haltestellennamen eingeben zu müssen.</div>
+        <div class="chlg-f">Im Reiter "Abfahrtsmonitor" kannst du jetzt einmalig nach Stationen suchen, ohne dass diese gespeichert werden. Der Abfahrtsmonitor beinhaltet außerdem eine History-Funktion sowie ein Filter nach Verkehrsmittel.</div>
+        <div class="chlg-f">Im Reiter "In deiner Nähe" kannst du dir Abfahrten an Haltestellen aus deiner Umgebung anzeigen lassen, ohne einen Haltestellennamen eingeben zu müssen.</div>
         <div class="chlg-f">Die Überschriften der einzelnen Seiten werden auf Mobilgeräten jetzt verkleinert dargestellt.</div>
         <div class="chlg-f">Inaktive MobiMonitor-Seiten werden ab jetzt erst nach frühestens 4 Wochen gelöscht (vorher 2).</div>
         <div class="chlg-b">Bei einer Anfrage für die auf dem Server gespeicherten Daten wird nun keine Datei mehr heruntergeladen, sondern ein neuer Tab geöffnet - wie ursprünglich vorgesehen.</div>
@@ -99,60 +101,64 @@
         <div>Erstveröffentlichung :)</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was ist das hier?</span></div>
-        <div class="info-p">MobiMonitor ist eine kleines Tool, mit welchem sich im VVO-Gebiet für eine Vorauswahl von Haltestellen alle Abfahrten übersichtlich anzeigen lassen.</div>
-        <div class="info-p">Du steigst immer an derselben Haltestelle ein, aber kannst Dir den Fahrplan trotzdem nicht merken? Kein Problem, MobiMonitor übernimmt das für Dich. Verspätungen sind auch gleich mit einberechnet ;)</div>
-        <div class="info-p">Speicher einfach Deine Wunschstationen in Deinem personalisierten MobiMonitor ab und hab immer alles auf einen Blick parat.</div>
-        <div class="info-p">Im Abfahrts-Tab kannst Du auch einmalig nach Stationen suchen oder Dir Abfahrten an Stationen in Deiner Umgebung anzeigen lassen - je nach dem, was Du gerade brauchst!</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was ist der MobiMonitor?</span></div>
+        <div class="info-p">Der MobiMonitor ist ein kleines Tool, mit welchem sich im VVO-Gebiet für eine Vorauswahl von Haltestellen alle Abfahrten übersichtlich anzeigen lassen.</div>
+        <div class="info-p">du steigst immer an derselben Haltestelle ein, aber kannst dir den Fahrplan trotzdem nicht merken? Kein Problem, der MobiMonitor ist die Lösung.</div>
+        <div class="info-p">Speichere einfach deine Wunschstationen in deinem personalisierten MobiMonitor ab und habe alle aktuellen Abfahrten auf einen Blick parat.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was kann ich alles personalisieren?</span></div>
-        <div class="info-p">Auf der Startseite kannst Du eine Auswahl von Haltestellen Deiner Wahl zu Deinem MobiMonitor hinzufügen.</div>
-        <div class="info-p">Für jede Haltestelle kannst Du die Linien auswählen, welche Dich interessieren. Falls Deine Linie nicht aufgelistet ist, kannst Du "Weitere Linien" aktivieren - das wirkt Wunder!</div>
-        <div class="info-p">Für jede Linie kannst Du wiederum Filter für die Fahrtrichtung anlegen. Ein Filter trifft genau dann auf eine Abfahrt zu, wenn er im Namen der Fahrtrichtung enthalten ist.</div>
-        <div class="info-p">Es gibt zwei Arten von Filtern. Du kannst entscheiden, ob die durch Filter betroffenen Abfahrten ausgeschlossen werden sollen (empfohlen) oder ob nur die durch Filter betroffenen Fahrten angezeigt werden sollen.</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was kann personalisiert werden?</span></div>
+        <div class="info-p">Auf der Startseite kannst du eine Auswahl von Haltestellen deiner Wahl zu deinem MobiMonitor hinzufügen.</div>
+        <div class="info-p">Für jede Haltestelle kannst du die Linien auswählen, welche du benötigst. Falls deine Linie nicht aufgelistet ist, kannst du "Weitere Linien" aktivieren.</div>
+        <div class="info-p">Für jede Linie kannst du wiederum Filter für die Fahrtrichtung anlegen. Ein Filter trifft genau dann auf eine Abfahrt zu, wenn er im Namen der Fahrtrichtung enthalten ist.</div>
+        <div class="info-p">Es gibt zwei Arten von Filtern. du kannst entscheiden, ob die durch Filter betroffenen Abfahrten ausgeschlossen werden sollen (Blacklist, empfohlen) oder ob nur die durch Filter betroffenen Fahrten angezeigt werden sollen (Whitelist).</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Ist das zuverlässig?</span></div>
-        <div class="info-p">Die Daten kommen direkt der VVO-Web-API und werden aller 15 Sekunden aktualisiert. Demnach ist die Sache ziemlich wasserfest.</div>
-        <div class="info-p">Unter Umständen beachtet das Tool jedoch noch keine kurzfristigen Fahrplanänderungen. Das wird sich allerdings noch ändern.</div>
-        <div class="info-p">Bitte beachte zusätzlich, dass pro Station nur die Abfahrten der von dir gewählten Linien betrachtet werden, sofern sie innerhalb der nächsten 60 Minuten stattfinden.</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Was kann der MobiMonitor außer personalisierter Abfahrtstafeln?</span></div>
+        <div class="info-p">Im Abfahrtstab kannst du dir alle Abfahrten von einer bestimmten Station anzeigen lassen, ohne sie vorher einspeichern zu müssen.</div>
+        <div class="info-p">Im Verbindungstab kannst du Routen und Verbindungen planen.</div>
+        <div class="info-p">Im Tab für Änderungsmitteilungen kannst du eventuelle Umleitungen oder Störungen auf allen Linien einsehen.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Ganz wichtig!</span></div>
-        <div class="info-p">Bitte beachte, dass jeder, der den Link zu deinem MobiMonitor hat, dort auch alles lesen und ändern kann.</div>
-        <div class="info-p">Dementsprechend solltest Du Deinen persönlichen Link geheimhalten, MobiMonitor nur auf privaten Geräten nutzen oder zumindest Deinen Browserverlauf nachher löschen.</div>
-        <div class="info-p">Ferner solltest Du beachten, dass Dein MobiMonitor gelöscht wird, wenn Du ihn länger als 4 Wochen nicht genutzt hast oder keine Haltestellen einspeicherst.</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Woran liegt es, dass Abfahrten nicht angezeigt werden?</span></div>
+        <div class="info-p">Möglicherweise hast du die entsprechende Linie nicht ausgewählt. Das kann zum Beispiel passieren, wenn Ersatzverkehr besteht, da dieser i. d. R. eine andere Liniennummer hat.</div>
+        <div class="info-p">Tipp: Wähle immer auch "Weitere Linien" mit aus, damit bei einer Änderung der an dieser Haltestelle fahrenden Linien die neuen Linien stets angezeigt werden.</div>
+        <div class="info-p">Ebenfalls möglich ist, dass du für die Fahrtrichtung durch einen Filter explizit ausgeschlossen hast (Blacklist) oder - im Falle eines Whitelist-Filters - nicht mit einbezogen hast.</div>
+        <div class="info-p">Tipp: Nutze keine Whitelist-Filter, d. h. schließe nur Fahrtrichtungen aus statt dich auf ausgewählte Fahrtrichtungsfilter zu beschränken</div>
+        <div class="info-p">Bitte beachte zusätzlich, dass pro Station nur die Abfahrten innerhalb der nächsten 60 Minuten angezeigt werden.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Gibt's das auch als App?</span></div>
-        <div class="info-p">Du kannst Deinen MobiMonitor auf Deinen Home-Bildschirm laden - dann funktioniert sie genau so wie eine App!</div>
-        <div class="info-p">Du weißt nicht, wie das geht? Das erfährst du <a href="https://support.apple.com/de-de/guide/iphone/iph42ab2f3a7/ios#iph4f9a47bbc" target="_blank">hier (iOS)</a> bzw. <a href="http://mzl.la/1ApHClH" target="_blank">hier (Android)</a>.</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Woher stammen die Daten?</span></div>
+        <div class="info-p">Die Daten kommen aus der VVO-Web-API, auf welche auch die VVO-Mobil-App oder die DVB-App zugreift.</div>
+        <div class="info-p">Aller 15 Sekunden werden die Abfahrtszeiten aktualisiert.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Datenschutz!?!</span></div>
-        <div class="info-p">Wir setzen einen Cookie, um die Stationen, die Du im Abfahrtsmonitor suchst, zu speichern. Dies ist nötig für die Funktionalität der History-Funktion. Die Cookie-Daten werden nicht auf dem Server gespeichert oder durch den Server ausgewertet.</div>
-        <div class="info-p">Für die Ortungsdienste wird deine aktuelle Position an den VVO-Webserver übertragen. Entsprechende Datenschutzhinweise findest du <a target="_blank" href="https://www.vvo-online.de/de/datenschutz/index.cshtml#Mobil">hier</a>.</div>
-        <div class="info-p">Auf unserem Server speichern wir nur die von Dir gespeicherten Haltestellen und wann du den MobiMonitor zuletzt benutzt hast.</div>
-        <div class="info-p">Was wir über Dich wissen, kannst Du Dir <a target="_blank" id="datalink">hier</a> anschauen.</div>
-        <div class="info-p">Diese Daten befinden sich in einem maschinenlesbaren JSON-Format. Um die Daten besser lesen zu können, füge die Daten einfach in <a href="https://jsonformatter.curiousconcept.com/" target="_blank">diesem Tool</a> ein und schon wird alles lesbar!</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Wie kann der MobiMonitor als App genutzt werden?</span></div>
+        <div class="info-p">Der MobiMonitor ist eine Progressive Web App (PWA).</div>
+        <div class="info-p">Das bedeutet: du kannst deinen MobiMonitor-Link aufrufen und ihn dann auf deinen Home-Bildschirm laden - dann funktioniert er genau wie eine App.</div>
+        <div class="info-p">Wie das ganze funktioniert, erfährst du <a href="https://support.apple.com/de-de/guide/iphone/iph42ab2f3a7/ios#iph4f9a47bbc" target="_blank">hier (iOS)</a> bzw. <a href="http://mzl.la/1ApHClH" target="_blank">hier (Android)</a>.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Diese Animation nervt!</span></div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Wie kann die Animation umgangen werden?</span></div>
         <div class="info-p">Bei schlechteren Geräten kann die Tram-Animation zu starken Frame-Einbrüchen führen, wodurch sie - auch wenn sie als Ladesymbol konzipiert ist - die Ladezeit noch einmal deutlich verlängert.</div>
         <div class="info-p">Um dies zu umgehen, hänge einfach an deinen persönlichen Link die Endung <a href="#notramlink" id="notramlink">?notram</a> an - und schon wird die App ohne Animation geladen.</div>
         <div class="info-p">Falls du es dir anders überlegst, kannst du die Endung jederzeit wieder entfernen.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Ist ja ganz nett, aber...</span></div>
-        <div class="info-p">Gibt es ein Feature, dass deines Erachtens noch fehlt? Oder stört dich etwas? Dann hast Du an dieser Stelle zwei Möglichkeiten:</div>
-        <div class="info-p"><b>#1</b> Reiche Dein Feedback einfach an die Person weiter, die Dir den MobiMonitor gezeigt hat, mit der Bitte, es weiterzusagen - dann erfährt der Entwickler bestimmt auch bald davon ;)</div>
-        <div class="info-p"><b>#2</b> Drei Worte: <a target="_blank" href="https://github.com/DrEGZo/Mobimonitor">Do it yourself!</a></div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Wichtige Information!</span></div>
+        <div class="info-p">Bitte beachte, dass jeder, der den Link zu deinem MobiMonitor hat, dort auch alles lesen und ändern kann.</div>
+        <div class="info-p">Dementsprechend solltest du deinen persönlichen Link geheimhalten, MobiMonitor nur auf privaten Geräten nutzen oder zumindest deinen Browserverlauf nachher löschen.</div>
+        <div class="info-p">Ferner solltest du beachten, dass dein MobiMonitor gelöscht wird, wenn du ihn länger als 4 Wochen nicht genutzt hast oder keine Haltestellen einspeicherst.</div>
     </div>
     <div class="infobox sh">
-        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Dieser #*%!$ funktioniert nicht!</span></div>
-        <div class="info-p">Ziehe bitte in Betracht, dass das Tool von einer Person auf die Beine gestellt wurde. Bugs sind damit vorprogrammiert - wortwörtlich.</div>
-        <div class="info-p">Aber wenn Dir ein Fehler auffällt, dann lass es doch einfach den Entwickler wissen, damit er sich darum kümmern kann ;)</div>
+        <div class="info-title"><span class="fa fa-chevron-down"></span><span>Datenschutz</span></div>
+        <div class="info-p">Für die Ortungsfunktionen wird deine aktuelle Position an den VVO-Webserver übertragen. Entsprechende Datenschutzhinweise findest du <a target="_blank" href="https://www.vvo-online.de/de/datenschutz/index.cshtml#Mobil">hier</a>.</div>
+        <div class="info-p">Auf unserem Server speichern wir nur die von dir gespeicherten Haltestellen und wann du den MobiMonitor zuletzt benutzt hast.</div>
+        <div id="privacy-personal">
+            <div class="info-p">Was wir über dich wissen, kannst du <a target="_blank" id="datalink">hier</a> im maschinenlesbaren JSON-Format abrufen.</div>
+            <div class="info-p">Um die Daten besser lesen zu können, füge die Daten einfach in <a href="https://jsonformatter.org/" target="_blank">diesem Tool</a> ein.</div>
+        </div>
+        
     </div>
 </body>
 </html>
