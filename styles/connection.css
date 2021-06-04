@@ -105,6 +105,7 @@
     width: 100%;
     box-sizing: border-box;
     border: 1px solid var(--menu-border);
+    min-height: 45px;
 }
 
 .time-ref-select {
