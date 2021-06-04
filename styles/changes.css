@@ -1,3 +1,7 @@
+#chgApp {
+    display: none;
+}
+
 .line-change {
     border-radius: 10px;
     overflow: hidden;

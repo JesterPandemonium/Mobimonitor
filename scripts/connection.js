@@ -83,6 +83,7 @@ let main = function() {
                 }
             },
             lookupDeparts: function(stationdata) {
+                if (window.self == window.top) return;
                 let topdoc = window.top.document;
                 let func = topdoc.querySelector('#app .panel:nth-child(2) iframe').contentWindow.displayMonitor;
                 func({
@@ -150,6 +151,9 @@ let main = function() {
                     document.querySelector('input[type="datetime-local"]').focus();
                 }
             }
+        },
+        mounted: function () {
+            document.getElementById('conApp').style.display = 'block';
         }
     });
     queryStations();

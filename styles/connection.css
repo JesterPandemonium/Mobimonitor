@@ -1,3 +1,7 @@
+#conApp {
+    display: none;
+}
+
 .conn-details {
     margin: 10px;
     text-align: left;

@@ -69,6 +69,9 @@ let main = function() {
         },
         watch: {
             stationInput: queryStations
+        },
+        mounted: function () {
+            document.getElementById('depApp').style.display = 'flex';
         }
     });
     queryStations();

@@ -113,8 +113,8 @@ let main = function() {
                 return true;
             }
         },
-        watch: {
-            
+        mounted: function () {
+            document.getElementById('chgApp').style.display = 'block';
         }
     });
     updateChanges();
