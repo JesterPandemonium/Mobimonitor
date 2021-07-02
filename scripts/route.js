@@ -22,8 +22,7 @@ let processConnectionResult = function(result) {
         }
         for (let j = 0; j < route.PartialRoutes.length; j++) {
             let segment = route.PartialRoutes[j];
-            // Bei Gelegenheit Standseilbahn hinzufügen... wenn sie dann endlich mal wieder fährt
-            let allowedMots = ['Footpath', 'StayInVehicle', 'MobilityStairsUp', 'MobilityStairsDown', 'Bus', 'Tram', 'Ferry', 'Train', 'PlusBus', 'RapidTransit', 'OverheadRailway', 'Taxi'];
+            let allowedMots = ['Footpath', 'StayInVehicle', 'MobilityStairsUp', 'MobilityStairsDown', 'Bus', 'Tram', 'Ferry', 'Train', 'PlusBus', 'RapidTransit', 'OverheadRailway', 'Cablecar', 'Taxi'];
             if (allowedMots.indexOf(segment.Mot.Type) == -1) continue;
             let noVehicles = ['Footpath', 'StayInVehicle', 'MobilityStairsUp', 'MobilityStairsDown'];
             let isVehicle = noVehicles.indexOf(segment.Mot.Type) == -1;
