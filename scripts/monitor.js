@@ -104,7 +104,10 @@ let main = function() {
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;
-        refresh(true, false).then(() => { 
+        refresh(true).then(() => {
+            if (noTram) finishTram();
+            document.getElementById('app').style.display = 'block';
+            tramData.stop = true;
             canMove = true;
             if (app.refreshData.lastRequested < lastUpdate) {
                 document.getElementById('update-hint').style.display = 'flex';

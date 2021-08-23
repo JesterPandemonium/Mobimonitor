@@ -1,5 +1,5 @@
-let refresh = function (loop, allowAll) {
-    if (loop) setTimeout(() => { refresh(true, allowAll) }, 15 * 1000);
+let refresh = function (loop) {
+    if (loop) setTimeout(() => { refresh(true) }, 15 * 1000);
     let reqs = [];
     let resData = {}
     for (let stop in app.refreshData.stops) {
@@ -11,12 +11,13 @@ let refresh = function (loop, allowAll) {
         app.departs = {};
         for (let station in resData) {
             let departs = [];
-            let alreadyUsed = {};
+            let alreadyUsed = [];
             for (let i = 0; i < resData[station].Departures.length; i++) {
                 let depart = resData[station].Departures[i];
                 let line = depart.LineName;
                 let dir = depart.Direction;
                 let availableLines = app.refreshData.stops[station].lines;
+                for (l in availableLines) availableLines[l.replace(/\s/g, '')] = availableLines[l]; // so that "S 1" matches "S1" as well
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
                 let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!app.refreshData.stops[station].otherLines);
@@ -26,8 +27,8 @@ let refresh = function (loop, allowAll) {
                 let willKeinFernverkehr = !availableLines.otherLines;
                 if ('IC/ICE' in availableLines) willKeinFernverkehr = availableLines['IC/ICE'].use;
                 if (lineNotWanted || dirNotWanted || (istFernferkehr && willKeinFernverkehr)) continue;
-                if (!((line + depart.Direction) in alreadyUsed)) alreadyUsed[depart.LineName + depart.Direction] = 0;
-                if (alreadyUsed[depart.LineName + depart.Direction] < 2 || allowAll) {
+                let identifier = line + depart.Direction + depart.ScheduledTime;
+                if (alreadyUsed.indexOf(identifier) == -1) {
                     let leaveTime = parseInt(depart.ScheduledTime.match(/[0-9]+/)[0]);
                     let schedTime = (leaveTime - Date.now()) / 60000;
                     if ('RealTime' in depart) leaveTime = parseInt(depart.RealTime.match(/[0-9]+/)[0]);
@@ -47,7 +48,7 @@ let refresh = function (loop, allowAll) {
                             state: depart.State,
                             dly: timeToGo - schedTime
                         });
-                        alreadyUsed[depart.LineName + depart.Direction]++;
+                        alreadyUsed.push(identifier);
                     }
                 }
             }
@@ -57,12 +58,6 @@ let refresh = function (loop, allowAll) {
                 departs: departs
             });
         }
-        if (!allowAll) {
-            if (noTram) finishTram();
-        }
-        let appBlock = document.getElementById('app');
-        if (appBlock != null) appBlock.style.display = 'block';
-        if (!allowAll) tramData.stop = true;
     });
 }
 

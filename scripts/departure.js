@@ -75,7 +75,7 @@ let main = function() {
         }
     });
     queryStations();
-    refresh(true, true);
+    refresh(true);
 }
 
 function displayMonitor(station, history) {
@@ -83,7 +83,7 @@ function displayMonitor(station, history) {
     app.refreshData.stops = {};
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
     if (history) addToHistory(station);
-    refresh(false, true).then(() => {
+    refresh(false).then(() => {
         app.showStationList = false;
         app.stationInput = '';
     });

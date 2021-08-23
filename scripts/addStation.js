@@ -158,7 +158,7 @@ let submitStation = function () {
             return fetch('/data' + window.location.pathname);
         }).then(data => {
             app.refreshData = data;
-            return refresh(false, false);
+            return refresh(false);
         }).then(() => {
             stationPopup(null);
         }).catch(alert);
@@ -171,7 +171,7 @@ let delStation = function (id) {
         return fetch('/data' + window.location.pathname);
     }).then(data => {
         app.refreshData = data;
-        return refresh(false, false);
+        return refresh(false);
     }).catch(alert);
 }
 
