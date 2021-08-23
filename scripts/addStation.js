@@ -89,6 +89,7 @@ let addToHistory = function (station) {
     history.unshift(data);
     while (history.length > 5) history.pop();
     localStorage.setItem('history', JSON.stringify(history));
+    queryStations();
 }
 
 let selectStation = function (station) {
@@ -193,3 +194,5 @@ let removeFilter = function(line, mode, index) {
     if (mode == 0) app.lineList[line].doNotUse.splice(index, 1);
     else app.lineList[line].useOnly.splice(index, 1);
 }
+
+window.onstorage = queryStations;

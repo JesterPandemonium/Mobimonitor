@@ -82,10 +82,10 @@ function displayMonitor(station, history) {
     app.selectedStation = station.id;
     app.refreshData.stops = {};
     app.refreshData.stops[station.id] = { lines: {}, otherLines: true };
-    if (history) addToHistory(station);
     refresh(false).then(() => {
         app.showStationList = false;
         app.stationInput = '';
+        if (history) addToHistory(station);
     });
 }
 

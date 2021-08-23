@@ -52,7 +52,6 @@ let main = function() {
                 else if (this.inputType == 3) this.selectedDestStation = station;
                 this.inputType = 0;
                 this.stationInput = '';
-                addToHistory(station);
             },
             getMotPic: function (mot) {
                 return 'background-image:url("' + g_Mots[mot] + '")';
@@ -134,7 +133,10 @@ let main = function() {
             }
         },
         watch: {
-            stationInput: queryStations
+            stationInput: queryStations,
+            inputType: function(val) {
+                if (val == 0) document.getElementById('station-popup').style.display = 'none';
+            }
         },
         mounted: function () {
             document.getElementById('conApp').style.display = 'block';
@@ -147,9 +149,7 @@ let main = function() {
 let connInput = function(id) {
     if (app.inputType == id) id = 0;
     app.inputType = id;
-    if (id == 0) {
-        document.getElementById('station-popup').style.display = 'none';
-    } else if (id == 1 || id == 2 || id == 3) {
+    if (id == 1 || id == 2 || id == 3) {
         document.getElementById('station-popup').style.display = 'block';
         document.getElementById('date-pick-container').style.display = 'none';
         document.getElementById('station-such-container').style.display = 'block';
@@ -191,6 +191,9 @@ let connect = function () {
         (app.selectedViaStation == null && app.via) ||
         app.searching
     ) return;
+    addToHistory(app.selectedStartStation);
+    if (app.via) addToHistory(app.selectedViaStation);
+    addToHistory(app.selectedDestStation);
     app.searching = true;
     let mots = ['HailedSharedTaxi'];
     for (let mot in app.mots) {
