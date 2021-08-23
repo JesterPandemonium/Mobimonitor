@@ -14,9 +14,9 @@ let noTram = window.location.search == '?notram';
 
 let moveTram = function() {
     document.getElementById('trams').style.display = 'block';
-    if (tramData.mov.v > 2) {
+    if (tramData.mov.v > 2.5) {
         tramData.mov.a = 0;
-        tramData.mov.v = 2;
+        tramData.mov.v = 2.5;
     } else if (tramData.mov.v < 0) {
         tramData.mov.a = 0;
         tramData.mov.v = 0;
@@ -31,7 +31,7 @@ let moveTram = function() {
         tramData.monMov.v = 0;
         tramData.monMov.s = 0;
         moveOn = false;
-        setTimeout(openDoors, 50);
+        openDoors();
     }
     for (let i = 1; i <= 4; i++) {
         tramData.mov.s[i-1] += tramData.mov.v;
@@ -80,7 +80,7 @@ let stopTram = function() {
 }
 
 let openDoors = function() {
-    let t = 50;
+    let t = 35;
     let s = 6;
     let a = 2 * s / (t * (t + 1));
     let scaleS = 7;
@@ -144,7 +144,7 @@ let moveDoors = function (t, tGes) {
         tramData.monScale.s += tramData.monScale.v;
     }
     t--;
-    if (t != 0) setTimeout(() => {
+    if (t > 0) setTimeout(() => {
         moveDoors(t, tGes);
     }, 20);
     else {
