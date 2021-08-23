@@ -134,23 +134,7 @@ let main = function() {
             }
         },
         watch: {
-            stationInput: queryStations,
-            inputType: function(val) {
-                if (val == 0) {
-                    document.getElementById('station-popup').style.display = 'none';
-                } else if (val == 1 || val == 2 || val == 3) {
-                    document.getElementById('station-popup').style.display = 'block';
-                    document.getElementById('date-pick-container').style.display = 'none';
-                    document.getElementById('station-such-container').style.display = 'block';
-                    document.querySelector('.line-input').focus();
-                }
-                else if (val == 4) {
-                    document.getElementById('station-popup').style.display = 'block';
-                    document.getElementById('station-such-container').style.display = 'none';
-                    document.getElementById('date-pick-container').style.display = 'block';
-                    document.querySelector('input[type="datetime-local"]').focus();
-                }
-            }
+            stationInput: queryStations
         },
         mounted: function () {
             document.getElementById('conApp').style.display = 'block';
@@ -158,6 +142,25 @@ let main = function() {
     });
     queryStations();
     restrictDateInput();
+}
+
+let connInput = function(id) {
+    if (app.inputType == id) id = 0;
+    app.inputType = id;
+    if (id == 0) {
+        document.getElementById('station-popup').style.display = 'none';
+    } else if (id == 1 || id == 2 || id == 3) {
+        document.getElementById('station-popup').style.display = 'block';
+        document.getElementById('date-pick-container').style.display = 'none';
+        document.getElementById('station-such-container').style.display = 'block';
+        document.querySelector('.line-input').focus();
+    }
+    else if (id == 4) {
+        document.getElementById('station-popup').style.display = 'block';
+        document.getElementById('station-such-container').style.display = 'none';
+        document.getElementById('date-pick-container').style.display = 'block';
+        document.querySelector('input[type="datetime-local"]').focus();
+    }
 }
 
 let restrictDateInput = function() {

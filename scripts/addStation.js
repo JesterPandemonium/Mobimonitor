@@ -5,7 +5,6 @@ let stationPopup = function (station) {
     app.lineList = [];
     if (overlay.style.display != 'none') overlay.style.display = 'none';
     else {
-        document.querySelector('.line-input').focus();
         if (station !== null) {
             app.editing = true;
             selectStation(station).then(() => {
@@ -18,6 +17,7 @@ let stationPopup = function (station) {
             queryStations();
             overlay.style.display = 'flex';
         };
+        document.querySelector('.line-input').focus();
     }
 }
 
