@@ -103,7 +103,7 @@ app.post('/editStop/:id', (req, res) => {
     if (typeof req.body.lines !== 'object' || req.body.lines === null) dataCorrupted = true;
     else {
         for (let line in req.body.lines) {
-            if (!(/^[A-Za-z0-9\/\u00f6\u00df ]+$/.test(line))) dataCorrupted = true; // Die \u Dinger sind für die L'öß'nitzgrundbahn...
+            if (!(/^[A-Za-z0-9\/\u00f6\u00df() ]+$/.test(line))) dataCorrupted = true; // Die \u Dinger sind für die L'öß'nitzgrundbahn...
             let lineData = req.body.lines[line];
             if (typeof lineData !== 'object' || lineData === null) dataCorrupted = true;
             else if (typeof lineData.use !== 'boolean') dataCorrupted = true;

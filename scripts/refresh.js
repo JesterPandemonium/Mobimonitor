@@ -20,6 +20,7 @@ let refresh = function (loop) {
                 for (l in availableLines) availableLines[l.replace(/\s/g, '')] = availableLines[l]; // so that "S 1" matches "S1" as well
                 if (line.includes('SDG') && 'Lößnitzgrundbahn' in availableLines) line = 'Lößnitzgrundbahn';
                 if (line.includes('SDG') && 'Weißeritztalbahn' in availableLines) line = 'Weißeritztalbahn';
+                if (line.match(/[(]/)) line = line.match(/^(.*\S)\s*[(]/)[1]; // Transfer things like "A (Freital)" to "A".
                 let lineNotWanted = (line in availableLines) ? (!availableLines[line].use) : (!app.refreshData.stops[station].otherLines);
                 let dirNotWanted;
                 if (line in availableLines) dirNotWanted = filterByUserPreference(dir, availableLines[line].filterMode, availableLines[line].useOnly, availableLines[line].doNotUse);
