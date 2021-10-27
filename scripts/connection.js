@@ -203,7 +203,7 @@ let connect = function () {
         }
     }
     let time = app.selectedTime;
-    if (time == null) time = new Date().toISOString();
+    if (time == null) time = new Date(Date.now() - 3 * 60 * 1000).toISOString(); // mind past connections as well in case of delay
     else time = new Date(time).toISOString();
     let requestData = {
         origin: app.selectedStartStation.id,
