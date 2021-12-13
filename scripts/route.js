@@ -66,11 +66,11 @@ let processConnectionResult = function(result) {
                         }
                         cancel = segment.RegularStops[k].DepartureState == 'Cancelled';
                     }
-                    if (cancel) {
-                        segmentData.path[k].cancel = true;
-                        segmentData.cancel = true;
-                        routeData.cancel = true;
-                    }
+                    if (cancel) segmentData.path[k].cancel = true;
+                }
+                if (segmentData.path[0].cancel || segmentData.path[segmentData.path.length - 1].cancel) {
+                    segmentData.cancel = true;
+                    routeData.cancel = true;
                 }
                 if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('WTB')) segmentData.line = 'WeB';
                 if (segment.Mot.Name.includes('SDG') && segment.Mot.DlId.includes('LGB')) segmentData.line = 'LöB';
