@@ -4,7 +4,7 @@ let touchX;
 let touchY;
 let canMove = false;
 
-const lastUpdate = 1635373800000;
+const lastUpdate = 1639437300000;
 
 let main = function() {
     if (!noTram) moveTram();
