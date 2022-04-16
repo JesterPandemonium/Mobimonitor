@@ -50,5 +50,9 @@
             },
             "otherLines": true
         }
+    },
+    "settings": {
+        "showTram": true,
+        "showPlatform": true
     }
 }

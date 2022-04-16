@@ -48,7 +48,8 @@ app.get('/createNewRecord', (req, res) => {
     let data = {
         err: false,
         lastRequested: Date.now(),
-        stops: {}
+        stops: {},
+        settings: { showTram: true, showPlatform: false }
     };
     fs.writeFile(__dirname + '/data/' + id + '.json', JSON.stringify(data), (err) => {
         if (err) handleError(res, err);
