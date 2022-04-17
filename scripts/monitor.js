@@ -4,7 +4,7 @@ let touchX;
 let touchY;
 let canMove = false;
 
-const lastUpdate = 1639437300000;
+const lastUpdate = 1650221100000;
 
 let main = function() {
     let id = window.location.pathname;
