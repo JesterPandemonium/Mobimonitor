@@ -8,14 +8,18 @@
                 "61": {
                     "use": true,
                     "filterMode": 1,
-                    "useOnly": ["Fernsehturm"],
+                    "useOnly": [
+                        "Fernsehturm"
+                    ],
                     "doNotUse": []
                 },
                 "63": {
                     "use": true,
                     "filterMode": 0,
                     "useOnly": [],
-                    "doNotUse": ["Gruna"]
+                    "doNotUse": [
+                        "Gruna"
+                    ]
                 },
                 "84": {
                     "use": false,
