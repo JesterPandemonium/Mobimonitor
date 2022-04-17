@@ -68,7 +68,7 @@
                     <span class="depart-dir">{{ depart.dir }}</span>
                     <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FÄLLT AUS!</span>
                     <span class="depart-time" :style="delay(depart.dly)"><i class="fa fa-clock-o"></i><span>{{ depart.time }}</span></span>
-                    <span class="depart-platform"><i class="fa fa-map-pin"></i><span>{{ depart.platf }}</span></span>
+                    <span class="depart-platform" v-show="settings.showPlatform"><i class="fa fa-map-pin"></i><span>{{ depart.platf }}</span></span>
                 </div>
             </div>
         </div>

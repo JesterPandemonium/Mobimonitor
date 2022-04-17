@@ -23,7 +23,8 @@ let main = function() {
             stationList: [],
             selectedStation: null,
             lineList: [],
-            otherLines: false
+            otherLines: false,
+            settings: {}
         },
         methods: {
             panelOffset: function(id) { 
@@ -104,6 +105,8 @@ let main = function() {
     });
     fetch('/data' + id).then(data => {
         app.refreshData = data;
+        app.settings = data.settings;
+        localStorage.setItem('settings', JSON.stringify(data.settings));
         refresh(true).then(() => {
             if (noTram) finishTram();
             document.getElementById('app').style.display = 'block';

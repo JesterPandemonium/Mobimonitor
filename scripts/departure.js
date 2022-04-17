@@ -21,7 +21,8 @@ let main = function() {
                 Ferry: true
             },
             history: [],
-            locating: false
+            locating: false,
+            settings: {}
         },
         methods: {
             displayMonitor: function(station) { displayMonitor(station, true); },
@@ -73,6 +74,12 @@ let main = function() {
         mounted: function () {
             document.getElementById('depApp').style.display = 'flex';
         }
+    });
+    let setts = localStorage.getItem('settings');
+    if (setts != null) app.settings = JSON.parse(setts);
+    window.addEventListener('storage', e => {
+        if (e.key != 'settings') return;
+        app.settings = JSON.parse(e.newValue);
     });
     queryStations();
     refresh(true);
