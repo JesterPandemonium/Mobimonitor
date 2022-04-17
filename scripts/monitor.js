@@ -7,7 +7,6 @@ let canMove = false;
 const lastUpdate = 1639437300000;
 
 let main = function() {
-    if (!noTram) moveTram();
     let id = window.location.pathname;
     let tabCount = document.getElementById('app').childElementCount;
     let tabFrame = document.getElementById('tab-frame');
@@ -107,8 +106,9 @@ let main = function() {
         app.refreshData = data;
         app.settings = data.settings;
         localStorage.setItem('settings', JSON.stringify(data.settings));
+        if (app.settings.showTram) moveTram();
         refresh(true).then(() => {
-            if (noTram) finishTram();
+            if (!app.settings.showTram) finishTram();
             document.getElementById('app').style.display = 'block';
             tramData.stop = true;
             canMove = true;

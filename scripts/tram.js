@@ -10,8 +10,6 @@ let tramData = {
     stopping: false
 }
 
-let noTram = window.location.search == '?notram';
-
 let moveTram = function() {
     document.getElementById('trams').style.display = 'block';
     if (tramData.mov.v > 2.5) {
