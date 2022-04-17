@@ -75,6 +75,10 @@ let main = function() {
             delay: function(dly) {
                 if (dly >= 10) return 'background-color: #f00a';
                 return 'background-color: #f00' + dly;
+            },
+            changeSetting: function(setting, value) {
+                this.settings[setting] = value;
+                localStorage.setItem('settings', JSON.stringify(app.settings));
             }
         },
         computed: {

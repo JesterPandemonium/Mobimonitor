@@ -40,6 +40,7 @@
         <span onclick="moveTabFrame(3)" class="tab fa fa-code-fork"></span>
         <span onclick="moveTabFrame(4)" class="tab fa fa-warning"></span>
         <span onclick="moveTabFrame(5)" class="tab fa fa-question-circle"></span>
+        <span onclick="moveTabFrame(6)" class="tab fa fa-cog"></span>
     </div>
     <span id="tab-frame"></span>
     <div id="app" style="display: none">
@@ -158,6 +159,23 @@
         </div>
         <div class="panel" :style="panelOffset(5)">
             <iframe src="/info" frameborder="0"></iframe>
+        </div>
+        <div class="panel" :style="panelOffset(6)" style="flex-direction:column">
+            <div>
+                <h1>Einstellungen</h1>
+                <div class="setting">
+                    <span>Tram-Animation anzeigen</span>
+                    <div class="switch" :class="{ enabled: settings.showTram }" @click="changeSetting('showTram', !settings.showTram)">
+                        <div class="switch-slider"></div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <span>Steig/Gleis für Abfahrt anzeigen</span>
+                    <div class="switch" :class="{ enabled: settings.showPlatform }" @click="changeSetting('showPlatform', !settings.showPlatform)">
+                        <div class="switch-slider"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <span id="v">2.4.3</span>

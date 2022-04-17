@@ -278,3 +278,17 @@ iframe {
     top: 20px;
     transform: translate(-50%, 0);
 }
+
+.setting {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    cursor: pointer;
+    background-color: var(--accent-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+}
