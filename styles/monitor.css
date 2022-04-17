@@ -191,10 +191,8 @@ iframe {
 }
 
 .depart-cancel {
-    font-size: 14px;
     color: #f00;
-    font-weight: 600;
-    padding-left: 5px;
+    text-decoration: line-through;
 }
 
 .depart-time {

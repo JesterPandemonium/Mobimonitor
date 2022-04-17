@@ -62,11 +62,10 @@
                 <span class="fa fa-close monitor-head-button" style="margin-left:auto" onclick="clearMonitor()"></span>
             </div>
             <div class="monitor-entry-body">
-                <div class="depart" v-for="depart in stop.departs" v-if="wantsMot(depart.mot)">
+                <div class="depart" v-for="depart in stop.departs" v-if="wantsMot(depart.mot)" :class="{ 'depart-cancel': depart.state == 'Cancelled' }">
                     <span class="depart-logo" :style="getMotPic(depart.mot)"></span>
                     <span class="depart-line">{{ depart.line }}</span>
                     <span class="depart-dir">{{ depart.dir }}</span>
-                    <span class="depart-cancel" v-if="depart.state == 'Cancelled'">FÄLLT AUS!</span>
                     <span class="depart-time" :style="delay(depart.dly)"><i class="fa fa-clock-o"></i><span>{{ depart.time }}</span></span>
                     <span class="depart-platform" v-show="settings.showPlatform"><i class="fa fa-map-pin"></i><span>{{ depart.platf }}</span></span>
                 </div>
