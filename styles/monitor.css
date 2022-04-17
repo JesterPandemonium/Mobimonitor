@@ -187,6 +187,7 @@ iframe {
 
 .depart-dir {
     font-size: 14px;
+    overflow-x: scroll;
 }
 
 .depart-cancel {
@@ -197,14 +198,32 @@ iframe {
 }
 
 .depart-time {
+    display: flex;
     margin-left: auto;
-    width: 30px;
+    width: 45px;
     height: 30px;
-    display: inline-flex;
+    min-width: 45px;
+}
+
+.depart-platform {
+    display: flex;
+    width: 80px;
+    height: 30px;
+    min-width: 80px;
+    margin-right: 3px;
+}
+
+.depart-time i, .depart-platform i {
+    width: 15px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 20px;
-    text-align: center;
+    margin: 0 3px;
+}
+
+.depart-time span, .depart-platform span {
+    margin: auto;
+    white-space: nowrap;
 }
 
 #update-hint {

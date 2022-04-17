@@ -47,7 +47,8 @@ let refresh = function (loop) {
                             mot: depart.Mot,
                             time: Math.floor(timeToGo),
                             state: depart.State,
-                            dly: timeToGo - schedTime
+                            dly: timeToGo - schedTime,
+                            platf: (depart.Platform.Type == 'Railtrack' ? 'Gleis ' : 'Steig ') + depart.Platform.Name
                         });
                         alreadyUsed.push(identifier);
                     }

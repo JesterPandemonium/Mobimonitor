@@ -51,7 +51,7 @@ app.get('/createNewRecord', (req, res) => {
         stops: {},
         settings: { showTram: true, showPlatform: false }
     };
-    fs.writeFile(__dirname + '/data/' + id + '.json', JSON.stringify(data), (err) => {
+    fs.writeFile(__dirname + '/data/' + id + '.json', JSON.stringify(data, null, 4), (err) => {
         if (err) handleError(res, err);
         else res.send({ err: false, id: id });
     });
@@ -88,7 +88,7 @@ app.get('/data/:id', (req, res) => {
             let json = JSON.parse(data);
             res.json(json);
             json.lastRequested = Date.now();
-            fs.writeFile(__dirname + '/data/' + req.params.id + '.json', JSON.stringify(json), (err) => {
+            fs.writeFile(__dirname + '/data/' + req.params.id + '.json', JSON.stringify(json, null, 4), (err) => {
                 if (err) handleError({send: x => {}}, err);
             });
         };
@@ -131,7 +131,7 @@ app.post('/editStop/:id', (req, res) => {
             if (!(req.body.id in daten.stops)) daten.stops[req.body.id] = { position: Object.keys(daten.stops).length };
             daten.stops[req.body.id].lines = req.body.lines;
             daten.stops[req.body.id].otherLines = req.body.otherLines;
-            fs.writeFile(path, JSON.stringify(daten), (err) => {
+            fs.writeFile(path, JSON.stringify(daten, null, 4), (err) => {
                 if (err) handleError(err);
                 else res.send({ err: false });
             });
@@ -147,7 +147,7 @@ app.post('/delStop/:id', (req, res) => {
         else {
             let daten = JSON.parse(data);
             delete daten.stops[req.body.id];
-            fs.writeFile(path, JSON.stringify(daten), (err) => {
+            fs.writeFile(path, JSON.stringify(daten, null, 4), (err) => {
                 if (err) handleError(err);
                 else res.send({ err: false });
             });
@@ -168,7 +168,7 @@ app.post('/swapStops/:id', (req, res) => {
                 let pos2 = daten.stops[req.body.s2].position;
                 daten.stops[req.body.s1].position = pos2;
                 daten.stops[req.body.s2].position = pos1;
-                fs.writeFile(path, JSON.stringify(daten), (err) => {
+                fs.writeFile(path, JSON.stringify(daten, null, 4), (err) => {
                     if (err) handleError(err);
                     else res.send({ err: false });
                 });
