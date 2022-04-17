@@ -10,9 +10,6 @@
         window.onload = () => {
             let id = window.top.location.pathname;
             document.getElementById('datalink').href = '/data' + id;
-            document.getElementById('notramlink').addEventListener('click', () => {
-                top.window.location.href = id + '?notram';
-            });
             document.addEventListener('touchstart', top.handleTouchStart);
             document.addEventListener('touchmove', top.handleTouchMove);
             document.addEventListener('touchend', top.handleTouchEnd);
