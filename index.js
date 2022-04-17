@@ -177,4 +177,26 @@ app.post('/swapStops/:id', (req, res) => {
     });
 });
 
+app.post('/changeSetting/:id', (req, res) => {
+    let id = req.params.id;
+    let path = __dirname + '/data/' + id + '.json';
+    fs.readFile(path, (err, data) => {
+        if (err) handleError(res, err);
+        else {
+            let daten = JSON.parse(data);
+            let setting = req.body.setting;
+            let value = req.body.value;
+            if (!(setting in daten.settings)) res.send({ err: true });
+            else if (typeof value != typeof daten.settings[setting]) res.send({ err: true });
+            else {
+                daten.settings[setting] = value;
+                fs.writeFile(path, JSON.stringify(daten, null, 4), (err) => {
+                    if (err) handleError(err);
+                    else res.send({ err: false });
+                });
+            }
+        }
+    });
+});
+
 module.exports = app;

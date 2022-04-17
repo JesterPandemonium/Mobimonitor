@@ -79,6 +79,10 @@ let main = function() {
             changeSetting: function(setting, value) {
                 this.settings[setting] = value;
                 localStorage.setItem('settings', JSON.stringify(app.settings));
+                sendToServer('/changeSetting' + window.location.pathname, {
+                    setting: setting,
+                    value: value
+                }).catch(alert);
             }
         },
         computed: {
