@@ -40,6 +40,11 @@ let refresh = function (loop) {
                     if (line == 'Lößnitzgrundbahn') line = 'LöB';
                     if (line == 'Weißeritztalbahn') line = 'WeB';
                     if (line.length > 10) line = '';
+                    let platf;
+                    if (!('Platform' in depart)) platf = '';
+                    else if (!('Type' in depart.Platform && 'Name' in depart.Platform)) platf = '';
+                    else if (depart.Platform.Type == 'Railtrack') platf = 'Gleis ' + depart.Platform.Name;
+                    else platf = 'Steig ' + depart.Platform.Name;
                     if (timeToGo >= 0 && timeToGo <= 60) {
                         departs.push({
                             line: line,
@@ -48,7 +53,7 @@ let refresh = function (loop) {
                             time: Math.floor(timeToGo),
                             state: depart.State,
                             dly: timeToGo - schedTime,
-                            platf: (depart.Platform.Type == 'Railtrack' ? 'Gleis ' : 'Steig ') + depart.Platform.Name
+                            platf: platf
                         });
                         alreadyUsed.push(identifier);
                     }
